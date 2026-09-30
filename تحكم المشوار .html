@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>لوحة تحكم مشوارك | وِدّ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#8b5cf6;--primary-glow:rgba(139,92,246,.4);--secondary:#06b6d4;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--bg-deep:#090d16;--bg-card:rgba(20,27,45,.75);--glass-border:rgba(255,255,255,.08);--text-main:#f1f5f9;--text-muted:#94a3b8;--sidebar-w:260px}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
+body{background:radial-gradient(circle at 15% 15%,rgba(139,92,246,.12) 0,transparent 45%),radial-gradient(circle at 85% 85%,rgba(6,182,212,.1) 0,transparent 45%),#090d16;color:var(--text-main);min-height:100vh;overflow-x:hidden}
+.app-layout{display:flex;min-height:100vh}
+.sidebar{width:var(--sidebar-w);background:linear-gradient(180deg,rgba(20,27,45,.98),rgba(15,22,38,.98));border-left:1px solid var(--glass-border);backdrop-filter:blur(20px);display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;z-index:100;transition:transform .3s;overflow-y:auto}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(139,92,246,.3);border-radius:10px}
+.sidebar-header{padding:24px 20px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center;gap:12px}
+.sidebar-logo{width:45px;height:45px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;box-shadow:0 8px 20px rgba(139,92,246,.4);flex-shrink:0}
+.sidebar-title{font-size:16px;font-weight:900;color:#a78bfa;line-height:1.2}
+.sidebar-title small{display:block;font-size:10px;color:var(--text-muted);font-weight:500;margin-top:2px}
+.sidebar-area-selector{padding:15px 20px;border-bottom:1px solid var(--glass-border)}
+.sidebar-area-selector label{font-size:11px;color:var(--text-muted);font-weight:700;display:block;margin-bottom:6px}
+.area-trigger{width:100%;padding:10px 12px;background:rgba(10,15,28,.8);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-muted);font-size:13px;font-weight:700;cursor:pointer;font-family:'Cairo',sans-serif;text-align:right;display:flex;justify-content:space-between;align-items:center}
+.sidebar-nav{padding:15px 12px;flex:1}
+.nav-section-title{font-size:10px;color:var(--text-muted);font-weight:700;padding:12px 10px 6px;text-transform:uppercase;letter-spacing:1px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;cursor:pointer;transition:all .2s;margin-bottom:3px;color:var(--text-muted);font-size:13.5px;font-weight:600;position:relative}
+.nav-item:hover{background:rgba(139,92,246,.1);color:#fff}
+.nav-item.active{background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(6,182,212,.15));color:#fff;border:1px solid rgba(139,92,246,.4)}
+.nav-item i{width:20px;text-align:center;font-size:15px}
+.nav-item .badge{margin-right:auto;background:var(--danger);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:900;animation:pulseBadge 1.5s infinite}
+@keyframes pulseBadge{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.main-content{margin-right:var(--sidebar-w);flex:1;padding:20px 30px;min-height:100vh;width:calc(100% - var(--sidebar-w))}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;flex-wrap:wrap;gap:15px}
+.topbar h1{font-size:24px;font-weight:900;color:#fff;display:flex;align-items:center;gap:12px}
+.topbar h1 i{color:var(--primary);font-size:22px}
+.menu-toggle{display:none;background:var(--bg-card);border:1px solid var(--glass-border);color:#fff;width:42px;height:42px;border-radius:12px;cursor:pointer;font-size:18px}
+.page{display:none;animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;padding:20px;margin-bottom:20px;box-shadow:0 15px 35px rgba(0,0,0,.3)}
+.card-title{font-size:15px;font-weight:900;color:#fff;margin-bottom:15px;display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--glass-border)}
+.card-title i{width:32px;height:32px;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(6,182,212,.15));border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:15px;flex-shrink:0}
+.card-subtitle{font-size:12px;color:var(--text-muted);margin-bottom:15px;line-height:1.7}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-bottom:20px}
+.stat-card{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.08));border:1px solid rgba(139,92,246,.25);border-radius:18px;padding:18px}
+.stat-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+.stat-value{font-size:26px;font-weight:900;color:#fff;line-height:1.2}
+.stat-label{font-size:12px;color:var(--text-muted);font-weight:600;margin-top:4px}
+input,select,textarea{width:100%;padding:12px 15px;background:rgba(10,15,28,.7);border:1.5px solid var(--glass-border);border-radius:12px;color:#fff;font-size:13.5px;margin:6px 0;outline:none;font-family:'Cairo',sans-serif}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 15px var(--primary-glow)}
+select option{background:#0f172a;color:#fff}
+label.field-label{font-size:12px;font-weight:700;color:#cbd5e1;display:block;margin-top:10px;margin-bottom:2px}
+.btn{padding:12px 20px;border:none;border-radius:12px;cursor:pointer;font-weight:700;font-size:13.5px;color:#fff;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),#7c3aed);width:100%;margin-top:10px}
+.btn-success{background:linear-gradient(135deg,#059669,#10b981)}
+.btn-warning{background:linear-gradient(135deg,#d97706,#f59e0b)}
+.btn-danger{background:linear-gradient(135deg,#dc2626,#ef4444)}
+.btn-sm{padding:6px 12px;font-size:11px;border-radius:8px}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(10,15,28,.4);border:1px solid var(--glass-border);border-radius:14px;margin-bottom:10px}
+.toggle-label{font-size:13px;font-weight:700;color:#e2e8f0}
+.toggle-label small{display:block;font-size:10px;color:var(--text-muted);font-weight:500;margin-top:2px}
+.switch{position:relative;display:inline-block;width:48px;height:26px;flex-shrink:0}
+.switch input{opacity:0;width:0;height:0}
+.slider-sw{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#334155;transition:.3s;border-radius:34px}
+.slider-sw:before{position:absolute;content:"";height:18px;width:18px;left:4px;bottom:4px;background-color:#fff;transition:.3s;border-radius:50%}
+input:checked + .slider-sw{background-color:var(--success);box-shadow:0 0 12px rgba(16,185,129,.5)}
+input:checked + .slider-sw:before{transform:translateX(22px)}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--glass-border)}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:1000px}
+.data-table th{background:rgba(10,15,28,.9);color:var(--text-muted);font-weight:700;padding:12px 8px;text-align:center;font-size:11px;text-transform:uppercase;white-space:nowrap}
+.data-table td{padding:12px 8px;text-align:center;border-bottom:1px solid var(--glass-border);color:#e2e8f0;font-size:12.5px;white-space:nowrap}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:rgba(139,92,246,.05)}
+.data-table .driver-name{font-weight:900;color:#fff;font-size:13px}
+.role-badge{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:900;display:inline-block}
+.role-tuktuk{background:rgba(139,92,246,.2);color:#a78bfa;border:1px solid rgba(139,92,246,.4)}
+.role-delegate{background:rgba(6,182,212,.2);color:#22d3ee;border:1px solid rgba(6,182,212,.4)}
+.role-shipping{background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
+.money-val{font-weight:900;font-size:13px}
+.money-green{color:var(--success)}
+.money-blue{color:#60a5fa}
+.money-yellow{color:#fde047}
+.money-red{color:#fca5a5}
+.money-primary{color:#c4b5fd;font-size:15px;font-weight:900}
+.money-negative{color:#f87171;font-size:15px;font-weight:900}
+.action-btns{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.icon-btn{padding:6px 10px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;border:1px solid;transition:.2s;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.icon-btn.blue{color:#93c5fd;background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.4)}
+.icon-btn.yellow{color:#fde047;background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.4)}
+.icon-btn.red{color:#fca5a5;background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4)}
+.icon-btn.green{color:#34d399;background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.4)}
+.icon-btn.purple{color:#c4b5fd;background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.4)}
+.del-btn{color:#fca5a5;border:1px solid rgba(239,68,68,.4);background:rgba(239,68,68,.15);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif}
+.discount-summary{background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(245,158,11,.08));border:1px solid rgba(239,68,68,.35);border-radius:18px;padding:20px;margin-bottom:20px}
+.discount-title{color:#fca5a5;font-size:15px;font-weight:900;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.discount-stat{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:13px}
+.discount-stat:last-child{border-bottom:none}
+.discount-stat span:last-child{color:#fde047;font-weight:900}
+.info-note{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:12px;padding:12px;font-size:12px;color:#93c5fd;margin:10px 0;line-height:1.7}
+.danger-note{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);color:#fca5a5}
+.success-note{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.3);color:#34d399}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.shop-preview{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:10px;position:relative;overflow:hidden}
+.shop-preview::before{content:'';position:absolute;top:-20px;right:-20px;width:70px;height:70px;background:radial-gradient(circle,var(--sc1),transparent 70%);opacity:.15;border-radius:50%}
+.shop-preview-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0;background:linear-gradient(135deg,var(--sc1),var(--sc2));position:relative;z-index:1}
+.shop-preview-info{flex:1;min-width:0;position:relative;z-index:1}
+.shop-preview-name{font-size:14px;font-weight:900;color:#fff;margin-bottom:2px}
+.shop-preview-link{font-size:11px;color:#22d3ee;word-break:break-all;direction:ltr;text-align:left}
+.shop-preview-desc{font-size:10.5px;color:var(--text-muted);margin-top:3px}
+.shop-preview-actions{display:flex;gap:6px;position:relative;z-index:1}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:linear-gradient(135deg,rgba(30,41,59,.98),rgba(15,23,42,.98));border:1px solid var(--glass-border);border-radius:16px;padding:14px 22px;color:#fff;font-weight:700;font-size:13.5px;box-shadow:0 20px 40px rgba(0,0,0,.6);z-index:9999;opacity:0;transition:all .35s;display:flex;align-items:center;gap:12px;max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.success{border-color:var(--success)}
+.toast.success i{color:var(--success)}
+.toast.error{border-color:var(--danger)}
+.toast.error i{color:var(--danger)}
+.toast.info i{color:var(--secondary)}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;backdrop-filter:blur(3px)}
+.sidebar-overlay.show{display:block}
+.empty-state{text-align:center;padding:30px 20px;color:var(--text-muted)}
+.empty-state i{font-size:40px;color:rgba(139,92,246,.3);margin-bottom:10px;display:block}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);z-index:5000;opacity:0;visibility:hidden;transition:.3s}
+.modal-overlay.show{opacity:1;visibility:visible}
+.center-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);background:linear-gradient(160deg,rgba(30,40,60,.98),rgba(15,23,42,1));border:1.5px solid rgba(139,92,246,.4);border-radius:24px;z-index:5001;width:calc(100% - 40px);max-width:520px;max-height:80vh;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:all .3s;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.center-modal.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+.center-modal-header{padding:18px 20px 14px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center;gap:12px}
+.center-modal-icon{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0}
+.center-modal-title{font-size:16px;font-weight:900;color:#fff}
+.center-modal-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
+.center-modal-close{margin-right:auto;width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid var(--glass-border);color:var(--text-muted);cursor:pointer;font-size:13px}
+.center-modal-body{padding:14px;overflow-y:auto;flex:1;max-height:70vh}
+.area-item{padding:14px 16px;background:rgba(10,15,28,.6);border:1px solid var(--glass-border);border-radius:14px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:8px;transition:.2s}
+.area-item:hover{background:rgba(139,92,246,.15);border-color:var(--primary)}
+.area-item.selected{background:rgba(139,92,246,.2);border-color:var(--primary)}
+.area-item-icon{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;background:linear-gradient(135deg,var(--primary),#7c3aed);flex-shrink:0}
+.area-item-name{flex:1;font-weight:700;color:#fff;font-size:14px}
+.area-item-check{color:var(--success);font-size:18px}
+.driver-info-header{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.08));border:1px solid rgba(139,92,246,.35);border-radius:18px;padding:20px;margin-bottom:20px;text-align:center}
+.driver-info-avatar{width:80px;height:80px;border-radius:26px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-size:34px;color:#fff;margin:0 auto 12px;font-weight:900;box-shadow:0 10px 25px rgba(139,92,246,.4)}
+.driver-info-name{font-size:20px;font-weight:900;color:#fff;margin-bottom:6px}
+.driver-info-role{margin-bottom:12px}
+.driver-info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.driver-info-row:last-child{border-bottom:none}
+.driver-info-row span:first-child{color:var(--text-muted);font-weight:600}
+.driver-info-row span:last-child{color:#fff;font-weight:900}
+.order-row-item{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.order-row-item-info{flex:1;min-width:0}
+.order-row-item-type{font-size:13px;font-weight:900;color:#fff}
+.order-row-item-time{font-size:10.5px;color:var(--text-muted);margin-top:2px}
+.order-row-item-price{font-size:15px;font-weight:900;color:var(--success);text-align:left}
+.ship-alert-card{background:rgba(10,15,28,.6);border:1.5px solid var(--glass-border);border-radius:16px;padding:14px;margin-bottom:12px;position:relative;overflow:hidden;border-right-width:5px}
+.ship-alert-card.status-ontime{border-right-color:#10b981;background:linear-gradient(90deg,rgba(16,185,129,.08),rgba(10,15,28,.6))}
+.ship-alert-card.status-today{border-right-color:#f59e0b;background:linear-gradient(90deg,rgba(245,158,11,.1),rgba(10,15,28,.6))}
+.ship-alert-card.status-late{border-right-color:#ef4444;background:linear-gradient(90deg,rgba(239,68,68,.12),rgba(10,15,28,.6))}
+.ship-alert-card.status-done{border-right-color:#6ee7b7;background:linear-gradient(90deg,rgba(16,185,129,.06),rgba(10,15,28,.6));opacity:.75}
+.ship-alert-card.status-cancelled{border-right-color:#64748b;background:linear-gradient(90deg,rgba(100,116,139,.08),rgba(10,15,28,.6));opacity:.65}
+.ship-alert-card.status-assigned{border-right-color:#a78bfa;background:linear-gradient(90deg,rgba(139,92,246,.12),rgba(10,15,28,.6))}
+.ship-alert-card.status-active{border-right-color:#38bdf8;background:linear-gradient(90deg,rgba(56,189,248,.12),rgba(10,15,28,.6))}
+.ship-alert-card.status-pending{border-right-color:#60a5fa;background:linear-gradient(90deg,rgba(59,130,246,.1),rgba(10,15,28,.6))}
+.ship-alert-card.status-returned{border-right-color:#f43f5e;background:linear-gradient(90deg,rgba(244,63,94,.1),rgba(10,15,28,.6))}
+.ship-alert-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.ship-alert-code{font-size:12px;font-weight:900;color:#38bdf8;font-family:'Courier New',monospace;letter-spacing:1px}
+.ship-alert-badge{padding:4px 10px;border-radius:10px;font-size:10.5px;font-weight:900;display:inline-flex;align-items:center;gap:4px}
+.ship-alert-badge.ontime{background:rgba(16,185,129,.2);color:#34d399;border:1px solid rgba(16,185,129,.4)}
+.ship-alert-badge.today{background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
+.ship-alert-badge.late{background:rgba(239,68,68,.2);color:#fca5a5;border:1px solid rgba(239,68,68,.4)}
+.ship-alert-badge.done{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3)}
+.ship-alert-badge.cancelled{background:rgba(100,116,139,.2);color:#cbd5e1;border:1px solid rgba(100,116,139,.4)}
+.ship-alert-badge.pending{background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.4)}
+.ship-alert-badge.assigned{background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.4)}
+.ship-alert-badge.active{background:rgba(56,189,248,.15);color:#38bdf8;border:1px solid rgba(56,189,248,.4)}
+.ship-alert-badge.returned{background:rgba(244,63,94,.15);color:#fb7185;border:1px solid rgba(244,63,94,.4)}
+.ship-alert-row{display:flex;justify-content:space-between;padding:6px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.ship-alert-row:last-child{border-bottom:none}
+.ship-alert-row span:first-child{color:var(--text-muted);font-weight:600}
+.ship-alert-row span:last-child{color:#fff;font-weight:900}
+.ship-alert-actions{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.ship-alert-actions button{padding:8px 14px;border-radius:10px;border:none;font-weight:900;font-size:11.5px;cursor:pointer;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:5px;flex:1;justify-content:center;min-width:100px}
+.btn-assign{background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff}
+.btn-reassign{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+.btn-call-driver{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;text-decoration:none}
+.btn-view-details{background:rgba(255,255,255,.1);color:#fff}
+.tabs-shipping{display:flex;gap:6px;background:rgba(10,15,28,.6);border:1px solid var(--glass-border);border-radius:14px;padding:5px;margin-bottom:15px;overflow-x:auto}
+.tab-shipping{flex:1;min-width:80px;padding:10px 8px;border:none;background:transparent;color:var(--text-muted);font-weight:700;font-size:11.5px;cursor:pointer;border-radius:10px;font-family:'Cairo',sans-serif;display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap}
+.tab-shipping.active{background:linear-gradient(135deg,var(--primary),#7c3aed);color:#fff}
+.tab-shipping .cnt{background:rgba(255,255,255,.2);padding:1px 7px;border-radius:10px;font-size:10px;margin-right:3px}
+@media(max-width:900px){
+.sidebar{transform:translateX(100%)}
+.sidebar.open{transform:translateX(0)}
+.main-content{margin-right:0;width:100%;padding:15px}
+.menu-toggle{display:flex;align-items:center;justify-content:center}
+.grid-2,.grid-3{grid-template-columns:1fr}
+.stats-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+}
+</style>
+</head>
+<body><div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="app-layout">
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="sidebar-logo"><i class="fas fa-network-wired"></i></div>
+<div class="sidebar-title">مشوارك<small>لوحة التحكم المركزية</small></div>
+</div>
+<div class="sidebar-area-selector">
+<label>📍 المنطقة النشطة</label>
+<button class="area-trigger" id="areaTrigger" onclick="openAreaModal()">
+<span id="areaTriggerLabel">اختر منطقة...</span>
+<i class="fas fa-chevron-down" style="font-size:10px"></i>
+</button>
+</div>
+<nav class="sidebar-nav">
+<div class="nav-section-title">الرئيسية</div>
+<div class="nav-item active" data-page="dashboard" onclick="switchPage('dashboard')"><i class="fas fa-chart-line"></i><span>لوحة القيادة</span></div>
+<div class="nav-item" data-page="areas" onclick="switchPage('areas')"><i class="fas fa-map-marked-alt"></i><span>إدارة المناطق</span></div>
+
+<div class="nav-section-title">الإعدادات</div>
+<div class="nav-item" data-page="visibility" onclick="switchPage('visibility')"><i class="fas fa-shield-alt"></i><span>تحكم الأقسام</span></div>
+<div class="nav-item" data-page="rewards" onclick="switchPage('rewards')"><i class="fas fa-gift"></i><span>المكافآت والنقاط</span></div>
+<div class="nav-item" data-page="features" onclick="switchPage('features')"><i class="fas fa-rocket"></i><span>الميزات المتقدمة</span></div>
+<div class="nav-item" data-page="fakka" onclick="switchPage('fakka')"><i class="fas fa-ticket-alt"></i><span>كروت الفكة</span></div>
+<div class="nav-item" data-page="shippingSettings" onclick="switchPage('shippingSettings')"><i class="fas fa-shipping-fast"></i><span>إعدادات الشحن</span></div>
+<div class="nav-item" data-page="shops" onclick="switchPage('shops')"><i class="fas fa-store"></i><span>متاجرنا</span></div>
+<div class="nav-item" data-page="support" onclick="switchPage('support')"><i class="fas fa-headset"></i><span>رقم الواتساب</span></div>
+
+<div class="nav-section-title">المالية</div>
+<div class="nav-item" data-page="drivers" onclick="switchPage('drivers')"><i class="fas fa-users-cog"></i><span>حسابات السائقين</span></div>
+<div class="nav-item" data-page="discounts" onclick="switchPage('discounts')"><i class="fas fa-tags"></i><span>الخصومات</span></div>
+<div class="nav-item" data-page="pricing" onclick="switchPage('pricing')"><i class="fas fa-dollar-sign"></i><span>الأسعار والعمولات</span></div>
+
+<div class="nav-section-title">العمليات</div>
+<div class="nav-item" data-page="orders" onclick="switchPage('orders')"><i class="fas fa-box-open"></i><span>الطلبات النشطة</span></div>
+<div class="nav-item" data-page="shippingOrders" onclick="switchPage('shippingOrders')"><i class="fas fa-truck"></i><span>الشحنات الواردة</span><span class="badge" id="shippingOrdersBadge" style="display:none">0</span></div>
+<div class="nav-item" data-page="destinations" onclick="switchPage('destinations')"><i class="fas fa-route"></i><span>الوجهات</span></div>
+
+<div class="nav-section-title">السائقين</div>
+<div class="nav-item" data-page="addDriver" onclick="switchPage('addDriver')"><i class="fas fa-id-card"></i><span>تسجيل سائق</span></div>
+<div class="nav-item" data-page="driversList" onclick="switchPage('driversList')"><i class="fas fa-user-friends"></i><span>السائقين المسجلين</span></div>
+</nav>
+</aside>
+
+<main class="main-content">
+<div class="topbar">
+<div style="display:flex;align-items:center;gap:12px">
+<button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+<h1 id="pageTitle"><i class="fas fa-chart-line"></i> لوحة القيادة</h1>
+</div>
+<div class="topbar-actions">
+<span id="activeAreaBadge" style="background:rgba(139,92,246,.15);color:#a78bfa;padding:8px 15px;border-radius:10px;font-size:12px;font-weight:700;border:1px solid rgba(139,92,246,.3)"><i class="fas fa-map-marker-alt"></i> لم يتم اختيار منطقة</span>
+</div>
+</div>
+
+<!-- Dashboard -->
+<div class="page active" id="page-dashboard">
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-icon" style="background:rgba(139,92,246,.2);color:#a78bfa"><i class="fas fa-shopping-bag"></i></div><div class="stat-value" id="statTodayOrders">0</div><div class="stat-label">طلبات اليوم</div></div>
+<div class="stat-card"><div class="stat-icon" style="background:rgba(16,185,129,.2);color:#34d399"><i class="fas fa-check-circle"></i></div><div class="stat-value" id="statCompletedOrders">0</div><div class="stat-label">طلبات مكتملة</div></div>
+<div class="stat-card"><div class="stat-icon" style="background:rgba(6,182,212,.2);color:#22d3ee"><i class="fas fa-motorcycle"></i></div><div class="stat-value" id="statActiveDrivers">0</div><div class="stat-label">سائقين مسجلين</div></div>
+<div class="stat-card"><div class="stat-icon" style="background:rgba(245,158,11,.2);color:#fbbf24"><i class="fas fa-truck"></i></div><div class="stat-value" id="statActiveShipments">0</div><div class="stat-label">شحنات نشطة</div></div>
+</div>
+
+<div class="card">
+<div class="card-title"><i class="fas fa-bell"></i> تنبيهات مهمة</div>
+<div id="dashboardAlerts"></div>
+</div>
+
+<div class="card"><div class="card-title"><i class="fas fa-bolt"></i> إجراءات سريعة</div>
+<div class="grid-2">
+<button class="btn btn-primary" onclick="switchPage('orders')"><i class="fas fa-box-open"></i> الطلبات النشطة</button>
+<button class="btn btn-primary" onclick="switchPage('shippingOrders')"><i class="fas fa-truck"></i> الشحنات الواردة</button>
+</div>
+</div>
+
+<div class="card"><div class="card-title"><i class="fas fa-clipboard-list"></i> آخر 5 طلبات</div>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>العميل</th><th>النوع</th><th>السعر</th><th>الحالة</th></tr></thead><tbody id="dashboardRecentOrders"><tr><td colspan="4" class="empty-state">لا توجد طلبات بعد</td></tr></tbody></table></div>
+</div>
+</div>
+
+<!-- Areas -->
+<div class="page" id="page-areas">
+<div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة منطقة جديدة</div>
+<label class="field-label">اسم المنطقة</label>
+<input type="text" id="newAreaName" placeholder="مثال: المعادي، مدينة نصر...">
+<button class="btn btn-primary" onclick="addNewArea()"><i class="fas fa-plus"></i> إضافة المنطقة</button>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-map-marked-alt"></i> المناطق الحالية</div>
+<div id="areasListContainer"></div>
+</div>
+</div>
+
+<!-- Visibility -->
+<div class="page" id="page-visibility">
+<div class="card"><div class="card-title"><i class="fas fa-shield-alt"></i> تحكم ظهور الأقسام</div>
+<div class="card-subtitle">أي قسم تقفله، هيختفي تمامًا من واجهة الزبون.</div>
+<div class="toggle-row"><div class="toggle-label"><div>🛺 قسم المشاوير<small>التوكتوك والمشاوير</small></div></div><label class="switch"><input type="checkbox" id="masterToggleTuktuk" onchange="updateServiceVisibility('tuktuk',this.checked)"><span class="slider-sw"></span></label></div>
+<div class="toggle-row"><div class="toggle-label"><div>🛒 قسم الماركت<small>توصيل السوبر ماركت</small></div></div><label class="switch"><input type="checkbox" id="masterToggleMarket" onchange="updateServiceVisibility('market',this.checked)"><span class="slider-sw"></span></label></div>
+<div class="toggle-row"><div class="toggle-label"><div>💊 قسم الصيدلية<small>توصيل الأدوية</small></div></div><label class="switch"><input type="checkbox" id="masterTogglePharmacy" onchange="updateServiceVisibility('pharmacy',this.checked)"><span class="slider-sw"></span></label></div>
+<div class="toggle-row"><div class="toggle-label"><div>🥕 قسم الخضار<small>توصيل الخضروات</small></div></div><label class="switch"><input type="checkbox" id="masterToggleVegetables" onchange="updateServiceVisibility('vegetables',this.checked)"><span class="slider-sw"></span></label></div>
+<div class="toggle-row"><div class="toggle-label"><div>📦 قسم الشحن<small>نقل الطرود والشحنات</small></div></div><label class="switch"><input type="checkbox" id="masterTogglePackage" onchange="updateServiceVisibility('package',this.checked)"><span class="slider-sw"></span></label></div>
+<div class="toggle-row"><div class="toggle-label"><div>✨ اطلب أي حاجة<small>اطلب أي حاجة من أي مكان</small></div></div><label class="switch"><input type="checkbox" id="masterToggleCustomRequest" onchange="updateServiceVisibility('customRequest',this.checked)"><span class="slider-sw"></span></label></div>
+</div>
+</div>
+
+<!-- Rewards -->
+<div class="page" id="page-rewards">
+<div class="card"><div class="card-title"><i class="fas fa-toggle-on"></i> إعدادات نظام النقاط</div>
+<div class="toggle-row"><div class="toggle-label"><div>تفعيل نظام المكافآت<small>لو مقفول، مش هيكسبوا نقاط</small></div></div><label class="switch"><input type="checkbox" id="rewardSystemActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+<div class="grid-2">
+<div><label class="field-label">النقاط لكل طلب</label><input type="number" id="pointsPerOrder" placeholder="10" onchange="saveRewardBaseSettings()"></div>
+<div><label class="field-label">تكلفة رحلة توصيل مجانية</label><input type="number" id="costDiscountReward" placeholder="100" onchange="saveRewardBaseSettings()"></div>
+</div>
+<div class="grid-2">
+<div><label class="field-label">تكلفة خصم مالي</label><input type="number" id="tripDiscountCost" placeholder="50" onchange="saveRewardBaseSettings()"></div>
+<div><label class="field-label">💵 قيمة الخصم (ج)</label><input type="number" id="directDiscountValue" placeholder="20" onchange="saveRewardBaseSettings()"></div>
+</div>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-eye"></i> تحكم ظهور المكافآت</div>
+<div class="toggle-row"><div class="toggle-label"><div>🛵 إظهار رحلة التوصيل المجانية</div></div><label class="switch"><input type="checkbox" id="showDeliveryReward" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+<div class="toggle-row"><div class="toggle-label"><div>🏷️ إظهار الخصم المالي</div></div><label class="switch"><input type="checkbox" id="showTripDiscountReward" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+</div>
+</div>
+
+<!-- Features -->
+<div class="page" id="page-features">
+<div class="card"><div class="card-title"><i class="fas fa-fire"></i> النقاط المضاعفة</div>
+<div class="toggle-row" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3)"><div class="toggle-label"><div style="color:#fde047">⚡ تفعيل النقاط المضاعفة ×2</div></div><label class="switch"><input type="checkbox" id="doublePointsActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-trophy"></i> تحدي الأسبوع</div>
+<div class="toggle-row" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3)"><div class="toggle-label"><div style="color:#a78bfa">🏆 تفعيل تحدي الأسبوع</div></div><label class="switch"><input type="checkbox" id="challengeActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+<div class="grid-2">
+<div><label class="field-label">عدد الطلبات المطلوبة</label><input type="number" id="challengeTarget" placeholder="5" onchange="saveRewardBaseSettings()"></div>
+<div><label class="field-label">مكافأة التحدي (نقاط)</label><input type="number" id="challengeReward" placeholder="100" onchange="saveRewardBaseSettings()"></div>
+</div>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-user-plus"></i> كود الدعوة</div>
+<div class="toggle-row" style="background:rgba(6,182,212,.08);border-color:rgba(6,182,212,.3)"><div class="toggle-label"><div style="color:#67e8f9">📨 تفعيل نظام كود الدعوة</div></div><label class="switch"><input type="checkbox" id="inviteActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+<label class="field-label">مكافأة الدعوة (نقاط)</label>
+<input type="number" id="inviteReward" placeholder="50" onchange="saveRewardBaseSettings()">
+</div>
+</div><!-- Fakka -->
+<div class="page" id="page-fakka">
+<div class="card">
+<div class="card-title"><i class="fas fa-eye"></i> تحكم ظهور كروت الفكة</div>
+<div class="card-subtitle">تحكم في ظهور زر استبدال كارت الفكة للزبون</div>
+<div class="toggle-row"><div class="toggle-label"><div>🎫 إظهار زر كارت الفكة للزبون</div><small>لو مقفول، الزر هيختفي من صفحة الزبون</small></div><label class="switch"><input type="checkbox" id="showFakkaButtonToggle" onchange="saveFakkaButtonSetting(this.checked)"><span class="slider-sw"></span></label></div>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-eye"></i> تحكم إضافي</div>
+<div class="toggle-row"><div class="toggle-label"><div>🎫 إظهار كروت الفكة</div></div><label class="switch"><input type="checkbox" id="showFakkaToggle" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+<div class="toggle-row"><div class="toggle-label"><div>🔴 إظهار كروت فودافون</div></div><label class="switch"><input type="checkbox" id="showFakkaVodafoneToggle" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+<div class="toggle-row"><div class="toggle-label"><div>🟢 إظهار كروت اتصالات</div></div><label class="switch"><input type="checkbox" id="showFakkaEtisalatToggle" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-cog"></i> إعدادات كروت الفكة</div>
+<label class="field-label">تكلفة استبدال كارت الفكة (نقاط)</label>
+<input type="number" id="costFakkaReward" placeholder="150" onchange="saveRewardBaseSettings()">
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة كارت جديد</div>
+<label class="field-label">نوع الشبكة</label>
+<select id="fakkaNetworkType"><option value="فودافون">🔴 فودافون</option><option value="اتصالات">🟢 اتصالات</option></select>
+<label class="field-label">رقم الكارت</label>
+<input type="text" id="newFakkaCode" placeholder="أدخل رقم الكارت...">
+<button class="btn btn-warning" style="width:100%;margin-top:10px" onclick="addNewFakkaCard()"><i class="fas fa-plus"></i> إضافة للمخزون</button>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-ticket-alt"></i> مخزون الكروت</div>
+<div class="table-wrap"><table class="data-table" style="min-width:400px"><thead><tr><th>الشبكة</th><th>الكود</th><th>التاريخ</th><th>حذف</th></tr></thead><tbody id="fakkaCardsTableBody"><tr><td colspan="4" class="empty-state">لا توجد كروت</td></tr></tbody></table></div>
+</div>
+</div>
+
+<!-- Support -->
+<div class="page" id="page-support">
+<div class="card">
+<div class="card-title"><i class="fab fa-whatsapp" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff"></i> رقم الواتساب للدعم</div>
+<div class="card-subtitle">الرقم ده اللي يظهر للزبون في "حسابي" → "مساعدة ودعم".</div>
+<label class="field-label">📱 رقم الواتساب</label>
+<input type="tel" id="supportWhatsappInput" placeholder="مثال: 01115699940" maxlength="11">
+<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="saveSupportWhatsapp()"><i class="fas fa-save"></i> حفظ الرقم</button>
+</div>
+</div>
+
+<!-- Shipping Settings -->
+<div class="page" id="page-shippingSettings">
+<div class="card">
+<div class="card-title"><i class="fas fa-power-off"></i> تفعيل/إيقاف خدمة الشحن</div>
+<div class="toggle-row" style="background:rgba(14,165,233,.08);border-color:rgba(14,165,233,.3)">
+<div class="toggle-label"><div style="color:#38bdf8">🚚 تفعيل خدمة الشحن</div><small>لو مقفولة، الشحن هيختفي تماماً من واجهة الزبون</small></div>
+<label class="switch"><input type="checkbox" id="shippingEnabledToggle" onchange="toggleShippingService(this.checked)"><span class="slider-sw"></span></label>
+</div>
+<div class="info-note">
+💡 <b>ملاحظة:</b> لما تقفل الشحن:<br>
+• الشحن هيختفي من الصفحة الرئيسية للزبون<br>
+• "طلبات الشحن" هتختفي من الشريط السفلي<br>
+• <b>لكن</b> طلبات الشحن هتفضل موجودة هنا في لوحة التحكم للمراجعة
+</div>
+</div>
+
+<div class="card">
+<div class="card-title"><i class="fas fa-money-bill-wave"></i> سعر ومدة الشحن</div>
+<div class="card-subtitle">السعر والمدة اللي بيظهرا للزبون وقت طلب الشحنة</div>
+<div class="grid-2">
+<div><label class="field-label">💰 سعر الشحن (ج)</label><input type="number" id="shippingPriceInput" placeholder="30" onchange="saveShippingSettings()"></div>
+<div><label class="field-label">📅 المدة المتوقعة (أيام)</label><input type="number" id="shippingDaysInput" placeholder="3" min="0" onchange="saveShippingSettings()"></div>
+</div>
+<label class="field-label">🛵 عمولة مندوب الشحن (%)</label>
+<input type="number" id="shippingCommission" placeholder="10" onchange="saveShippingSettings()">
+<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="saveShippingSettings()"><i class="fas fa-save"></i> حفظ الإعدادات</button>
+<div class="info-note" style="margin-top:15px">
+💡 <b>ملاحظة:</b> السعر والمدة اللي بتحددهم هنا بيظهروا للزبون تلقائي في فورم الشحن.
+</div>
+</div>
+</div>
+
+<!-- Shops -->
+<div class="page" id="page-shops">
+<div class="card">
+<div class="card-title"><i class="fas fa-plus-circle"></i> إضافة متجر جديد</div>
+<div class="card-subtitle">المتجر ده هيظهر للزبون في قسم "متاجرنا" تحت الخدمات. لما يدوس عليه، هيفتح اللينك.</div>
+<label class="field-label">🏪 اسم المتجر</label>
+<input type="text" id="shopName" placeholder="مثال: متجر الأمانة">
+<label class="field-label">🔗 لينك المتجر</label>
+<input type="text" id="shopLink" placeholder="https://..." style="direction:ltr;text-align:left">
+<label class="field-label">📝 وصف مختصر (اختياري)</label>
+<input type="text" id="shopDesc" placeholder="مثال: بقالة وطلبات">
+<div class="grid-2">
+<div>
+<label class="field-label">🎨 أيقونة</label>
+<select id="shopIcon">
+<option value="fa-store">🏪 متجر</option>
+<option value="fa-shopping-bag">🛍️ شنطة تسوق</option>
+<option value="fa-utensils">🍽️ مطعم</option>
+<option value="fa-coffee">☕ كافيه</option>
+<option value="fa-pizza-slice">🍕 بيتزا</option>
+<option value="fa-birthday-cake">🎂 حلويات</option>
+<option value="fa-tshirt">👕 ملابس</option>
+<option value="fa-mobile-alt">📱 موبايلات</option>
+<option value="fa-book">📚 مكتبة</option>
+<option value="fa-dumbbell">💪 جيم</option>
+<option value="fa-cut">✂️ حلاق</option>
+<option value="fa-prescription-bottle">💊 صيدلية</option>
+</select>
+</div>
+<div>
+<label class="field-label">🎨 اللون</label>
+<select id="shopColor">
+<option value="#8b5cf6">🟣 بنفسجي</option>
+<option value="#f59e0b">🟠 برتقالي</option>
+<option value="#10b981">🟢 أخضر</option>
+<option value="#0ea5e9">🔵 أزرق</option>
+<option value="#ef4444">🔴 أحمر</option>
+<option value="#ec4899">🩷 وردي</option>
+<option value="#14b8a6">🩵 تركواز</option>
+<option value="#a855f7">🟪 موف</option>
+</select>
+</div>
+</div>
+<button class="btn btn-primary" onclick="addNewShop()"><i class="fas fa-plus"></i> إضافة المتجر</button>
+</div>
+<div class="card">
+<div class="card-title"><i class="fas fa-store"></i> المتاجر الحالية</div>
+<div id="shopsContainer"></div>
+</div>
+</div><!-- Shipping Orders (الشحنات الواردة) -->
+<div class="page" id="page-shippingOrders">
+<div class="card">
+<div class="card-title"><i class="fas fa-truck"></i> الشحنات الواردة</div>
+<div class="card-subtitle">إدارة كل شحنات المنطقة + تعيين مندوب لكل شحنة</div>
+
+<div class="tabs-shipping">
+<button class="tab-shipping active" id="shipTab-new" onclick="switchShippingTab('new')">
+<i class="fas fa-bell"></i> جديدة <span class="cnt" id="shipCountNew">0</span>
+</button>
+<button class="tab-shipping" id="shipTab-assigned" onclick="switchShippingTab('assigned')">
+<i class="fas fa-user-check"></i> معيّنة <span class="cnt" id="shipCountAssigned">0</span>
+</button>
+<button class="tab-shipping" id="shipTab-active" onclick="switchShippingTab('active')">
+<i class="fas fa-truck"></i> جارية <span class="cnt" id="shipCountActive">0</span>
+</button>
+<button class="tab-shipping" id="shipTab-done" onclick="switchShippingTab('done')">
+<i class="fas fa-check-double"></i> مكتملة <span class="cnt" id="shipCountDone">0</span>
+</button>
+<button class="tab-shipping" id="shipTab-returns" onclick="switchShippingTab('returns')">
+<i class="fas fa-undo"></i> مرتجعات <span class="cnt" id="shipCountReturns">0</span>
+</button>
+</div>
+
+<div id="shippingOrdersContainer">
+<div class="empty-state"><i class="fas fa-truck"></i><p>لا توجد شحنات</p></div>
+</div>
+</div>
+</div>
+
+<!-- Drivers -->
+<div class="page" id="page-drivers">
+<div class="card">
+<div class="card-title"><i class="fas fa-users-cog"></i> حسابات السائقين</div>
+<div class="card-subtitle">اضغط على "التفاصيل" عشان تشوف كل تاريخ السائق</div>
+<div class="table-wrap">
+<table class="data-table">
+<thead><tr><th>السائق</th><th>النوع</th><th>التسليمات</th><th>الرصيد الأصلي</th><th>المدفوع</th><th>عمولتنا</th><th>الخصومات</th><th>💵 بتديله</th><th>إجراءات</th></tr></thead>
+<tbody id="driversTableBody"><tr><td colspan="9" class="empty-state">لا توجد بيانات</td></tr></tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- Driver Details -->
+<div class="page" id="page-driverDetails">
+<button class="btn btn-primary" style="width:auto;margin-bottom:15px;background:rgba(255,255,255,.1)" onclick="switchPage('drivers')"><i class="fas fa-arrow-right"></i> رجوع</button>
+<div id="driverDetailsContent"></div>
+</div>
+
+<!-- Discounts -->
+<div class="page" id="page-discounts">
+<div class="discount-summary">
+<div class="discount-title"><i class="fas fa-tags"></i> 💸 ملخص الخصومات (على حساب المشروع)</div>
+<div class="discount-stat"><span>💰 خصومات مالية مباشرة:</span><span id="totalDirectDiscount">0 ج</span></div>
+<div class="discount-stat"><span>🎫 رحلات توصيل مجانية:</span><span id="totalFreeDeliveries">0 ج</span></div>
+<div class="discount-stat"><span style="color:#fca5a5;font-weight:900">📊 الإجمالي الكلي:</span><span id="totalAllDiscounts" style="color:#fca5a5;font-size:18px">0 ج</span></div>
+</div>
+<div class="info-note danger-note">⚠️ الخصومات دي على حساب المشروع، والسائق بياخد حقه كامل.</div>
+<div class="card"><div class="card-title"><i class="fas fa-list-alt"></i> تفاصيل طلبات الخصم</div>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>العميل</th><th>النوع</th><th>الأصلي</th><th>الخصم</th><th>المدفوع</th></tr></thead><tbody id="discountsTableBody"><tr><td colspan="5" class="empty-state">لا توجد خصومات بعد</td></tr></tbody></table></div>
+</div>
+</div>
+
+<!-- Pricing -->
+<div class="page" id="page-pricing">
+<div class="card"><div class="card-title"><i class="fas fa-dollar-sign"></i> الأسعار والعمولات</div>
+<label class="field-label">💵 سعر التوصيل العام (ج)</label>
+<input type="number" id="generalDeliveryPriceInput" placeholder="15">
+<label class="field-label">🛺 عمولة التوكتوك (%)</label>
+<input type="number" id="tuktukCommInput" placeholder="10">
+<label class="field-label">🛵 عمولة المندوب العام (%)</label>
+<input type="number" id="delegateCommInput" placeholder="10">
+<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="savePricesAndCommissions()"><i class="fas fa-save"></i> حفظ الإعدادات</button>
+</div>
+</div>
+
+<!-- Orders -->
+<div class="page" id="page-orders">
+<div class="card"><div class="card-title"><i class="fas fa-box-open"></i> الطلبات النشطة</div>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>النوع</th><th>العميل</th><th>التفاصيل</th><th>السعر</th><th>الحالة</th><th>حذف</th></tr></thead><tbody id="dailyOrdersTableBody"><tr><td colspan="6" class="empty-state">جاري التحميل...</td></tr></tbody></table></div>
+</div>
+</div>
+
+<!-- Destinations -->
+<div class="page" id="page-destinations">
+<div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة وجهة جديدة</div>
+<div class="grid-2">
+<div><label class="field-label">اسم الوجهة</label><input type="text" id="destName" placeholder="وسط البلد"></div>
+<div><label class="field-label">السعر (ج)</label><input type="number" id="destPrice" placeholder="25"></div>
+</div>
+<button class="btn btn-success" style="width:100%;margin-top:10px" onclick="addDestination()"><i class="fas fa-plus"></i> إضافة الوجهة</button>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-route"></i> الوجهات المتاحة</div>
+<div class="table-wrap"><table class="data-table" style="min-width:400px"><thead><tr><th>الوجهة</th><th>السعر</th><th>حذف</th></tr></thead><tbody id="destTableBody"><tr><td colspan="3" class="empty-state">لا توجد وجهات</td></tr></tbody></table></div>
+</div>
+</div>
+
+<!-- Add Driver -->
+<div class="page" id="page-addDriver">
+<div class="card"><div class="card-title"><i class="fas fa-id-card"></i> تسجيل سائق جديد</div>
+<label class="field-label">الاسم</label>
+<input type="text" id="pName" placeholder="اسم السائق">
+<label class="field-label">رقم الهاتف</label>
+<input type="tel" id="pPhone" placeholder="11 رقم">
+<label class="field-label">الدور</label>
+<select id="pRole">
+<option value="سائق توك توك ومشوار">🛺 سائق توك توك</option>
+<option value="مندوب توصيل عام">🛵 مندوب توصيل عام</option>
+<option value="مندوب شحن">🚚 مندوب شحن</option>
+</select>
+<label class="field-label">كود الدخول</label>
+<input type="password" id="customCode" placeholder="كود من أرقام" maxlength="6">
+<button class="btn btn-primary" style="width:100%;margin-top:15px" onclick="saveProviderWithCustomCode()"><i class="fas fa-save"></i> حفظ السائق</button>
+</div>
+</div>
+
+<!-- Drivers List -->
+<div class="page" id="page-driversList">
+<div class="card"><div class="card-title"><i class="fas fa-user-friends"></i> السائقين المسجلين</div>
+<div class="table-wrap"><table class="data-table" style="min-width:400px"><thead><tr><th>الاسم</th><th>الدور</th><th>الكود</th><th>حذف</th></tr></thead><tbody id="providersList"><tr><td colspan="4" class="empty-state">لا يوجد سائقين</td></tr></tbody></table></div>
+</div>
+</div>
+</main>
+</div><div class="modal-overlay" id="areaModalOverlay" onclick="closeAreaModal()"></div>
+<div class="center-modal" id="areaModal">
+<div class="center-modal-header">
+<div class="center-modal-icon" style="background:linear-gradient(135deg,var(--warning),#d97706)"><i class="fas fa-map-marker-alt"></i></div>
+<div><div class="center-modal-title">اختر المنطقة</div><div class="center-modal-sub">اضغط على المنطقة اللي عايز تديرها</div></div>
+<button class="center-modal-close" onclick="closeAreaModal()"><i class="fas fa-times"></i></button>
+</div>
+<div class="center-modal-body" id="areaModalList"></div>
+</div>
+
+<!-- Assign Driver Modal -->
+<div class="modal-overlay" id="assignDriverOverlay" onclick="closeAssignDriver()"></div>
+<div class="center-modal" id="assignDriverModal">
+<div class="center-modal-header">
+<div class="center-modal-icon" style="background:linear-gradient(135deg,#7c3aed,#8b5cf6)"><i class="fas fa-user-check"></i></div>
+<div><div class="center-modal-title">تعيين مندوب</div><div class="center-modal-sub" id="assignDriverSub">اختر المندوب المسؤول عن الشحنة</div></div>
+<button class="center-modal-close" onclick="closeAssignDriver()"><i class="fas fa-times"></i></button>
+</div>
+<div class="center-modal-body">
+<div class="field">
+<label class="field-label"><i class="fas fa-user"></i> المندوب المسؤول</label>
+<select id="assignDriverSelect">
+<option value="">-- اختر مندوب --</option>
+</select>
+</div>
+<div class="field">
+<label class="field-label"><i class="fas fa-sticky-note"></i> ملاحظات للمندوب (اختياري)</label>
+<textarea id="assignDriverNotes" rows="2" placeholder="أي ملاحظات إضافية..."></textarea>
+</div>
+<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="confirmAssignDriver()">
+<i class="fas fa-check"></i> تأكيد التعيين
+</button>
+</div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal-overlay" id="confirmOverlay" onclick="closeConfirm()"></div>
+<div class="center-modal" id="confirmModal" style="max-width:420px;padding:25px 20px;text-align:center">
+<div class="center-modal-header" style="border:none;padding:0;justify-content:center;margin-bottom:15px">
+<div class="center-modal-icon" id="confirmIcon" style="width:70px;height:70px;border-radius:24px;background:linear-gradient(135deg,var(--warning),#d97706)"><i class="fas fa-question" style="font-size:32px"></i></div>
+</div>
+<div style="font-size:19px;font-weight:900;color:#fff;margin-bottom:10px" id="confirmTitle">تأكيد</div>
+<div style="font-size:13px;color:#cbd5e1;line-height:1.9;margin-bottom:22px;text-align:right" id="confirmMessage"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button class="btn btn-success" id="confirmYesBtn" style="margin:0">تأكيد</button>
+<button class="btn" style="margin:0;background:rgba(255,255,255,.1)" onclick="closeConfirm()">إلغاء</button>
+</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><i class="fas fa-info-circle"></i><span id="toastMessage">رسالة</span></div><script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig={apiKey:"AIzaSyAR98tJfqxO0_LZT7GRn-peOqQB1PgP6D4",authDomain:"family-4ff2a.firebaseapp.com",databaseURL:"https://family-4ff2a-default-rtdb.firebaseio.com",projectId:"family-4ff2a"};
+firebase.initializeApp(firebaseConfig);
+const db=firebase.database();
+let activeArea="";
+let areasCache={};
+let driversCache={};
+let ordersCache={};
+let settlementsCache={};
+let pricingCache={tuktukCommission:10,delegateCommission:10,shippingCommission:10};
+let shopsCache={};
+let shippingSettingsCache={price:30,days:3};
+let currentShippingTab='new';
+let currentAssignOrderId=null;
+
+function $id(id){return document.getElementById(id);}
+let toastTimer;
+function showToast(msg,type='info'){
+    const t=$id('toast');if(!t)return;
+    $id('toastMessage').innerText=msg;
+    t.className='toast show '+type;
+    const i=t.querySelector('i');
+    i.className=type==='success'?'fas fa-check-circle':type==='error'?'fas fa-times-circle':'fas fa-info-circle';
+    clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3500);
+}
+function toggleSidebar(){
+    $id('sidebar').classList.toggle('open');
+    $id('sidebarOverlay').classList.toggle('show');
+}
+let confirmCb=null;
+function showConfirm(icon,title,msg,cb){
+    $id('confirmIcon').innerHTML=`<i class="fas ${icon}" style="font-size:32px"></i>`;
+    $id('confirmTitle').innerText=title;
+    $id('confirmMessage').innerHTML=msg;
+    confirmCb=cb;
+    $id('confirmOverlay').classList.add('show');
+    $id('confirmModal').classList.add('show');
+    $id('confirmYesBtn').onclick=()=>{closeConfirm();if(confirmCb)confirmCb();};
+}
+function closeConfirm(){$id('confirmOverlay').classList.remove('show');$id('confirmModal').classList.remove('show');}
+
+const pageTitles={
+    dashboard:{icon:'fa-chart-line',title:'لوحة القيادة'},
+    areas:{icon:'fa-map-marked-alt',title:'إدارة المناطق'},
+    visibility:{icon:'fa-shield-alt',title:'تحكم الأقسام'},
+    rewards:{icon:'fa-gift',title:'المكافآت والنقاط'},
+    features:{icon:'fa-rocket',title:'الميزات المتقدمة'},
+    fakka:{icon:'fa-ticket-alt',title:'كروت الفكة'},
+    shippingSettings:{icon:'fa-shipping-fast',title:'إعدادات الشحن'},
+    shops:{icon:'fa-store',title:'متاجرنا'},
+    support:{icon:'fa-headset',title:'الدعم والمساعدة'},
+    drivers:{icon:'fa-users-cog',title:'حسابات السائقين'},
+    driverDetails:{icon:'fa-user-circle',title:'تفاصيل السائق'},
+    discounts:{icon:'fa-tags',title:'الخصومات'},
+    pricing:{icon:'fa-dollar-sign',title:'الأسعار والعمولات'},
+    orders:{icon:'fa-box-open',title:'الطلبات النشطة'},
+    shippingOrders:{icon:'fa-truck',title:'الشحنات الواردة'},
+    destinations:{icon:'fa-route',title:'الوجهات'},
+    addDriver:{icon:'fa-id-card',title:'تسجيل سائق'},
+    driversList:{icon:'fa-user-friends',title:'السائقين المسجلين'}
+};
+function switchPage(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const p=$id('page-'+page);if(p)p.classList.add('active');
+    const n=document.querySelector(`.nav-item[data-page="${page}"]`);if(n)n.classList.add('active');
+    const info=pageTitles[page];
+    if(info)$id('pageTitle').innerHTML=`<i class="fas ${info.icon}"></i> ${info.title}`;
+    if(window.innerWidth<=900){
+        $id('sidebar').classList.remove('open');
+        $id('sidebarOverlay').classList.remove('show');
+    }
+}
+
+function openAreaModal(){
+    const list=$id('areaModalList');if(!list)return;
+    const keys=Object.keys(areasCache);
+    if(keys.length===0){
+        list.innerHTML='<div class="empty-state"><i class="fas fa-map"></i><p>لا توجد مناطق مضافة</p></div>';
+    }else{
+        let html='';
+        keys.forEach(k=>{
+            const name=areasCache[k];
+            const isSel=(name===activeArea);
+            html+=`<div class="area-item ${isSel?'selected':''}" onclick="pickArea('${name}')">
+                <div class="area-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="area-item-name">${name}</div>
+                ${isSel?'<i class="fas fa-check-circle area-item-check"></i>':''}
+            </div>`;
+        });
+        list.innerHTML=html;
+    }
+    $id('areaModalOverlay').classList.add('show');
+    $id('areaModal').classList.add('show');
+}
+function closeAreaModal(){$id('areaModalOverlay').classList.remove('show');$id('areaModal').classList.remove('show');}
+function pickArea(name){switchArea(name);closeAreaModal();}
+
+window.onload=function(){
+    loadAreas();
+    loadSupportWhatsapp();
+};
+
+function addNewArea(){
+    const name=$id('newAreaName').value.trim();
+    if(!name)return showToast('اكتب اسم المنطقة','error');
+    db.ref('areas').push({name,active:true,createdAt:Date.now()}).then(()=>{
+        $id('newAreaName').value='';
+        showToast('✅ تمت الإضافة','success');
+    });
+}
+function loadAreas(){
+    db.ref('areas').on('value',snap=>{
+        areasCache={};
+        let html='';
+        snap.forEach(c=>{
+            const name=c.val().name;const key=c.key;
+            if(!name)return;
+            areasCache[key]=name;
+            html+=`<div style="background:rgba(20,27,45,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <i class="fas fa-map-marker-alt" style="color:#a78bfa;font-size:18px"></i>
+                    <span style="font-weight:700;font-size:14px">${name}</span>
+                </div>
+                <button class="del-btn" onclick="deleteArea('${key}')"><i class="fas fa-trash"></i> حذف</button>
+            </div>`;
+        });
+        const c=$id('areasListContainer');
+        if(c)c.innerHTML=html||'<div class="empty-state"><i class="fas fa-map"></i><p>لا توجد مناطق</p></div>';
+        const label=$id('areaTriggerLabel');
+        if(label&&activeArea)label.innerText=activeArea;
+    });
+}
+function deleteArea(key){
+    if(!confirm('حذف المنطقة؟'))return;
+    db.ref('areas/'+key).remove().then(()=>showToast('✅ تم الحذف','success'));
+}
+function switchArea(name){
+    activeArea=name;
+    const badge=$id('activeAreaBadge');
+    if(name){
+        badge.innerHTML=`<i class="fas fa-map-marker-alt"></i> ${name}`;
+        const label=$id('areaTriggerLabel');if(label)label.innerText=name;
+    }else{badge.innerHTML=`<i class="fas fa-map-marker-alt"></i> لم يتم اختيار منطقة`;}
+    if(!name)return;
+    loadSettings();loadRewardSettings();loadFakkaCardsInventory();loadDestinations();
+    loadProviders();loadDriversAndWallets();loadDailyOrders();loadDiscountsSummary();loadDashboardStats();
+    loadShippingSettings();loadShops();loadShippingOrders();
+}
+
+function updateServiceVisibility(key,visible){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    db.ref(`settings/${activeArea}/${key}`).set(visible);
+}
+function loadSettings(){
+    db.ref('settings/'+activeArea).on('value',snap=>{
+        const s=snap.val()||{};
+        ['tuktuk','market','pharmacy','vegetables','package','customRequest'].forEach(serv=>{
+            const el=$id('masterToggle'+serv.charAt(0).toUpperCase()+serv.slice(1));
+            if(el)el.checked=(s[serv]!==false);
+        });
+        const shTog=$id('shippingEnabledToggle');
+        if(shTog)shTog.checked=(s.shippingEnabled!==false);
+        const fbTog=$id('showFakkaButtonToggle');
+        if(fbTog)fbTog.checked=(s.showFakkaButton!==false);
+    });
+    db.ref('pricing/'+activeArea).once('value').then(snap=>{
+        const p=snap.val()||{};
+        const gd=$id('generalDeliveryPriceInput');if(gd)gd.value=p.generalDeliveryPrice||'';
+        const tk=$id('tuktukCommInput');if(tk)tk.value=p.tuktukCommission||'';
+        const dl=$id('delegateCommInput');if(dl)dl.value=p.delegateCommission||'';
+    });
+}
+function savePricesAndCommissions(){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    db.ref('pricing/'+activeArea).update({
+        generalDeliveryPrice:Number($id('generalDeliveryPriceInput').value)||0,
+        tuktukCommission:Number($id('tuktukCommInput').value)||0,
+        delegateCommission:Number($id('delegateCommInput').value)||0
+    }).then(()=>showToast('✅ تم الحفظ','success'));
+}
+
+// ============ Fakka Button Toggle ============
+function saveFakkaButtonSetting(enabled){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    db.ref(`settings/${activeArea}/showFakkaButton`).set(enabled).then(()=>{
+        showToast(enabled?'✅ تم إظهار زر كارت الفكة':'⏸️ تم إخفاء زر كارت الفكة',enabled?'success':'info');
+    });
+}
+
+// ============ Shipping Settings ============
+function loadShippingSettings(){
+    if(!activeArea)return;
+    db.ref('settings/'+activeArea).once('value').then(snap=>{
+        const s=snap.val()||{};
+        const tog=$id('shippingEnabledToggle');
+        if(tog)tog.checked=(s.shippingEnabled!==false);
+        const sp=$id('shippingPriceInput');if(sp)sp.value=s.shippingPrice||30;
+        const sd=$id('shippingDaysInput');if(sd)sd.value=s.shippingDays||3;
+        const sc=$id('shippingCommission');if(sc)sc.value=s.shippingCommission||10;
+        shippingSettingsCache={price:Number(s.shippingPrice)||30,days:Number(s.shippingDays)||3};
+    });
+}
+function saveShippingSettings(){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    db.ref('settings/'+activeArea).update({
+        shippingPrice:Number($id('shippingPriceInput').value)||30,
+        shippingDays:Number($id('shippingDaysInput').value)||3,
+        shippingCommission:Number($id('shippingCommission').value)||10
+    }).then(()=>showToast('✅ تم حفظ إعدادات الشحن','success'));
+}
+function toggleShippingService(enabled){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    db.ref(`settings/${activeArea}/shippingEnabled`).set(enabled).then(()=>{
+        showToast(enabled?'✅ تم تفعيل الشحن':'⏸️ تم إيقاف الشحن',enabled?'success':'info');
+    });
+}
+
+// ============ Shops ============
+function loadShops(){
+    if(!activeArea)return;
+    db.ref(`shops/${activeArea}`).on('value',snap=>{
+        shopsCache={};
+        snap.forEach(c=>{shopsCache[c.key]=c.val();});
+        renderShops();
+    });
+}
+function renderShops(){
+    const c=$id('shopsContainer');if(!c)return;
+    const shops=Object.keys(shopsCache).map(k=>({id:k,...shopsCache[k]}));
+    if(shops.length===0){
+        c.innerHTML='<div class="empty-state"><i class="fas fa-store"></i><p>لا توجد متاجر بعد</p></div>';
+        return;
+    }
+    let html='';
+    shops.forEach(s=>{
+        const c1=s.color||'#8b5cf6';
+        const c2=shadeColor(c1,-20);
+        const icon=s.icon||'fa-store';
+        html+=`<div class="shop-preview" style="--sc1:${c1};--sc2:${c2}">
+            <div class="shop-preview-icon"><i class="fas ${icon}"></i></div>
+            <div class="shop-preview-info">
+                <div class="shop-preview-name">${s.name}</div>
+                ${s.description?`<div class="shop-preview-desc">${s.description}</div>`:''}
+                <div class="shop-preview-link">🔗 ${s.link}</div>
+            </div>
+            <div class="shop-preview-actions">
+                <button class="icon-btn red" onclick="deleteShop('${s.id}')"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>`;
+    });
+    c.innerHTML=html;
+}
+function shadeColor(color,percent){
+    const num=parseInt(color.replace('#',''),16);
+    const amt=Math.round(2.55*percent);
+    const R=Math.max(0,Math.min(255,(num>>16)+amt));
+    const G=Math.max(0,Math.min(255,((num>>8)&0x00FF)+amt));
+    const B=Math.max(0,Math.min(255,(num&0x0000FF)+amt));
+    return '#'+(0x1000000+(R<<16)+(G<<8)+B).toString(16).slice(1);
+}
+function addNewShop(){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    const name=$id('shopName').value.trim();
+    const link=$id('shopLink').value.trim();
+    const desc=$id('shopDesc').value.trim();
+    const icon=$id('shopIcon').value;
+    const color=$id('shopColor').value;
+    if(!name){showToast('اكتب اسم المتجر','error');return;}
+    if(!link||!link.startsWith('http')){showToast('اكتب لينك صحيح يبدأ بـ http','error');return;}
+    db.ref(`shops/${activeArea}`).push({
+        name,link,description:desc,icon,color,
+        createdAt:Date.now(),
+        order:Object.keys(shopsCache).length+1
+    }).then(()=>{
+        $id('shopName').value='';$id('shopLink').value='';$id('shopDesc').value='';
+        showToast('✅ تم إضافة المتجر','success');
+    });
+}
+function deleteShop(id){
+    showConfirm('fa-trash','حذف المتجر','متأكد إنك عايز تحذف المتجر ده؟',()=>{
+        db.ref(`shops/${activeArea}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
+    });
+}
+
+// ============ Shipping Orders (الشحنات الواردة) ============
+function switchShippingTab(tab){
+    currentShippingTab=tab;
+    ['new','assigned','active','done','returns'].forEach(t=>{
+        const el=$id('shipTab-'+t);
+        if(el)el.classList.toggle('active',t===tab);
+    });
+    renderShippingOrders();
+}
+function loadShippingOrders(){
+    if(!activeArea)return;
+    db.ref('orders').on('value',snap=>{
+        ordersCache={};
+        snap.forEach(c=>{ordersCache[c.key]=c.val();});
+        renderShippingOrders();
+        updateShippingCounts();
+    });
+}
+function getShippingByTab(){
+    const list=[];
+    Object.keys(ordersCache).forEach(id=>{
+        const o=ordersCache[id];
+        if(!o)return;
+        if(!o.isShipping)return;
+        if(o.customerArea!==activeArea)return;
+        
+        const tab=currentShippingTab;
+        const shipStatus=o.shipStatus||'pending';
+        const status=o.status||'';
+        
+        if(tab==='new'){
+            if(status!=='ready_for_driver')return;
+            if(o.assignedDriver)return; // مخصصة خلاص
+        }
+        if(tab==='assigned'){
+            if(!o.assignedDriver)return;
+            if(status!=='assigned')return;
+        }
+        if(tab==='active'){
+            if(status!=='active')return;
+        }
+        if(tab==='done'){
+            if(status!=='completed'&&status!=='archived')return;
+        }
+        if(tab==='returns'){
+            if(status!=='reported'&&status!=='returned')return;
+        }
+        
+        list.push({id,...o});
+    });
+    list.sort((a,b)=>(b.time||0)-(a.time||0));
+    return list;
+}
+function updateShippingCounts(){
+    const tabs=['new','assigned','active','done','returns'];
+    tabs.forEach(t=>{
+        const old=currentShippingTab;
+        currentShippingTab=t;
+        const count=getShippingByTab().length;
+        currentShippingTab=old;
+        const el=$id('shipCount'+t.charAt(0).toUpperCase()+t.slice(1));
+        if(el)el.innerText=count;
+    });
+    // Badge على الـ sidebar
+    const old=currentShippingTab;currentShippingTab='new';
+    const newCount=getShippingByTab().length;
+    currentShippingTab=old;
+    const badge=$id('shippingOrdersBadge');
+    if(badge){badge.innerText=newCount;badge.style.display=newCount>0?'inline-block':'none';}
+}
+function renderShippingOrders(){
+    const c=$id('shippingOrdersContainer');if(!c)return;
+    const orders=getShippingByTab();
+    if(orders.length===0){
+        c.innerHTML='<div class="empty-state"><i class="fas fa-truck"></i><p>لا توجد شحنات في القسم ده</p></div>';
+        return;
+    }
+    let html='';
+    orders.forEach(o=>{html+=renderShippingCard(o);});
+    c.innerHTML=html;
+}
+function renderShippingCard(o){
+    const shipStatus=o.shipStatus||'pending';
+    const status=o.status||'ready_for_driver';
+    
+    let statusInfo={key:'pending',text:'جديدة',icon:'fa-bell'};
+    if(status==='assigned'||o.assignedDriver&&status!=='active'){statusInfo={key:'assigned',text:'معيّنة',icon:'fa-user-check'};}
+    if(status==='active'){statusInfo={key:'active',text:'جارية',icon:'fa-truck'};}
+    if(status==='completed'||status==='archived'){statusInfo={key:'done',text:'مكتملة',icon:'fa-check-double'};}
+    if(status==='reported'){statusInfo={key:'returned',text:'العميل مش موجود',icon:'fa-user-slash'};}
+    if(status==='returned'){statusInfo={key:'returned',text:'مرتجع',icon:'fa-undo'};}
+    
+    let driverHtml='';
+    if(o.assignedDriver){
+        driverHtml=`<div class="ship-alert-row"><span>🚚 المندوب:</span><span style="color:#a78bfa">${o.assignedDriverName||'-'} (${o.assignedDriverPhone||'-'})</span></div>`;
+    }
+    
+    let actionsHtml='';
+    if(currentShippingTab==='new'){
+        actionsHtml=`<button class="btn-assign" onclick="openAssignDriver('${o.id}')"><i class="fas fa-user-check"></i> تعيين مندوب</button>`;
+    }else if(currentShippingTab==='assigned'){
+        actionsHtml=`
+            <button class="btn-reassign" onclick="openAssignDriver('${o.id}')"><i class="fas fa-sync-alt"></i> تغيير المندوب</button>
+            <a href="tel:${o.assignedDriverPhone||''}" class="btn-call-driver"><i class="fas fa-phone"></i> اتصال بالمندوب</a>
+        `;
+    }else if(currentShippingTab==='active'){
+        actionsHtml=`
+            <a href="tel:${o.assignedDriverPhone||''}" class="btn-call-driver"><i class="fas fa-phone"></i> اتصال بالمندوب</a>
+        `;
+    }
+    
+    return `<div class="ship-alert-card status-${statusInfo.key}">
+        <div class="ship-alert-header">
+            <div>
+                <div class="ship-alert-code"><i class="fas fa-barcode"></i> ${o.trackingCode||'MISH-XXXX'}</div>
+                <div style="font-size:11px;color:#94a3b8;margin-top:4px">👤 ${o.customerName||o.name||'عميل'} • 📱 ${o.customerPhone||o.phone||''}</div>
+            </div>
+            <span class="ship-alert-badge ${statusInfo.key}"><i class="fas ${statusInfo.icon}"></i> ${statusInfo.text}</span>
+        </div>
+        <div class="ship-alert-row"><span>📅 تاريخ الطلب:</span><span>${o.orderTimeString||''}</span></div>
+        <div class="ship-alert-row"><span>🚚 من:</span><span>${(o.fromAddr||o.from||'-').substring(0,40)}</span></div>
+        <div class="ship-alert-row"><span>📍 إلى:</span><span>${(o.toAddr||o.to||'-').substring(0,40)}</span></div>
+        <div class="ship-alert-row"><span>📦 المحتويات:</span><span>${(o.details||'-').substring(0,40)}</span></div>
+        <div class="ship-alert-row"><span>👤 المستلم:</span><span>${o.toName||'-'} • ${o.toPhone||''}</span></div>
+        <div class="ship-alert-row"><span>💰 السعر:</span><span style="color:#10b981">${o.price||0} ج</span></div>
+        ${o.hasCOD?`<div class="ship-alert-row"><span>💵 تحصيل COD:</span><span style="color:#fbbf24">${o.codAmount||0} ج</span></div>`:''}
+        ${driverHtml}
+        ${actionsHtml?`<div class="ship-alert-actions">${actionsHtml}</div>`:''}
+    </div>`;
+}
+
+// ============ Assign Driver ============
+function openAssignDriver(orderId){
+    const o=ordersCache[orderId];
+    if(!o)return;
+    currentAssignOrderId=orderId;
+    
+    const select=$id('assignDriverSelect');
+    select.innerHTML='<option value="">-- اختر مندوب --</option>';
+    
+    // فلترة المندوبين: بس مندوبي الشحن
+    Object.keys(driversCache).forEach(k=>{
+        const d=driversCache[k];
+        const role=d.role||'';
+        if(role.includes('شحن')){
+            const opt=document.createElement('option');
+            opt.value=k;
+            opt.textContent=`${d.name} - ${d.phone}`;
+            if(o.assignedDriver===k)opt.selected=true;
+            select.appendChild(opt);
+        }
+    });
+    
+    $id('assignDriverSub').innerText=`${o.trackingCode||'MISH-XXXX'} → اختر المندوب`;
+    $id('assignDriverNotes').value='';
+    
+    $id('assignDriverOverlay').classList.add('show');
+    $id('assignDriverModal').classList.add('show');
+}
+function closeAssignDriver(){
+    $id('assignDriverOverlay').classList.remove('show');
+    $id('assignDriverModal').classList.remove('show');
+    currentAssignOrderId=null;
+}
+function confirmAssignDriver(){
+    if(!currentAssignOrderId){showToast('خطأ','error');return;}
+    const driverKey=$id('assignDriverSelect').value;
+    const notes=$id('assignDriverNotes').value.trim();
+    if(!driverKey){showToast('اختار مندوب','error');return;}
+    
+    const driver=driversCache[driverKey];
+    if(!driver){showToast('المندوب مش موجود','error');return;}
+    
+    db.ref('orders/'+currentAssignOrderId).update({
+        assignedDriver:driverKey,
+        assignedDriverName:driver.name,
+        assignedDriverPhone:driver.phone,
+        assignedAt:Date.now(),
+        assignNotes:notes,
+        status:'assigned'
+    }).then(()=>{
+        showToast('✅ تم تعيين المندوب','success');
+        closeAssignDriver();
+    }).catch(()=>{
+        showToast('خطأ في التعيين','error');
+    });
+}
+
+// ============ Drivers & Wallets ============
+function loadDriversAndWallets(){
+    if(!activeArea)return;
+    db.ref(`providers/${activeArea}`).on('value',snap=>{
+        driversCache={};
+        snap.forEach(c=>{driversCache[c.key]={...c.val(),key:c.key};});
+        renderDriversTable();
+    });
+    db.ref('orders').on('value',snap=>{
+        ordersCache={};
+        snap.forEach(c=>{ordersCache[c.key]=c.val();});
+        renderDriversTable();
+    });
+    db.ref(`pricing/${activeArea}`).on('value',snap=>{
+        const p=snap.val()||{};
+        pricingCache.tuktukCommission=Number(p.tuktukCommission)||10;
+        pricingCache.delegateCommission=Number(p.delegateCommission)||10;
+        renderDriversTable();
+    });
+    db.ref(`settings/${activeArea}/shippingCommission`).on('value',snap=>{
+        pricingCache.shippingCommission=Number(snap.val())||10;
+        renderDriversTable();
+    });
+    db.ref(`driver_settlements/${activeArea}`).on('value',snap=>{
+        settlementsCache={};
+        snap.forEach(c=>{settlementsCache[c.key]=c.val();});
+        renderDriversTable();
+    });
+}
+function calcDriverStats(driver){
+    const role=driver.role||'';
+    let commRate=pricingCache.delegateCommission;
+    if(role.includes('توك')||role.includes('مشوار'))commRate=pricingCache.tuktukCommission;
+    else if(role.includes('شحن'))commRate=pricingCache.shippingCommission;
+    const lastSettlement=(settlementsCache[driver.key]&&settlementsCache[driver.key].lastSettledAt)||0;
+    let ordersCount=0,originalTotal=0,paidTotal=0,commissionTotal=0,discountTotal=0;
+    Object.keys(ordersCache).forEach(id=>{
+        const o=ordersCache[id];if(!o)return;
+        const matched=(o.driverKey===driver.key)||(o.driverPhone===driver.phone);
+        if(!matched)return;
+        if(o.status!=='completed'&&o.status!=='archived')return;
+        const orderTime=Number(o.completedAt||o.acceptedAt||o.time||0);
+        if(orderTime<lastSettlement)return;
+        const price=Number(o.price)||0;
+        const originalPrice=Number(o.originalPrice)||price;
+        const discount=Number(o.discountAmount)||0;
+        const rawComm=Number(o.commission);
+        const orderComm=(!isNaN(rawComm)&&o.commission!==undefined)?rawComm:(originalPrice*commRate)/100;
+        ordersCount++;originalTotal+=originalPrice;paidTotal+=price;discountTotal+=discount;commissionTotal+=orderComm;
+    });
+    let owesDriver=(originalTotal-commissionTotal)-paidTotal;
+    return {ordersCount,originalTotal:Math.round(originalTotal),paidTotal:Math.round(paidTotal),commissionTotal:Math.round(commissionTotal),discountTotal:Math.round(discountTotal),owesDriver:Math.round(owesDriver)};
+}
+function renderDriversTable(){
+    const tbody=$id('driversTableBody');if(!tbody)return;
+    const drivers=Object.values(driversCache);
+    if(drivers.length===0){
+        tbody.innerHTML='<tr><td colspan="9" class="empty-state">لا يوجد سائقين</td></tr>';
+        return;
+    }
+    let html='';
+    drivers.forEach(driver=>{
+        const stats=calcDriverStats(driver);
+        const role=driver.role||'';
+        let roleClass='role-delegate',roleText='🛵 مندوب عام';
+        if(role.includes('توك')||role.includes('مشوار')){roleClass='role-tuktuk';roleText='🛺 توك توك';}
+        else if(role.includes('شحن')){roleClass='role-shipping';roleText='🚚 مندوب شحن';}
+        let owesHtml='';
+        if(stats.owesDriver>=0){owesHtml=`<span class="money-val money-primary">💵 ${stats.owesDriver} ج</span>`;}
+        else{const abs=Math.abs(stats.owesDriver);owesHtml=`<span class="money-negative">⚠️ -${abs} ج</span>`;}
+        html+=`<tr>
+            <td class="driver-name">${driver.name}</td>
+            <td><span class="role-badge ${roleClass}">${roleText}</span></td>
+            <td><span class="money-val">${stats.ordersCount}</span></td>
+            <td><span class="money-val money-blue">${stats.originalTotal} ج</span></td>
+            <td><span class="money-val money-yellow">${stats.paidTotal} ج</span></td>
+            <td><span class="money-val money-red">${stats.commissionTotal} ج</span></td>
+            <td><span class="money-val money-yellow">${stats.discountTotal} ج</span></td>
+            <td>${owesHtml}</td>
+            <td><div class="action-btns">
+                <button class="icon-btn purple" onclick="showDriverDetails('${driver.key}')"><i class="fas fa-eye"></i> تفاصيل</button>
+                <button class="icon-btn red" onclick="settleDriver('${driver.key}')"><i class="fas fa-check-double"></i> تصفير</button>
+            </div></td>
+        </tr>`;
+    });
+    tbody.innerHTML=html;
+}
+function showDriverDetails(driverKey){
+    const driver=driversCache[driverKey];if(!driver)return;
+    const stats=calcDriverStats(driver);
+    const role=driver.role||'';
+    let roleClass='role-delegate',roleText='🛵 مندوب عام';
+    if(role.includes('توك')||role.includes('مشوار')){roleClass='role-tuktuk';roleText='🛺 توك توك';}
+    else if(role.includes('شحن')){roleClass='role-shipping';roleText='🚚 مندوب شحن';}
+    const lastSettlement=(settlementsCache[driverKey]&&settlementsCache[driverKey].lastSettledAt)||0;
+    const driverOrders=[];
+    Object.keys(ordersCache).forEach(id=>{
+        const o=ordersCache[id];
+        if(!o)return;
+        const matched=(o.driverKey===driverKey)||(o.driverPhone===driver.phone);
+        if(!matched)return;
+        const orderTime=Number(o.completedAt||o.acceptedAt||o.time||0);
+        if(orderTime<lastSettlement)return;
+        driverOrders.push({id,...o});
+    });
+    driverOrders.sort((a,b)=>(b.time||0)-(a.time||0));
+    let ordersHtml='';
+    if(driverOrders.length===0){
+        ordersHtml='<div class="empty-state"><i class="fas fa-inbox"></i><p>لا توجد تسليمات</p></div>';
+    }else{
+        driverOrders.forEach(o=>{
+            ordersHtml+=`<div class="order-row-item">
+                <div class="order-row-item-info">
+                    <div class="order-row-item-type">${o.type||'طلب'}</div>
+                    <div class="order-row-item-time">🕐 ${o.orderTimeString||''} • ${o.customerName||o.name||'عميل'}</div>
+                </div>
+                <div class="order-row-item-price">${o.price||0} ج</div>
+            </div>`;
+        });
+    }
+    const settlementsHistory=settlementsCache[driverKey]?.history||{};
+    const settlementsList=Object.keys(settlementsHistory).map(k=>({id:k,...settlementsHistory[k]})).sort((a,b)=>(b.settledAt||0)-(a.settledAt||0));
+    let settlementsHtml='';
+    if(settlementsList.length===0){
+        settlementsHtml='<div class="empty-state"><i class="fas fa-history"></i><p>لا يوجد سجل تصفير</p></div>';
+    }else{
+        settlementsHtml='<div class="table-wrap"><table class="data-table" style="min-width:600px"><thead><tr><th>التاريخ</th><th>الطلبات</th><th>الأصلي</th><th>المدفوع</th><th>العمولة</th><th>الصافي</th></tr></thead><tbody>';
+        settlementsList.forEach(s=>{
+            settlementsHtml+=`<tr>
+                <td style="font-size:11px">${s.dateStr||''}</td>
+                <td>${s.ordersCount||0}</td>
+                <td>${s.originalTotal||0} ج</td>
+                <td style="color:#fde047">${s.paidTotal||0} ج</td>
+                <td style="color:#fca5a5">${s.commissionTotal||0} ج</td>
+                <td style="color:#c4b5fd;font-weight:900">${s.owesDriver||0} ج</td>
+            </tr>`;
+        });
+        settlementsHtml+='</tbody></table></div>';
+    }
+    const content=$id('driverDetailsContent');
+    content.innerHTML=`
+        <div class="driver-info-header">
+            <div class="driver-info-avatar">${(driver.name||'س').charAt(0)}</div>
+            <div class="driver-info-name">${driver.name||'سائق'}</div>
+            <div class="driver-info-role"><span class="role-badge ${roleClass}">${roleText}</span></div>
+            <div class="driver-info-row"><span>📱 رقم الموبايل</span><span style="direction:ltr">${driver.phone||'-'}</span></div>
+            <div class="driver-info-row"><span>🔑 كود الدخول</span><span style="color:#fde047">${driver.code||'-'}</span></div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-icon" style="background:rgba(139,92,246,.2);color:#a78bfa"><i class="fas fa-box"></i></div><div class="stat-value">${stats.ordersCount}</div><div class="stat-label">عدد التسليمات</div></div>
+            <div class="stat-card"><div class="stat-icon" style="background:rgba(59,130,246,.2);color:#60a5fa"><i class="fas fa-money-bill"></i></div><div class="stat-value">${stats.originalTotal}</div><div class="stat-label">الرصيد الأصلي (ج)</div></div>
+            <div class="stat-card"><div class="stat-icon" style="background:rgba(245,158,11,.2);color:#fde047"><i class="fas fa-hand-holding-usd"></i></div><div class="stat-value">${stats.paidTotal}</div><div class="stat-label">المدفوع (ج)</div></div>
+            <div class="stat-card"><div class="stat-icon" style="background:rgba(239,68,68,.2);color:#fca5a5"><i class="fas fa-percentage"></i></div><div class="stat-value">${stats.commissionTotal}</div><div class="stat-label">عمولتنا (ج)</div></div>
+            <div class="stat-card"><div class="stat-icon" style="background:rgba(16,185,129,.2);color:#34d399"><i class="fas fa-wallet"></i></div><div class="stat-value">${stats.owesDriver}</div><div class="stat-label">الصافي ليه (ج)</div></div>
+        </div>
+        <div class="card">
+            <div class="card-title"><i class="fas fa-box-open"></i> التسليمات الحالية</div>
+            ${ordersHtml}
+        </div>
+        <div class="card">
+            <div class="card-title"><i class="fas fa-history"></i> سجل التصفير</div>
+            ${settlementsHtml}
+        </div>
+    `;
+    switchPage('driverDetails');
+}
+function settleDriver(driverKey){
+    const driver=driversCache[driverKey];if(!driver)return;
+    const stats=calcDriverStats(driver);
+    if(stats.ordersCount===0)return showToast('مفيش حاجة تتصفر','info');
+    showConfirm('fa-check-double','تصفير حساب السائق',
+        `هتصفّر حساب <b>${driver.name}</b>؟<br><br>الطلبات: <b>${stats.ordersCount}</b><br>الصافي: <b>${stats.owesDriver} ج</b>`,
+        ()=>{
+            const sid=db.ref(`driver_settlements/${activeArea}/${driverKey}/history`).push().key;
+            const now=Date.now();
+            const settlement={settledAt:now,dateStr:new Date(now).toLocaleString('ar-EG'),ordersCount:stats.ordersCount,originalTotal:stats.originalTotal,paidTotal:stats.paidTotal,commissionTotal:stats.commissionTotal,discountTotal:stats.discountTotal,owesDriver:stats.owesDriver,driverName:driver.name};
+            db.ref(`driver_settlements/${activeArea}/${driverKey}/history/${sid}`).set(settlement);
+            db.ref(`driver_settlements/${activeArea}/${driverKey}/lastSettledAt`).set(now);
+            Object.keys(ordersCache).forEach(id=>{
+                const o=ordersCache[id];
+                if(!o)return;
+                const matched=(o.driverKey===driverKey)||(o.driverPhone===driver.phone);
+                if(!matched)return;
+                if(o.status!=='completed')return;
+                db.ref(`orders/${id}/status`).set('archived');
+            });
+            showToast(`✅ تم تصفير ${driver.name}`,'success');
+        });
+}
+
+// ============ Rewards & Fakka & Support ============
+function saveRewardBaseSettings(){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    const data={
+        active:$id('rewardSystemActive').checked,
+        showDelivery:$id('showDeliveryReward').checked,
+        showTripDiscount:$id('showTripDiscountReward').checked,
+        pointsPerOrder:Number($id('pointsPerOrder').value)||10,
+        discountCost:Number($id('costDiscountReward').value)||100,
+        tripDiscountCost:Number($id('tripDiscountCost').value)||50,
+        directDiscountValue:Number($id('directDiscountValue').value)||20,
+        fakkaCost:Number($id('costFakkaReward').value)||150,
+        showFakka:$id('showFakkaToggle').checked,
+        showFakkaVodafone:$id('showFakkaVodafoneToggle').checked,
+        showFakkaEtisalat:$id('showFakkaEtisalatToggle').checked,
+        doublePointsActive:$id('doublePointsActive').checked,
+        challengeActive:$id('challengeActive').checked,
+        challengeTarget:Number($id('challengeTarget').value)||5,
+        challengeReward:Number($id('challengeReward').value)||100,
+        inviteActive:$id('inviteActive').checked,
+        inviteReward:Number($id('inviteReward').value)||50
+    };
+    db.ref(`reward_settings/${activeArea}`).update(data).then(()=>showToast('✅ تم الحفظ','success'));
+}
+function loadRewardSettings(){
+    db.ref(`reward_settings/${activeArea}`).once('value').then(snap=>{
+        const r=snap.val()||{};
+        const set=(id,val)=>{const el=$id(id);if(el)el.checked=val;};
+        const setVal=(id,val)=>{const el=$id(id);if(el)el.value=val;};
+        set('rewardSystemActive',r.active!==false);
+        set('showDeliveryReward',r.showDelivery!==false);
+        set('showTripDiscountReward',r.showTripDiscount!==false);
+        set('showFakkaToggle',r.showFakka!==false);
+        set('showFakkaVodafoneToggle',r.showFakkaVodafone!==false);
+        set('showFakkaEtisalatToggle',r.showFakkaEtisalat!==false);
+        set('doublePointsActive',r.doublePointsActive===true);
+        set('challengeActive',r.challengeActive!==false);
+        set('inviteActive',r.inviteActive!==false);
+        setVal('pointsPerOrder',r.pointsPerOrder||10);
+        setVal('costDiscountReward',r.discountCost||100);
+        setVal('tripDiscountCost',r.tripDiscountCost||50);
+        setVal('directDiscountValue',r.directDiscountValue||20);
+        setVal('costFakkaReward',r.fakkaCost||150);
+        setVal('challengeTarget',r.challengeTarget||5);
+        setVal('challengeReward',r.challengeReward||100);
+        setVal('inviteReward',r.inviteReward||50);
+    });
+}
+function saveSupportWhatsapp(){
+    const num=$id('supportWhatsappInput').value.trim();
+    if(!num)return showToast('اكتب الرقم','error');
+    db.ref('settings/support/whatsapp').set(num).then(()=>showToast('✅ تم الحفظ','success'));
+}
+function loadSupportWhatsapp(){
+    db.ref('settings/support/whatsapp').once('value').then(s=>{
+        const input=$id('supportWhatsappInput');
+        if(input)input.value=s.val()||'01115699940';
+    });
+}
+function addNewFakkaCard(){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    const code=$id('newFakkaCode').value.trim();
+    const network=$id('fakkaNetworkType').value;
+    if(!code)return showToast('اكتب الكود','error');
+    const dateStr=new Date().toLocaleDateString('ar-EG');
+    const node=network==='اتصالات'?'fakka_cards_etisalat':'fakka_cards_vodafone';
+    db.ref(`reward_settings/${activeArea}/${node}`).push({code,network,date:dateStr}).then(()=>{
+        $id('newFakkaCode').value='';
+        showToast(`✅ تم إضافة كارت ${network}`,'success');
+    });
+}
+function loadFakkaCardsInventory(){
+    if(!activeArea)return;
+    db.ref(`reward_settings/${activeArea}`).on('value',snap=>{
+        const data=snap.val()||{};
+        let html='';
+        ['fakka_cards_etisalat','fakka_cards_vodafone'].forEach(node=>{
+            const cards=data[node]||{};
+            Object.keys(cards).forEach(id=>{
+                const c=cards[id];
+                if(!c||!c.code)return;
+                const color=node.includes('etisalat')?'#10b981':'#ef4444';
+                html+=`<tr>
+                    <td><span style="color:${color};font-weight:700">${c.network}</span></td>
+                    <td><b style="color:#fde047">${c.code}</b></td>
+                    <td style="color:#94a3b8;font-size:11px">${c.date||''}</td>
+                    <td><button class="del-btn" onclick="deleteFakkaCard('${node}','${id}')"><i class="fas fa-trash"></i></button></td>
+                </tr>`;
+            });
+        });
+        const tbody=$id('fakkaCardsTableBody');
+        if(tbody)tbody.innerHTML=html||'<tr><td colspan="4" class="empty-state">لا توجد كروت</td></tr>';
+    });
+}
+function deleteFakkaCard(node,id){
+    if(!confirm('حذف الكارت؟'))return;
+    db.ref(`reward_settings/${activeArea}/${node}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
+}
+
+// ============ Destinations ============
+function addDestination(){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    const name=$id('destName').value.trim();
+    const price=Number($id('destPrice').value);
+    if(!name||!price)return showToast('أدخل البيانات','error');
+    db.ref(`pricing/${activeArea}/destinations`).push({name,price}).then(()=>{
+        $id('destName').value='';$id('destPrice').value='';
+        showToast('✅ تم الإضافة','success');
+    });
+}
+function loadDestinations(){
+    if(!activeArea)return;
+    db.ref(`pricing/${activeArea}/destinations`).on('value',snap=>{
+        let html='';
+        snap.forEach(c=>{
+            const item=c.val(),id=c.key;
+            html+=`<tr>
+                <td>📍 ${item.name}</td>
+                <td style="color:#10b981;font-weight:700">${item.price} ج</td>
+                <td><button class="del-btn" onclick="db.ref('pricing/${activeArea}/destinations/${id}').remove()"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+        });
+        const tbody=$id('destTableBody');
+        if(tbody)tbody.innerHTML=html||'<tr><td colspan="3" class="empty-state">لا توجد وجهات</td></tr>';
+    });
+}
+
+// ============ Providers ============
+function saveProviderWithCustomCode(){
+    if(!activeArea)return showToast('اختر منطقة','error');
+    const name=$id('pName').value.trim();
+    const phone=$id('pPhone').value.trim();
+    const role=$id('pRole').value;
+    const code=$id('customCode').value.trim();
+    if(!name||phone.length<11||!code)return showToast('اكمل البيانات','error');
+    db.ref(`providers/${activeArea}`).push({name,phone,role,code}).then(()=>{
+        $id('pName').value='';$id('pPhone').value='';$id('customCode').value='';
+        showToast('✅ تم حفظ السائق','success');
+    });
+}
+function loadProviders(){
+    if(!activeArea)return;
+    db.ref(`providers/${activeArea}`).on('value',snap=>{
+        let html='';
+        snap.forEach(c=>{
+            const item=c.val(),id=c.key;
+            html+=`<tr>
+                <td>${item.name}</td>
+                <td>${item.role}</td>
+                <td style="color:#fde047;font-weight:700">${item.code}</td>
+                <td><button class="del-btn" onclick="db.ref('providers/${activeArea}/${id}').remove()"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+        });
+        const tbody=$id('providersList');
+        if(tbody)tbody.innerHTML=html||'<tr><td colspan="4" class="empty-state">لا يوجد سائقين</td></tr>';
+    });
+}
+
+// ============ Discounts ============
+function loadDiscountsSummary(){
+    if(!activeArea)return;
+    db.ref('orders').on('value',snap=>{
+        let totalDirect=0,totalFree=0;
+        let html='';
+        snap.forEach(c=>{
+            const o=c.val();
+            if(o.customerArea!==activeArea)return;
+            if(o.hasDiscount!==true)return;
+            if(o.status==='archived')return;
+            const amount=Number(o.discountAmount)||0;
+            const original=Number(o.originalPrice)||Number(o.price)||0;
+            const final=Number(o.finalPrice)||Number(o.price)||0;
+            if(o.discountType==='خصم مالي مباشر')totalDirect+=amount;
+            else if(o.discountType==='توصيل مجاني')totalFree+=amount;
+            html=`<tr style="background:rgba(239,68,68,.06)">
+                <td><b>${o.customerName||o.name||'عميل'}</b></td>
+                <td><b>${o.type}</b></td>
+                <td>${original} ج</td>
+                <td style="color:#fca5a5;font-weight:900">- ${amount} ج</td>
+                <td style="color:#10b981;font-weight:900">${final} ج</td>
+            </tr>`+html;
+        });
+        const td=$id('totalDirectDiscount');if(td)td.innerText=totalDirect+' ج';
+        const tf=$id('totalFreeDeliveries');if(tf)tf.innerText=totalFree+' ج';
+        const ta=$id('totalAllDiscounts');if(ta)ta.innerText=(totalDirect+totalFree)+' ج';
+        const tbody=$id('discountsTableBody');
+        if(tbody)tbody.innerHTML=html||'<tr><td colspan="5" class="empty-state">لا توجد خصومات</td></tr>';
+    });
+}
+
+// ============ Daily Orders ============
+function loadDailyOrders(){
+    if(!activeArea)return;
+    db.ref('orders').on('value',snap=>{
+        let html='';
+        snap.forEach(c=>{
+            const o=c.val(),id=c.key;
+            if(o.customerArea===activeArea&&o.status!=='archived'&&!o.isShipping){
+                let statusColor='#f59e0b';
+                if(o.status==='ready_for_driver')statusColor='#38bdf8';
+                else if(o.status==='active')statusColor='#a78bfa';
+                else if(o.status==='completed')statusColor='#10b981';
+                const statusText=o.status==='ready_for_driver'?'انتظار مندوب':o.status==='active'?'جاري التنفيذ':o.status==='completed'?'مكتمل':o.status;
+                html+=`<tr>
+                    <td><b>${o.type}</b></td>
+                    <td>${o.customerName||o.name||'عميل'}</td>
+                    <td style="font-size:11px;color:#94a3b8">${o.details||o.to||'مشوار'}</td>
+                    <td style="color:#10b981;font-weight:700">${o.price||0} ج</td>
+                    <td><span style="color:${statusColor};font-weight:700;font-size:11px">${statusText}</span></td>
+                    <td><button class="del-btn" onclick="db.ref('orders/${id}').remove()"><i class="fas fa-trash"></i></button></td>
+                </tr>`;
+            }
+        });
+        const tbody=$id('dailyOrdersTableBody');
+        if(tbody)tbody.innerHTML=html||'<tr><td colspan="6" class="empty-state">لا توجد طلبات</td></tr>';
+    });
+}
+
+// ============ Dashboard Stats ============
+function loadDashboardStats(){
+    if(!activeArea)return;
+    db.ref('orders').on('value',snap=>{
+        const today=new Date();today.setHours(0,0,0,0);
+        const todayTime=today.getTime();
+        let todayOrders=0,completed=0,activeShipments=0;
+        let recentHtml='';
+        let recentCount=0;
+        const allOrders=[];
+        snap.forEach(c=>allOrders.push({id:c.key,...c.val()}));
+        allOrders.reverse();
+        allOrders.forEach(o=>{
+            if(o.customerArea!==activeArea)return;
+            if(o.status==='archived')return;
+            if(o.time>=todayTime)todayOrders++;
+            if(o.status==='completed'){completed++;}
+            if(o.isShipping&&(o.shipStatus==='pending'||o.shipStatus==='in_transit'||o.shipStatus==='out_for_delivery'||o.shipStatus==='picked_up'||o.status==='assigned'||o.status==='active'))activeShipments++;
+            if(recentCount<5){
+                const statusColor=o.status==='completed'?'#10b981':o.status==='active'?'#a78bfa':'#38bdf8';
+                const statusText=o.status==='ready_for_driver'?'انتظار':o.status==='active'?'جاري':o.status==='completed'?'مكتمل':o.status==='assigned'?'معيّن':o.status;
+                recentHtml+=`<tr>
+                    <td>${o.customerName||o.name||'عميل'}</td>
+                    <td>${o.type}</td>
+                    <td style="color:#10b981;font-weight:700">${o.price||0} ج</td>
+                    <td><span style="color:${statusColor};font-weight:700;font-size:11px">${statusText}</span></td>
+                </tr>`;
+                recentCount++;
+            }
+        });
+        db.ref(`providers/${activeArea}`).once('value').then(pSnap=>{
+            const el=$id('statActiveDrivers');if(el)el.innerText=pSnap.numChildren()||0;
+        });
+        const t1=$id('statTodayOrders');if(t1)t1.innerText=todayOrders;
+        const t2=$id('statCompletedOrders');if(t2)t2.innerText=completed;
+        const t3=$id('statActiveShipments');if(t3)t3.innerText=activeShipments;
+        const t4=$id('dashboardRecentOrders');if(t4)t4.innerHTML=recentHtml||'<tr><td colspan="4" class="empty-state">لا توجد طلبات</td></tr>';
+    });
+}
+</script>
+</body>
+</html>
