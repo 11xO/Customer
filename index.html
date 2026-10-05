@@ -190,7 +190,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .tab-shipping.active{background:linear-gradient(135deg,var(--primary),#7c3aed);color:#fff}
 .tab-shipping .cnt{background:rgba(255,255,255,.2);padding:1px 7px;border-radius:10px;font-size:10px;margin-right:3px}
 
-/* ============ MARKET STYLES ============ */
 .market-category-item{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:10px;transition:.2s}
 .market-category-item:hover{background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3)}
 .market-cat-icon-box{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(6,182,212,.15));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
@@ -216,7 +215,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .market-prod-price small{display:block;font-size:10px;color:var(--text-muted);text-decoration:line-through;margin-top:2px}
 .market-prod-actions{display:flex;gap:6px;flex-shrink:0}
 
-/* ============ PHARMACY STYLES ============ */
 .pharmacy-item{background:rgba(20,27,45,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .pharmacy-item-info{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
 .pharmacy-item-icon{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#06b6d4,#0891b2);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}
@@ -270,6 +268,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div class="nav-item" data-page="shippingSettings" onclick="switchPage('shippingSettings')"><i class="fas fa-shipping-fast"></i><span>إعدادات الشحن</span></div>
 <div class="nav-item" data-page="shops" onclick="switchPage('shops')"><i class="fas fa-store"></i><span>متاجرنا</span></div>
 <div class="nav-item" data-page="pharmacies" onclick="switchPage('pharmacies')"><i class="fas fa-prescription-bottle"></i><span>الصيدليات</span></div>
+<div class="nav-item" data-page="workHours" onclick="switchPage('workHours')"><i class="fas fa-clock"></i><span>ساعات العمل</span></div>
 <div class="nav-item" data-page="support" onclick="switchPage('support')"><i class="fas fa-headset"></i><span>رقم الواتساب</span></div>
 
 <div class="nav-section-title">المالية</div>
@@ -557,6 +556,43 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div id="pharmaciesContainer">
 <div class="empty-state"><i class="fas fa-prescription-bottle"></i><p>لا توجد صيدليات مسجلة</p></div>
 </div>
+</div>
+</div>
+
+<!-- ══════════ WORK HOURS PAGE ══════════ -->
+<div class="page" id="page-workHours">
+<div class="card">
+<div class="card-title"><i class="fas fa-clock"></i> ساعات عمل التطبيق</div>
+<div class="card-subtitle">بره الساعات دي، تطبيق الزبون هيقفل تلقائي. تطبيق السائق والصيدلي هيفضلوا شغالين عادي.</div>
+
+<div class="toggle-row" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3)">
+<div class="toggle-label"><div style="color:#a78bfa">⏰ تفعيل ساعات العمل</div><small>لو مقفول، التطبيق هيشتغل 24 ساعة</small></div>
+<label class="switch"><input type="checkbox" id="workHoursEnabled" onchange="saveWorkHours()"><span class="slider-sw"></span></label>
+</div>
+
+<div class="grid-2" style="margin-top:14px">
+<div>
+<label class="field-label">🕐 وقت الفتح (24 ساعة)</label>
+<input type="time" id="workHoursOpen" onchange="saveWorkHours()">
+</div>
+<div>
+<label class="field-label">🕐 وقت القفل</label>
+<input type="time" id="workHoursClose" onchange="saveWorkHours()">
+</div>
+</div>
+
+<label class="field-label" style="margin-top:14px">📞 رقم الدعم وقت الإغلاق (اختياري)</label>
+<input type="tel" id="workHoursSupportPhone" placeholder="01xxxxxxxxx" maxlength="11" onchange="saveWorkHours()">
+<div class="helper-text"><i class="fas fa-info-circle"></i> لو مش موجود، هيستخدم رقم الواتساب العام</div>
+
+<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="saveWorkHours()">
+<i class="fas fa-save"></i> حفظ ساعات العمل
+</button>
+</div>
+
+<div class="card">
+<div class="card-title"><i class="fas fa-info-circle"></i> معاينة</div>
+<div id="workHoursPreview"></div>
 </div>
 </div>
 
@@ -955,6 +991,7 @@ const pageTitles={
     shippingSettings:{icon:'fa-shipping-fast',title:'إعدادات الشحن'},
     shops:{icon:'fa-store',title:'متاجرنا'},
     pharmacies:{icon:'fa-prescription-bottle',title:'الصيدليات'},
+    workHours:{icon:'fa-clock',title:'ساعات العمل'},
     support:{icon:'fa-headset',title:'الدعم والمساعدة'},
     drivers:{icon:'fa-users-cog',title:'حسابات السائقين'},
     driverDetails:{icon:'fa-user-circle',title:'تفاصيل السائق'},
@@ -981,6 +1018,7 @@ function switchPage(page){
     if(page==='marketAddProduct')populateCategoryDropdowns();
     if(page==='marketProducts'){populateCategoryDropdowns();renderMarketProductsTable();}
     if(page==='pharmacies'){loadPharmaciesDropdown();renderPharmacies();}
+    if(page==='workHours')loadWorkHours();
     if(page==='dashboard')loadDashboardStats();
 }
 
@@ -1061,7 +1099,6 @@ function switchArea(name){
     loadMarketCategories();loadMarketProducts();
 }
 
-/* ============ SERVICE VISIBILITY ============ */
 function updateServiceVisibility(key,visible){
     if(!activeArea)return showToast('اختر منطقة','error');
     db.ref(`settings/${activeArea}/${key}`).set(visible);
@@ -1126,6 +1163,82 @@ function toggleShippingService(enabled){
     db.ref(`settings/${activeArea}/shippingEnabled`).set(enabled).then(()=>{
         showToast(enabled?'✅ تم تفعيل الشحن':'⏸️ تم إيقاف الشحن',enabled?'success':'info');
     });
+}
+
+/* ============ WORK HOURS ============ */
+function loadWorkHours(){
+    db.ref('settings/work_hours').once('value').then(snap=>{
+        const d=snap.val()||{};
+        const enabled=$id('workHoursEnabled');
+        if(enabled)enabled.checked=(d.enabled===true);
+        const open=$id('workHoursOpen');
+        if(open)open.value=d.openTime||'08:00';
+        const close=$id('workHoursClose');
+        if(close)close.value=d.closeTime||'23:00';
+        const phone=$id('workHoursSupportPhone');
+        if(phone)phone.value=d.supportPhone||'';
+        renderWorkHoursPreview();
+    });
+}
+
+function saveWorkHours(){
+    const enabled=$id('workHoursEnabled').checked;
+    const openTime=$id('workHoursOpen').value||'08:00';
+    const closeTime=$id('workHoursClose').value||'23:00';
+    const supportPhone=$id('workHoursSupportPhone').value.trim();
+    
+    db.ref('settings/work_hours').update({
+        enabled:enabled,
+        openTime:openTime,
+        closeTime:closeTime,
+        supportPhone:supportPhone||'',
+        updatedAt:Date.now()
+    }).then(()=>{
+        showToast('✅ تم حفظ ساعات العمل','success');
+        renderWorkHoursPreview();
+    });
+}
+
+function renderWorkHoursPreview(){
+    const c=$id('workHoursPreview');
+    if(!c)return;
+    db.ref('settings/work_hours').once('value').then(snap=>{
+        const d=snap.val()||{};
+        if(!d.enabled){
+            c.innerHTML='<div class="info-note success-note">✅ التطبيق شغال <b>24 ساعة</b> — مفيش إغلاق</div>';
+            return;
+        }
+        const open=d.openTime||'08:00';
+        const close=d.closeTime||'23:00';
+        const phone=d.supportPhone||'';
+        c.innerHTML=`<div class="info-note" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.3);color:#c4b5fd;line-height:2">
+            🕐 <b>وقت الفتح:</b> ${formatTime12(open)}<br>
+            🕐 <b>وقت القفل:</b> ${formatTime12(close)}<br>
+            📞 <b>رقم الدعم:</b> ${phone||'رقم الواتساب العام'}<br>
+            <br>
+            <b style="color:#fde047">⏱️ المدة:</b> ${calculateDuration(open,close)} ساعة
+        </div>`;
+    });
+}
+
+function formatTime12(time24){
+    if(!time24)return '-';
+    const [h,m]=time24.split(':');
+    let hour=parseInt(h);
+    const ampm=hour>=12?'مساءً':'صباحاً';
+    hour=hour%12||12;
+    return `${hour}:${m} ${ampm}`;
+}
+
+function calculateDuration(open,close){
+    if(!open||!close)return 0;
+    const [oh,om]=open.split(':').map(Number);
+    const [ch,cm]=close.split(':').map(Number);
+    let openMin=oh*60+om;
+    let closeMin=ch*60+cm;
+    if(closeMin<openMin)closeMin+=24*60;
+    const diffMin=closeMin-openMin;
+    return Math.round(diffMin/60*10)/10;
 }
 
 /* ============ PHARMACIES MANAGEMENT ============ */
