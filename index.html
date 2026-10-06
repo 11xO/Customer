@@ -154,27 +154,26 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .order-row-item-time{font-size:10.5px;color:var(--text-muted);margin-top:2px}
 .order-row-item-price{font-size:15px;font-weight:900;color:var(--success);text-align:left}
 .ship-alert-card{background:rgba(10,15,28,.6);border:1.5px solid var(--glass-border);border-radius:16px;padding:14px;margin-bottom:12px;position:relative;overflow:hidden;border-right-width:5px}
-.ship-alert-card.status-ontime{border-right-color:#10b981;background:linear-gradient(90deg,rgba(16,185,129,.08),rgba(10,15,28,.6))}
-.ship-alert-card.status-today{border-right-color:#f59e0b;background:linear-gradient(90deg,rgba(245,158,11,.1),rgba(10,15,28,.6))}
-.ship-alert-card.status-late{border-right-color:#ef4444;background:linear-gradient(90deg,rgba(239,68,68,.12),rgba(10,15,28,.6))}
-.ship-alert-card.status-done{border-right-color:#6ee7b7;background:linear-gradient(90deg,rgba(16,185,129,.06),rgba(10,15,28,.6));opacity:.75}
-.ship-alert-card.status-cancelled{border-right-color:#64748b;background:linear-gradient(90deg,rgba(100,116,139,.08),rgba(10,15,28,.6));opacity:.65}
-.ship-alert-card.status-assigned{border-right-color:#a78bfa;background:linear-gradient(90deg,rgba(139,92,246,.12),rgba(10,15,28,.6))}
-.ship-alert-card.status-active{border-right-color:#38bdf8;background:linear-gradient(90deg,rgba(56,189,248,.12),rgba(10,15,28,.6))}
-.ship-alert-card.status-pending{border-right-color:#60a5fa;background:linear-gradient(90deg,rgba(59,130,246,.1),rgba(10,15,28,.6))}
-.ship-alert-card.status-returned{border-right-color:#f43f5e;background:linear-gradient(90deg,rgba(244,63,94,.1),rgba(10,15,28,.6))}
+.ship-alert-card.status-ontime{border-right-color:#10b981}
+.ship-alert-card.status-today{border-right-color:#f59e0b}
+.ship-alert-card.status-late{border-right-color:#ef4444}
+.ship-alert-card.status-done{border-right-color:#6ee7b7;opacity:.75}
+.ship-alert-card.status-cancelled{border-right-color:#64748b;opacity:.65}
+.ship-alert-card.status-assigned{border-right-color:#a78bfa}
+.ship-alert-card.status-active{border-right-color:#38bdf8}
+.ship-alert-card.status-pending{border-right-color:#60a5fa}
+.ship-alert-card.status-returned{border-right-color:#f43f5e}
 .ship-alert-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .ship-alert-code{font-size:12px;font-weight:900;color:#38bdf8;font-family:'Courier New',monospace;letter-spacing:1px}
 .ship-alert-badge{padding:4px 10px;border-radius:10px;font-size:10.5px;font-weight:900;display:inline-flex;align-items:center;gap:4px}
-.ship-alert-badge.ontime{background:rgba(16,185,129,.2);color:#34d399;border:1px solid rgba(16,185,129,.4)}
-.ship-alert-badge.today{background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
-.ship-alert-badge.late{background:rgba(239,68,68,.2);color:#fca5a5;border:1px solid rgba(239,68,68,.4)}
-.ship-alert-badge.done{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3)}
-.ship-alert-badge.cancelled{background:rgba(100,116,139,.2);color:#cbd5e1;border:1px solid rgba(100,116,139,.4)}
-.ship-alert-badge.pending{background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.4)}
-.ship-alert-badge.assigned{background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.4)}
-.ship-alert-badge.active{background:rgba(56,189,248,.15);color:#38bdf8;border:1px solid rgba(56,189,248,.4)}
-.ship-alert-badge.returned{background:rgba(244,63,94,.15);color:#fb7185;border:1px solid rgba(244,63,94,.4)}
+.ship-alert-badge.ontime{background:rgba(16,185,129,.2);color:#34d399}
+.ship-alert-badge.today{background:rgba(245,158,11,.2);color:#fbbf24}
+.ship-alert-badge.late{background:rgba(239,68,68,.2);color:#fca5a5}
+.ship-alert-badge.done{background:rgba(16,185,129,.15);color:#6ee7b7}
+.ship-alert-badge.pending{background:rgba(59,130,246,.15);color:#60a5fa}
+.ship-alert-badge.assigned{background:rgba(139,92,246,.15);color:#a78bfa}
+.ship-alert-badge.active{background:rgba(56,189,248,.15);color:#38bdf8}
+.ship-alert-badge.returned{background:rgba(244,63,94,.15);color:#fb7185}
 .ship-alert-row{display:flex;justify-content:space-between;padding:6px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.05)}
 .ship-alert-row:last-child{border-bottom:none}
 .ship-alert-row span:first-child{color:var(--text-muted);font-weight:600}
@@ -184,44 +183,38 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .btn-assign{background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff}
 .btn-reassign{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
 .btn-call-driver{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;text-decoration:none}
-.btn-view-details{background:rgba(255,255,255,.1);color:#fff}
 .tabs-shipping{display:flex;gap:6px;background:rgba(10,15,28,.6);border:1px solid var(--glass-border);border-radius:14px;padding:5px;margin-bottom:15px;overflow-x:auto}
 .tab-shipping{flex:1;min-width:80px;padding:10px 8px;border:none;background:transparent;color:var(--text-muted);font-weight:700;font-size:11.5px;cursor:pointer;border-radius:10px;font-family:'Cairo',sans-serif;display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap}
 .tab-shipping.active{background:linear-gradient(135deg,var(--primary),#7c3aed);color:#fff}
 .tab-shipping .cnt{background:rgba(255,255,255,.2);padding:1px 7px;border-radius:10px;font-size:10px;margin-right:3px}
-
-.market-category-item{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:10px;transition:.2s}
-.market-category-item:hover{background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3)}
+.market-category-item{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .market-cat-icon-box{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(6,182,212,.15));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
 .market-cat-info{flex:1;min-width:0}
 .market-cat-name{font-size:14px;font-weight:900;color:#fff;margin-bottom:2px}
 .market-cat-meta{font-size:11px;color:var(--text-muted)}
 .market-cat-actions{display:flex;gap:6px}
-.market-product-row{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:12px;margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:.2s}
-.market-product-row:hover{background:rgba(139,92,246,.06);border-color:rgba(139,92,246,.3)}
+.market-product-row{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:12px;margin-bottom:10px;display:flex;align-items:center;gap:14px}
 .market-prod-img{width:70px;height:70px;border-radius:12px;overflow:hidden;flex-shrink:0;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
 .market-prod-img img{width:100%;height:100%;object-fit:cover}
 .market-prod-img i{font-size:26px;color:rgba(139,92,246,.4)}
 .market-prod-info{flex:1;min-width:0}
 .market-prod-name{font-size:14px;font-weight:900;color:#fff;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .market-prod-tag{font-size:9.5px;padding:2px 8px;border-radius:8px;font-weight:900}
-.market-tag-active{background:rgba(16,185,129,.2);color:#34d399;border:1px solid rgba(16,185,129,.4)}
-.market-tag-hidden{background:rgba(100,116,139,.2);color:#cbd5e1;border:1px solid rgba(100,116,139,.4)}
-.market-tag-out{background:rgba(239,68,68,.2);color:#fca5a5;border:1px solid rgba(239,68,68,.4)}
-.market-tag-discount{background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
+.market-tag-active{background:rgba(16,185,129,.2);color:#34d399}
+.market-tag-hidden{background:rgba(100,116,139,.2);color:#cbd5e1}
+.market-tag-out{background:rgba(239,68,68,.2);color:#fca5a5}
+.market-tag-discount{background:rgba(245,158,11,.2);color:#fbbf24}
 .market-prod-meta{font-size:11.5px;color:var(--text-muted);line-height:1.6}
 .market-prod-meta b{color:#a78bfa}
 .market-prod-price{font-size:16px;font-weight:900;color:var(--success);flex-shrink:0;text-align:center;min-width:70px}
 .market-prod-price small{display:block;font-size:10px;color:var(--text-muted);text-decoration:line-through;margin-top:2px}
 .market-prod-actions{display:flex;gap:6px;flex-shrink:0}
-
 .pharmacy-item{background:rgba(20,27,45,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .pharmacy-item-info{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
 .pharmacy-item-icon{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#06b6d4,#0891b2);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}
 .pharmacy-item-text{flex:1;min-width:0}
 .pharmacy-item-name{font-weight:900;color:#fff;font-size:14px;margin-bottom:2px}
 .pharmacy-item-meta{font-size:11.5px;color:#94a3b8}
-
 @media(max-width:900px){
 .sidebar{transform:translateX(100%)}
 .sidebar.open{transform:translateX(0)}
@@ -298,7 +291,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Dashboard -->
 <div class="page active" id="page-dashboard">
 <div class="stats-grid">
 <div class="stat-card"><div class="stat-icon" style="background:rgba(139,92,246,.2);color:#a78bfa"><i class="fas fa-shopping-bag"></i></div><div class="stat-value" id="statTodayOrders">0</div><div class="stat-label">طلبات اليوم</div></div>
@@ -328,7 +320,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Areas -->
 <div class="page" id="page-areas">
 <div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة منطقة جديدة</div>
 <label class="field-label">اسم المنطقة</label>
@@ -340,115 +331,75 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ══════════ MARKET CATEGORIES PAGE ══════════ -->
 <div class="page" id="page-marketCategories">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة تصنيف جديد</div>
 <div class="card-subtitle">التصنيفات بتظهر للزبون في أعلى صفحة المتجر عشان يفلتر المنتجات</div>
 <div class="grid-2">
-<div>
-<label class="field-label">📝 اسم التصنيف</label>
-<input type="text" id="newCatName" placeholder="مثال: عصائر، خضار، مجمدات...">
-</div>
-<div>
-<label class="field-label">🎨 أيقونة (إيموجي)</label>
-<input type="text" id="newCatIcon" placeholder="🧃" maxlength="4" style="text-align:center;font-size:20px">
-</div>
+<div><label class="field-label">📝 اسم التصنيف</label><input type="text" id="newCatName" placeholder="مثال: عصائر، خضار، مجمدات..."></div>
+<div><label class="field-label">🎨 أيقونة (إيموجي)</label><input type="text" id="newCatIcon" placeholder="🧃" maxlength="4" style="text-align:center;font-size:20px"></div>
 </div>
 <label class="field-label">🔢 ترتيب العرض (اختياري)</label>
 <input type="number" id="newCatOrder" placeholder="1" min="1">
 <button class="btn btn-primary" onclick="addNewMarketCategory()"><i class="fas fa-plus"></i> إضافة التصنيف</button>
 </div>
-
 <div class="card">
 <div class="card-title"><i class="fas fa-tags"></i> التصنيفات الحالية</div>
-<div class="card-subtitle">اضغط على "تعديل" لتعديل اسم أو أيقونة التصنيف</div>
-<div id="marketCategoriesList">
-<div class="empty-state"><i class="fas fa-tags"></i><p>لا توجد تصنيفات بعد</p></div>
-</div>
+<div id="marketCategoriesList"><div class="empty-state"><i class="fas fa-tags"></i><p>لا توجد تصنيفات بعد</p></div></div>
 </div>
 </div>
 
-<!-- ══════════ MARKET ADD PRODUCT PAGE ══════════ -->
 <div class="page" id="page-marketAddProduct">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة منتج جديد</div>
 <div class="card-subtitle">املأ بيانات المنتج وسيظهر فوراً للزبون في المتجر</div>
-
 <label class="field-label">🏷️ اسم المنتج *</label>
 <input type="text" id="newProdName" placeholder="مثال: عصير برتقال فريش">
-
 <div class="grid-2">
-<div>
-<label class="field-label">💰 السعر (ج) *</label>
-<input type="number" id="newProdPrice" placeholder="15" min="0" step="0.5">
+<div><label class="field-label">💰 السعر (ج) *</label><input type="number" id="newProdPrice" placeholder="15" min="0" step="0.5"></div>
+<div><label class="field-label">💸 السعر القديم (للخصم)</label><input type="number" id="newProdOldPrice" placeholder="20" min="0" step="0.5"></div>
 </div>
-<div>
-<label class="field-label">💸 السعر القديم (للخصم)</label>
-<input type="number" id="newProdOldPrice" placeholder="20" min="0" step="0.5">
-</div>
-</div>
-
 <label class="field-label">📂 التصنيف *</label>
-<select id="newProdCategory">
-<option value="">-- اختر تصنيف --</option>
-</select>
-
+<select id="newProdCategory"><option value="">-- اختر تصنيف --</option></select>
 <label class="field-label">📝 ملاحظة / وصف قصير (اختياري)</label>
 <input type="text" id="newProdNote" placeholder="مثال: 1 لتر - طبيعي 100%">
-
 <label class="field-label">🖼️ رابط الصورة (اختياري)</label>
 <input type="text" id="newProdImage" placeholder="https://example.com/image.jpg" style="direction:ltr;text-align:left" oninput="previewProductImage()">
-<div class="helper-text"><i class="fas fa-info-circle"></i> الصق لينك صورة من الإنترنت (Imgur, Postimages, Cloudinary... أي رابط http)</div>
+<div class="helper-text"><i class="fas fa-info-circle"></i> الصق لينك صورة من الإنترنت</div>
 <div id="prodImagePreview" style="display:none;margin-top:12px">
 <div class="shop-preview-img-wrap">
 <img id="prodImagePreviewImg" src="" alt="معاينة">
 <span class="shop-preview-img-label">👁️ معاينة الصورة</span>
 </div>
 </div>
-
 <div class="grid-2">
-<div>
-<label class="field-label">🔢 ترتيب العرض</label>
-<input type="number" id="newProdOrder" placeholder="1" min="1">
-</div>
-<div>
-<label class="field-label">📊 الحالة</label>
+<div><label class="field-label">🔢 ترتيب العرض</label><input type="number" id="newProdOrder" placeholder="1" min="1"></div>
+<div><label class="field-label">📊 الحالة</label>
 <select id="newProdActive">
 <option value="true">✅ نشط (متاح للبيع)</option>
 <option value="false">⏸️ مخفي</option>
 </select>
 </div>
 </div>
-
 <div class="toggle-row" style="margin-top:14px">
 <div class="toggle-label"><div>📦 المنتج خلص من المخزون</div><small>لو مفعّل، الزبون هيشوف "خلص" ومش هيقدر يطلبه</small></div>
 <label class="switch"><input type="checkbox" id="newProdOutOfStock"><span class="slider-sw"></span></label>
 </div>
-
 <button class="btn btn-success" onclick="addNewMarketProduct()"><i class="fas fa-save"></i> حفظ المنتج</button>
 </div>
-
 <div class="card" id="editProductCard" style="display:none">
 <div class="card-title" style="color:#fbbf24"><i class="fas fa-edit"></i> تعديل المنتج</div>
-<div class="card-subtitle">أدخل التعديلات واضغط حفظ</div>
-
 <input type="hidden" id="editProdId">
-
 <label class="field-label">🏷️ اسم المنتج *</label>
 <input type="text" id="editProdName">
-
 <div class="grid-2">
 <div><label class="field-label">💰 السعر (ج) *</label><input type="number" id="editProdPrice" min="0" step="0.5"></div>
 <div><label class="field-label">💸 السعر القديم</label><input type="number" id="editProdOldPrice" min="0" step="0.5"></div>
 </div>
-
 <label class="field-label">📂 التصنيف</label>
 <select id="editProdCategory"><option value="">-- اختر تصنيف --</option></select>
-
 <label class="field-label">📝 ملاحظة / وصف</label>
 <input type="text" id="editProdNote">
-
 <label class="field-label">🖼️ رابط الصورة</label>
 <input type="text" id="editProdImage" style="direction:ltr;text-align:left" oninput="previewEditProductImage()">
 <div id="editProdImagePreview" style="display:none;margin-top:12px">
@@ -457,7 +408,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <span class="shop-preview-img-label">👁️ معاينة الصورة</span>
 </div>
 </div>
-
 <div class="grid-2">
 <div><label class="field-label">🔢 ترتيب العرض</label><input type="number" id="editProdOrder" min="1"></div>
 <div><label class="field-label">📊 الحالة</label>
@@ -467,12 +417,10 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </select>
 </div>
 </div>
-
 <div class="toggle-row" style="margin-top:14px">
 <div class="toggle-label"><div>📦 المنتج خلص</div></div>
 <label class="switch"><input type="checkbox" id="editProdOutOfStock"><span class="slider-sw"></span></label>
 </div>
-
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
 <button class="btn btn-success" onclick="saveMarketProductEdit()"><i class="fas fa-save"></i> حفظ التعديلات</button>
 <button class="btn btn-danger" onclick="cancelProductEdit()"><i class="fas fa-times"></i> إلغاء</button>
@@ -480,38 +428,27 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ══════════ MARKET PRODUCTS PAGE ══════════ -->
 <div class="page" id="page-marketProducts">
 <div class="card">
 <div class="card-title"><i class="fas fa-boxes"></i> إدارة المنتجات</div>
 <div class="card-subtitle">البحث والفلترة + تعديل وحذف المنتجات</div>
-
 <div class="grid-2" style="margin-bottom:12px">
-<div>
-<label class="field-label">🔍 بحث</label>
-<input type="text" id="marketProductSearch" placeholder="ابحث باسم المنتج..." oninput="renderMarketProductsTable()">
-</div>
-<div>
-<label class="field-label">📂 فلترة بالتصنيف</label>
+<div><label class="field-label">🔍 بحث</label><input type="text" id="marketProductSearch" placeholder="ابحث باسم المنتج..." oninput="renderMarketProductsTable()"></div>
+<div><label class="field-label">📂 فلترة بالتصنيف</label>
 <select id="marketProductFilterCat" onchange="renderMarketProductsTable()">
 <option value="all">كل التصنيفات</option>
 </select>
 </div>
 </div>
-
 <div class="stats-grid" style="margin-bottom:14px">
 <div class="stat-card" style="padding:12px"><div class="stat-value" id="mpStatTotal" style="font-size:20px">0</div><div class="stat-label" style="font-size:11px">إجمالي</div></div>
 <div class="stat-card" style="padding:12px"><div class="stat-value" id="mpStatActive" style="font-size:20px;color:#34d399">0</div><div class="stat-label" style="font-size:11px">نشط</div></div>
 <div class="stat-card" style="padding:12px"><div class="stat-value" id="mpStatOut" style="font-size:20px;color:#fca5a5">0</div><div class="stat-label" style="font-size:11px">خلص</div></div>
 </div>
-
-<div id="marketProductsTableContainer">
-<div class="empty-state"><i class="fas fa-boxes"></i><p>لا توجد منتجات بعد</p></div>
-</div>
+<div id="marketProductsTableContainer"><div class="empty-state"><i class="fas fa-boxes"></i><p>لا توجد منتجات بعد</p></div></div>
 </div>
 </div>
 
-<!-- Visibility -->
 <div class="page" id="page-visibility">
 <div class="card"><div class="card-title"><i class="fas fa-shield-alt"></i> تحكم ظهور الأقسام</div>
 <div class="card-subtitle">أي قسم تقفله، هيختفي تمامًا من واجهة الزبون.</div>
@@ -525,78 +462,47 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ══════════ PHARMACIES PAGE ══════════ -->
 <div class="page" id="page-pharmacies">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> تسجيل صيدلية جديدة</div>
 <div class="card-subtitle">الصيدلية دي هتستقبل كل طلبات الصيدلية في المنطقة المحددة</div>
-
 <label class="field-label">🏥 اسم الصيدلية</label>
 <input type="text" id="pharmName" placeholder="مثال: صيدلية النور">
-
 <label class="field-label">📱 رقم الموبايل (11 رقم)</label>
 <input type="tel" id="pharmPhone" placeholder="01xxxxxxxxx" maxlength="11">
-
 <label class="field-label">🔑 كود الدخول</label>
 <input type="text" id="pharmCode" placeholder="كود من 4-6 أرقام" maxlength="6">
-
 <label class="field-label">📍 المنطقة</label>
 <select id="pharmArea"><option value="">-- اختر منطقة --</option></select>
-
 <label class="field-label">📌 عنوان الصيدلية (اختياري)</label>
 <input type="text" id="pharmAddress" placeholder="اسم الشارع، رقم العمارة...">
-
-<button class="btn btn-success" onclick="addNewPharmacy()" style="width:100%;margin-top:15px">
-<i class="fas fa-save"></i> تسجيل الصيدلية
-</button>
+<button class="btn btn-success" onclick="addNewPharmacy()" style="width:100%;margin-top:15px"><i class="fas fa-save"></i> تسجيل الصيدلية</button>
 </div>
-
 <div class="card">
 <div class="card-title"><i class="fas fa-prescription-bottle"></i> الصيدليات المسجلة</div>
-<div id="pharmaciesContainer">
-<div class="empty-state"><i class="fas fa-prescription-bottle"></i><p>لا توجد صيدليات مسجلة</p></div>
-</div>
+<div id="pharmaciesContainer"><div class="empty-state"><i class="fas fa-prescription-bottle"></i><p>لا توجد صيدليات مسجلة</p></div></div>
 </div>
 </div>
 
-<!-- ══════════ WORK HOURS PAGE ══════════ -->
 <div class="page" id="page-workHours">
 <div class="card">
 <div class="card-title"><i class="fas fa-clock"></i> ساعات عمل التطبيق</div>
-<div class="card-subtitle">بره الساعات دي، تطبيق الزبون هيقفل تلقائي. تطبيق السائق والصيدلي هيفضلوا شغالين عادي.</div>
-
+<div class="card-subtitle">بره الساعات دي، تطبيق الزبون هيقفل تلقائي.</div>
 <div class="toggle-row" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3)">
 <div class="toggle-label"><div style="color:#a78bfa">⏰ تفعيل ساعات العمل</div><small>لو مقفول، التطبيق هيشتغل 24 ساعة</small></div>
 <label class="switch"><input type="checkbox" id="workHoursEnabled" onchange="saveWorkHours()"><span class="slider-sw"></span></label>
 </div>
-
 <div class="grid-2" style="margin-top:14px">
-<div>
-<label class="field-label">🕐 وقت الفتح (24 ساعة)</label>
-<input type="time" id="workHoursOpen" onchange="saveWorkHours()">
+<div><label class="field-label">🕐 وقت الفتح (24 ساعة)</label><input type="time" id="workHoursOpen" onchange="saveWorkHours()"></div>
+<div><label class="field-label">🕐 وقت القفل</label><input type="time" id="workHoursClose" onchange="saveWorkHours()"></div>
 </div>
-<div>
-<label class="field-label">🕐 وقت القفل</label>
-<input type="time" id="workHoursClose" onchange="saveWorkHours()">
-</div>
-</div>
-
 <label class="field-label" style="margin-top:14px">📞 رقم الدعم وقت الإغلاق (اختياري)</label>
 <input type="tel" id="workHoursSupportPhone" placeholder="01xxxxxxxxx" maxlength="11" onchange="saveWorkHours()">
-<div class="helper-text"><i class="fas fa-info-circle"></i> لو مش موجود، هيستخدم رقم الواتساب العام</div>
-
-<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="saveWorkHours()">
-<i class="fas fa-save"></i> حفظ ساعات العمل
-</button>
+<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="saveWorkHours()"><i class="fas fa-save"></i> حفظ ساعات العمل</button>
+</div>
+<div class="card"><div class="card-title"><i class="fas fa-info-circle"></i> معاينة</div><div id="workHoursPreview"></div></div>
 </div>
 
-<div class="card">
-<div class="card-title"><i class="fas fa-info-circle"></i> معاينة</div>
-<div id="workHoursPreview"></div>
-</div>
-</div>
-
-<!-- Rewards -->
 <div class="page" id="page-rewards">
 <div class="card"><div class="card-title"><i class="fas fa-toggle-on"></i> إعدادات نظام النقاط</div>
 <div class="toggle-row"><div class="toggle-label"><div>تفعيل نظام المكافآت<small>لو مقفول، مش هيكسبوا نقاط</small></div></div><label class="switch"><input type="checkbox" id="rewardSystemActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
@@ -615,7 +521,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Features -->
 <div class="page" id="page-features">
 <div class="card"><div class="card-title"><i class="fas fa-fire"></i> النقاط المضاعفة</div>
 <div class="toggle-row" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3)"><div class="toggle-label"><div style="color:#fde047">⚡ تفعيل النقاط المضاعفة ×2</div></div><label class="switch"><input type="checkbox" id="doublePointsActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
@@ -634,11 +539,9 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Fakka -->
 <div class="page" id="page-fakka">
 <div class="card">
 <div class="card-title"><i class="fas fa-eye"></i> تحكم ظهور كروت الفكة</div>
-<div class="card-subtitle">تحكم في ظهور زر استبدال كارت الفكة للزبون</div>
 <div class="toggle-row"><div class="toggle-label"><div>🎫 إظهار زر كارت الفكة للزبون</div><small>لو مقفول، الزر هيختفي من صفحة الزبون</small></div><label class="switch"><input type="checkbox" id="showFakkaButtonToggle" onchange="saveFakkaButtonSetting(this.checked)"><span class="slider-sw"></span></label></div>
 </div>
 <div class="card"><div class="card-title"><i class="fas fa-eye"></i> تحكم إضافي</div>
@@ -662,7 +565,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Support -->
 <div class="page" id="page-support">
 <div class="card">
 <div class="card-title"><i class="fab fa-whatsapp" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff"></i> رقم الواتساب للدعم</div>
@@ -673,7 +575,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Shipping Settings -->
 <div class="page" id="page-shippingSettings">
 <div class="card">
 <div class="card-title"><i class="fas fa-power-off"></i> تفعيل/إيقاف خدمة الشحن</div>
@@ -688,10 +589,8 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 • <b>لكن</b> طلبات الشحن هتفضل موجودة هنا في لوحة التحكم للمراجعة
 </div>
 </div>
-
 <div class="card">
 <div class="card-title"><i class="fas fa-money-bill-wave"></i> سعر ومدة الشحن</div>
-<div class="card-subtitle">السعر والمدة اللي بيظهرا للزبون وقت طلب الشحنة</div>
 <div class="grid-2">
 <div><label class="field-label">💰 سعر الشحن (ج)</label><input type="number" id="shippingPriceInput" placeholder="30" onchange="saveShippingSettings()"></div>
 <div><label class="field-label">📅 المدة المتوقعة (أيام)</label><input type="number" id="shippingDaysInput" placeholder="3" min="0" onchange="saveShippingSettings()"></div>
@@ -702,11 +601,9 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Shops -->
 <div class="page" id="page-shops">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة متجر جديد</div>
-<div class="card-subtitle">المتجر ده هيظهر للزبون في قسم "متاجرنا" تحت الخدمات. لما يدوس عليه، هيفتح اللينك.</div>
 <label class="field-label">🏪 اسم المتجر</label>
 <input type="text" id="shopName" placeholder="مثال: متجر الأمانة">
 <label class="field-label">🔗 لينك المتجر</label>
@@ -714,8 +611,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <label class="field-label">📝 وصف مختصر (اختياري)</label>
 <input type="text" id="shopDesc" placeholder="مثال: بقالة وطلبات">
 <div class="grid-2">
-<div>
-<label class="field-label">🎨 أيقونة</label>
+<div><label class="field-label">🎨 أيقونة</label>
 <select id="shopIcon">
 <option value="fa-store">🏪 متجر</option>
 <option value="fa-shopping-bag">🛍️ شنطة تسوق</option>
@@ -731,8 +627,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <option value="fa-prescription-bottle">💊 صيدلية</option>
 </select>
 </div>
-<div>
-<label class="field-label">🎨 اللون</label>
+<div><label class="field-label">🎨 اللون</label>
 <select id="shopColor">
 <option value="#8b5cf6">🟣 بنفسجي</option>
 <option value="#f59e0b">🟠 برتقالي</option>
@@ -753,41 +648,24 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Shipping Orders -->
 <div class="page" id="page-shippingOrders">
 <div class="card">
 <div class="card-title"><i class="fas fa-truck"></i> الشحنات الواردة</div>
-<div class="card-subtitle">إدارة كل شحنات المنطقة + تعيين مندوب لكل شحنة</div>
-
 <div class="tabs-shipping">
-<button class="tab-shipping active" id="shipTab-new" onclick="switchShippingTab('new')">
-<i class="fas fa-bell"></i> جديدة <span class="cnt" id="shipCountNew">0</span>
-</button>
-<button class="tab-shipping" id="shipTab-assigned" onclick="switchShippingTab('assigned')">
-<i class="fas fa-user-check"></i> معيّنة <span class="cnt" id="shipCountAssigned">0</span>
-</button>
-<button class="tab-shipping" id="shipTab-active" onclick="switchShippingTab('active')">
-<i class="fas fa-truck"></i> جارية <span class="cnt" id="shipCountActive">0</span>
-</button>
-<button class="tab-shipping" id="shipTab-done" onclick="switchShippingTab('done')">
-<i class="fas fa-check-double"></i> مكتملة <span class="cnt" id="shipCountDone">0</span>
-</button>
-<button class="tab-shipping" id="shipTab-returns" onclick="switchShippingTab('returns')">
-<i class="fas fa-undo"></i> مرتجعات <span class="cnt" id="shipCountReturns">0</span>
-</button>
+<button class="tab-shipping active" id="shipTab-new" onclick="switchShippingTab('new')"><i class="fas fa-bell"></i> جديدة <span class="cnt" id="shipCountNew">0</span></button>
+<button class="tab-shipping" id="shipTab-assigned" onclick="switchShippingTab('assigned')"><i class="fas fa-user-check"></i> معيّنة <span class="cnt" id="shipCountAssigned">0</span></button>
+<button class="tab-shipping" id="shipTab-active" onclick="switchShippingTab('active')"><i class="fas fa-truck"></i> جارية <span class="cnt" id="shipCountActive">0</span></button>
+<button class="tab-shipping" id="shipTab-done" onclick="switchShippingTab('done')"><i class="fas fa-check-double"></i> مكتملة <span class="cnt" id="shipCountDone">0</span></button>
+<button class="tab-shipping" id="shipTab-returns" onclick="switchShippingTab('returns')"><i class="fas fa-undo"></i> مرتجعات <span class="cnt" id="shipCountReturns">0</span></button>
 </div>
-
-<div id="shippingOrdersContainer">
-<div class="empty-state"><i class="fas fa-truck"></i><p>لا توجد شحنات</p></div>
-</div>
+<div id="shippingOrdersContainer"><div class="empty-state"><i class="fas fa-truck"></i><p>لا توجد شحنات</p></div></div>
 </div>
 </div>
 
-<!-- Drivers -->
 <div class="page" id="page-drivers">
 <div class="card">
 <div class="card-title"><i class="fas fa-users-cog"></i> حسابات السائقين</div>
-<div class="card-subtitle">اضغط على "التفاصيل" عشان تشوف كل تاريخ السائق</div>
+<div class="card-subtitle">اضغط على "التفاصيل" عشان تشوف كل تاريخ السائق + زر التصفير</div>
 <div class="table-wrap">
 <table class="data-table">
 <thead><tr><th>السائق</th><th>النوع</th><th>التسليمات</th><th>الرصيد الأصلي</th><th>المدفوع</th><th>عمولتنا</th><th>الخصومات</th><th>💵 بتديله</th><th>إجراءات</th></tr></thead>
@@ -797,13 +675,11 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Driver Details -->
 <div class="page" id="page-driverDetails">
 <button class="btn btn-primary" style="width:auto;margin-bottom:15px;background:rgba(255,255,255,.1)" onclick="switchPage('drivers')"><i class="fas fa-arrow-right"></i> رجوع</button>
 <div id="driverDetailsContent"></div>
 </div>
 
-<!-- Discounts -->
 <div class="page" id="page-discounts">
 <div class="discount-summary">
 <div class="discount-title"><i class="fas fa-tags"></i> 💸 ملخص الخصومات (على حساب المشروع)</div>
@@ -817,7 +693,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Pricing -->
 <div class="page" id="page-pricing">
 <div class="card"><div class="card-title"><i class="fas fa-dollar-sign"></i> الأسعار والعمولات</div>
 <label class="field-label">💵 سعر التوصيل العام (ج)</label>
@@ -830,14 +705,12 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Orders -->
 <div class="page" id="page-orders">
 <div class="card"><div class="card-title"><i class="fas fa-box-open"></i> الطلبات النشطة</div>
 <div class="table-wrap"><table class="data-table"><thead><tr><th>النوع</th><th>العميل</th><th>التفاصيل</th><th>السعر</th><th>الحالة</th><th>حذف</th></tr></thead><tbody id="dailyOrdersTableBody"><tr><td colspan="6" class="empty-state">جاري التحميل...</td></tr></tbody></table></div>
 </div>
 </div>
 
-<!-- Destinations -->
 <div class="page" id="page-destinations">
 <div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة وجهة جديدة</div>
 <div class="grid-2">
@@ -851,7 +724,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Add Driver -->
 <div class="page" id="page-addDriver">
 <div class="card"><div class="card-title"><i class="fas fa-id-card"></i> تسجيل سائق جديد</div>
 <label class="field-label">الاسم</label>
@@ -870,7 +742,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Drivers List -->
 <div class="page" id="page-driversList">
 <div class="card"><div class="card-title"><i class="fas fa-user-friends"></i> السائقين المسجلين</div>
 <div class="table-wrap"><table class="data-table" style="min-width:400px"><thead><tr><th>الاسم</th><th>الدور</th><th>الكود</th><th>حذف</th></tr></thead><tbody id="providersList"><tr><td colspan="4" class="empty-state">لا يوجد سائقين</td></tr></tbody></table></div>
@@ -880,7 +751,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </main>
 </div>
 
-<!-- Area Modal -->
 <div class="modal-overlay" id="areaModalOverlay" onclick="closeAreaModal()"></div>
 <div class="center-modal" id="areaModal">
 <div class="center-modal-header">
@@ -891,7 +761,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div class="center-modal-body" id="areaModalList"></div>
 </div>
 
-<!-- Assign Driver Modal -->
 <div class="modal-overlay" id="assignDriverOverlay" onclick="closeAssignDriver()"></div>
 <div class="center-modal" id="assignDriverModal">
 <div class="center-modal-header">
@@ -900,27 +769,18 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <button class="center-modal-close" onclick="closeAssignDriver()"><i class="fas fa-times"></i></button>
 </div>
 <div class="center-modal-body">
-<div class="field">
-<label class="field-label"><i class="fas fa-user"></i> المندوب المسؤول</label>
-<select id="assignDriverSelect">
-<option value="">-- اختر مندوب --</option>
-</select>
-</div>
-<div class="field">
-<label class="field-label"><i class="fas fa-sticky-note"></i> ملاحظات للمندوب (اختياري)</label>
-<textarea id="assignDriverNotes" rows="2" placeholder="أي ملاحظات إضافية..."></textarea>
-</div>
-<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="confirmAssignDriver()">
-<i class="fas fa-check"></i> تأكيد التعيين
-</button>
+<label class="field-label">🚚 اختر المندوب *</label>
+<select id="assignDriverSelect"><option value="">-- اختر مندوب --</option></select>
+<label class="field-label">📝 ملاحظات (اختياري)</label>
+<textarea id="assignDriverNotes" rows="2" placeholder="أي ملاحظات..."></textarea>
+<button class="btn btn-success" style="width:100%;margin-top:15px" onclick="confirmAssignDriver()"><i class="fas fa-check"></i> تأكيد التعيين</button>
 </div>
 </div>
 
-<!-- Confirm Modal -->
 <div class="modal-overlay" id="confirmOverlay" onclick="closeConfirm()"></div>
 <div class="center-modal" id="confirmModal" style="max-width:420px;padding:25px 20px;text-align:center">
-<div class="center-modal-header" style="border:none;padding:0;justify-content:center;margin-bottom:15px">
-<div class="center-modal-icon" id="confirmIcon" style="width:70px;height:70px;border-radius:24px;background:linear-gradient(135deg,var(--warning),#d97706)"><i class="fas fa-question" style="font-size:32px"></i></div>
+<div style="text-align:center;margin-bottom:15px">
+<div id="confirmIcon" style="width:70px;height:70px;border-radius:24px;background:linear-gradient(135deg,var(--warning),#d97706);display:inline-flex;align-items:center;justify-content:center;color:#fff"><i class="fas fa-question" style="font-size:32px"></i></div>
 </div>
 <div style="font-size:19px;font-weight:900;color:#fff;margin-bottom:10px" id="confirmTitle">تأكيد</div>
 <div style="font-size:13px;color:#cbd5e1;line-height:1.9;margin-bottom:22px;text-align:right" id="confirmMessage"></div>
@@ -1165,7 +1025,6 @@ function toggleShippingService(enabled){
     });
 }
 
-/* ============ WORK HOURS ============ */
 function loadWorkHours(){
     db.ref('settings/work_hours').once('value').then(snap=>{
         const d=snap.val()||{};
@@ -1180,13 +1039,11 @@ function loadWorkHours(){
         renderWorkHoursPreview();
     });
 }
-
 function saveWorkHours(){
     const enabled=$id('workHoursEnabled').checked;
     const openTime=$id('workHoursOpen').value||'08:00';
     const closeTime=$id('workHoursClose').value||'23:00';
     const supportPhone=$id('workHoursSupportPhone').value.trim();
-    
     db.ref('settings/work_hours').update({
         enabled:enabled,
         openTime:openTime,
@@ -1198,7 +1055,6 @@ function saveWorkHours(){
         renderWorkHoursPreview();
     });
 }
-
 function renderWorkHoursPreview(){
     const c=$id('workHoursPreview');
     if(!c)return;
@@ -1220,7 +1076,6 @@ function renderWorkHoursPreview(){
         </div>`;
     });
 }
-
 function formatTime12(time24){
     if(!time24)return '-';
     const [h,m]=time24.split(':');
@@ -1229,7 +1084,6 @@ function formatTime12(time24){
     hour=hour%12||12;
     return `${hour}:${m} ${ampm}`;
 }
-
 function calculateDuration(open,close){
     if(!open||!close)return 0;
     const [oh,om]=open.split(':').map(Number);
@@ -1241,7 +1095,6 @@ function calculateDuration(open,close){
     return Math.round(diffMin/60*10)/10;
 }
 
-/* ============ PHARMACIES MANAGEMENT ============ */
 function loadPharmaciesDropdown(){
     const sel=$id('pharmArea');
     if(!sel)return;
@@ -1253,58 +1106,42 @@ function loadPharmaciesDropdown(){
     });
     sel.innerHTML=html;
 }
-
 function addNewPharmacy(){
     const name=$id('pharmName').value.trim();
     const phone=$id('pharmPhone').value.trim();
     const code=$id('pharmCode').value.trim();
     const area=$id('pharmArea').value;
     const address=$id('pharmAddress').value.trim();
-    
     if(!name){return showToast('اكتب اسم الصيدلية','error');}
     if(phone.length<11){return showToast('رقم الموبايل لازم 11 رقم','error');}
     if(!code||code.length<4){return showToast('كود الدخول لازم 4 أرقام على الأقل','error');}
     if(!area){return showToast('اختر المنطقة','error');}
-    
     db.ref(`pharmacies/${area}`).once('value').then(snap=>{
         if(snap.exists() && snap.numChildren()>0){
             showToast('في صيدلية مسجلة بالفعل في المنطقة دي','error');
             return;
         }
-        
         db.ref(`pharmacies/${area}`).push({
-            name:name,
-            phone:phone,
-            code:code,
-            area:area,
-            address:address||'',
-            createdAt:Date.now(),
-            active:true
+            name:name,phone:phone,code:code,area:area,
+            address:address||'',createdAt:Date.now(),active:true
         }).then(()=>{
-            $id('pharmName').value='';
-            $id('pharmPhone').value='';
-            $id('pharmCode').value='';
-            $id('pharmArea').value='';
-            $id('pharmAddress').value='';
+            $id('pharmName').value='';$id('pharmPhone').value='';
+            $id('pharmCode').value='';$id('pharmArea').value='';$id('pharmAddress').value='';
             showToast('✅ تم تسجيل الصيدلية','success');
             renderPharmacies();
         });
     });
 }
-
 function renderPharmacies(){
     const c=$id('pharmaciesContainer');
     if(!c)return;
-    
     db.ref('pharmacies').once('value').then(snap=>{
         let html='';
-        let count=0;
         snap.forEach(areaSnap=>{
             const areaName=areaSnap.key;
             areaSnap.forEach(pharmSnap=>{
                 const p=pharmSnap.val();
                 if(!p)return;
-                count++;
                 html+=`<div class="pharmacy-item">
                     <div class="pharmacy-item-info">
                         <div class="pharmacy-item-icon"><i class="fas fa-prescription-bottle"></i></div>
@@ -1320,7 +1157,6 @@ function renderPharmacies(){
         c.innerHTML=html||'<div class="empty-state"><i class="fas fa-prescription-bottle"></i><p>لا توجد صيدليات مسجلة</p></div>';
     });
 }
-
 function deletePharmacy(area, id){
     showConfirm('fa-trash','حذف الصيدلية','متأكد إنك عايز تحذف الصيدلية دي؟',()=>{
         db.ref(`pharmacies/${area}/${id}`).remove().then(()=>{
@@ -1330,7 +1166,6 @@ function deletePharmacy(area, id){
     });
 }
 
-/* ============ MARKET: CATEGORIES ============ */
 function loadMarketCategories(){
     if(!activeArea)return;
     db.ref(`market_categories/${activeArea}`).on('value',snap=>{
@@ -1423,7 +1258,6 @@ function populateCategoryDropdowns(){
     });
 }
 
-/* ============ MARKET: PRODUCTS ============ */
 function loadMarketProducts(){
     if(!activeArea)return;
     db.ref(`market_products/${activeArea}`).on('value',snap=>{
@@ -1451,20 +1285,16 @@ function previewProductImage(){
     const prev=$id('prodImagePreview');
     const img=$id('prodImagePreviewImg');
     if(!prev||!img)return;
-    if(url&&url.startsWith('http')){
-        img.src=url;
-        prev.style.display='block';
-    }else prev.style.display='none';
+    if(url&&url.startsWith('http')){img.src=url;prev.style.display='block';}
+    else prev.style.display='none';
 }
 function previewEditProductImage(){
     const url=$id('editProdImage').value.trim();
     const prev=$id('editProdImagePreview');
     const img=$id('editProdImagePreviewImg');
     if(!prev||!img)return;
-    if(url&&url.startsWith('http')){
-        img.src=url;
-        prev.style.display='block';
-    }else prev.style.display='none';
+    if(url&&url.startsWith('http')){img.src=url;prev.style.display='block';}
+    else prev.style.display='none';
 }
 function addNewMarketProduct(){
     if(!activeArea)return showToast('اختر منطقة','error');
@@ -1483,10 +1313,8 @@ function addNewMarketProduct(){
     if(image&&!image.startsWith('http')){showToast('رابط الصورة لازم يبدأ بـ http','error');return;}
     db.ref(`market_products/${activeArea}`).push({
         name,price,oldPrice:oldPrice>0?oldPrice:null,
-        categoryId,note:note||null,
-        image:image||null,
-        order,active,outOfStock,
-        createdAt:Date.now()
+        categoryId,note:note||null,image:image||null,
+        order,active,outOfStock,createdAt:Date.now()
     }).then(()=>{
         $id('newProdName').value='';$id('newProdPrice').value='';$id('newProdOldPrice').value='';
         $id('newProdNote').value='';$id('newProdImage').value='';$id('newProdOrder').value='';
@@ -1506,10 +1334,7 @@ function renderMarketProductsTable(){
         if(search&&!(p.name||'').toLowerCase().includes(search))return false;
         return true;
     });
-    ids.sort((a,b)=>{
-        const pa=marketProductsCache[a],pb=marketProductsCache[b];
-        return (pa.order||9999)-(pb.order||9999);
-    });
+    ids.sort((a,b)=>(marketProductsCache[a].order||9999)-(marketProductsCache[b].order||9999));
     if(ids.length===0){
         c.innerHTML='<div class="empty-state"><i class="fas fa-boxes"></i><p>لا توجد منتجات مطابقة</p></div>';
         return;
@@ -1529,9 +1354,7 @@ function renderMarketProductsTable(){
             <div class="market-prod-img">${imgHtml}</div>
             <div class="market-prod-info">
                 <div class="market-prod-name">${p.name} ${tags}</div>
-                <div class="market-prod-meta">
-                    📂 <b>${catName}</b>${p.note?` • 📝 ${p.note}`:''}
-                </div>
+                <div class="market-prod-meta">📂 <b>${catName}</b>${p.note?` • 📝 ${p.note}`:''}</div>
             </div>
             <div class="market-prod-price">
                 ${p.price} ج
@@ -1561,7 +1384,6 @@ function openProductEditor(id){
     previewEditProductImage();
     $id('editProductCard').style.display='block';
     window.scrollTo({top:0,behavior:'smooth'});
-    $id('editProductCard').scrollIntoView({behavior:'smooth'});
 }
 function cancelProductEdit(){
     $id('editProductCard').style.display='none';
@@ -1587,10 +1409,8 @@ function saveMarketProductEdit(){
     if(image&&!image.startsWith('http')){showToast('رابط الصورة لازم يبدأ بـ http','error');return;}
     db.ref(`market_products/${activeArea}/${id}`).update({
         name,price,oldPrice:oldPrice>0?oldPrice:null,
-        categoryId,note:note||null,
-        image:image||null,
-        order,active,outOfStock,
-        updatedAt:Date.now()
+        categoryId,note:note||null,image:image||null,
+        order,active,outOfStock,updatedAt:Date.now()
     }).then(()=>{
         showToast('✅ تم حفظ التعديلات','success');
         cancelProductEdit();
@@ -1603,7 +1423,6 @@ function deleteMarketProduct(id){
     });
 }
 
-/* ============ SHOPS ============ */
 function loadShops(){
     if(!activeArea)return;
     db.ref(`shops/${activeArea}`).on('value',snap=>{
@@ -1657,8 +1476,7 @@ function addNewShop(){
     if(!link||!link.startsWith('http')){showToast('اكتب لينك صحيح يبدأ بـ http','error');return;}
     db.ref(`shops/${activeArea}`).push({
         name,link,description:desc,icon,color,
-        createdAt:Date.now(),
-        order:Object.keys(shopsCache).length+1
+        createdAt:Date.now(),order:Object.keys(shopsCache).length+1
     }).then(()=>{
         $id('shopName').value='';$id('shopLink').value='';$id('shopDesc').value='';
         showToast('✅ تم إضافة المتجر','success');
@@ -1670,7 +1488,6 @@ function deleteShop(id){
     });
 }
 
-/* ============ SHIPPING ORDERS ============ */
 function switchShippingTab(tab){
     currentShippingTab=tab;
     ['new','assigned','active','done','returns'].forEach(t=>{
@@ -1749,7 +1566,7 @@ function renderShippingOrders(){
 function renderShippingCard(o){
     const status=o.status||'ready_for_driver';
     let statusInfo={key:'pending',text:'جديدة',icon:'fa-bell'};
-    if(status==='assigned'||o.assignedDriver&&status!=='active'){statusInfo={key:'assigned',text:'معيّنة',icon:'fa-user-check'};}
+    if(status==='assigned'){statusInfo={key:'assigned',text:'معيّنة',icon:'fa-user-check'};}
     if(status==='active'){statusInfo={key:'active',text:'جارية',icon:'fa-truck'};}
     if(status==='completed'||status==='archived'){statusInfo={key:'done',text:'مكتملة',icon:'fa-check-double'};}
     if(status==='reported'){statusInfo={key:'returned',text:'العميل مش موجود',icon:'fa-user-slash'};}
@@ -1835,7 +1652,7 @@ function confirmAssignDriver(){
     }).catch(()=>{showToast('خطأ في التعيين','error');});
 }
 
-/* ============ DRIVERS & WALLETS ============ */
+/* ══════════ DRIVERS & WALLETS ══════════ */
 function loadDriversAndWallets(){
     if(!activeArea)return;
     db.ref(`providers/${activeArea}`).on('value',snap=>{
@@ -1875,7 +1692,7 @@ function calcDriverStats(driver){
         const o=ordersCache[id];if(!o)return;
         const matched=(o.driverKey===driver.key)||(o.driverPhone===driver.phone);
         if(!matched)return;
-        if(o.status!=='completed'&&o.status!=='archived')return;
+        if(o.status!=='completed')return;
         const orderTime=Number(o.completedAt||o.acceptedAt||o.time||0);
         if(orderTime<lastSettlement)return;
         const price=Number(o.price)||0;
@@ -2000,18 +1817,57 @@ function showDriverDetails(driverKey){
     `;
     switchPage('driverDetails');
 }
+
+/* ══════════ ✅ تصفير حساب السائق ══════════ */
 function settleDriver(driverKey){
-    const driver=driversCache[driverKey];if(!driver)return;
+    const driver=driversCache[driverKey];
+    if(!driver)return;
+    
     const stats=calcDriverStats(driver);
-    if(stats.ordersCount===0)return showToast('مفيش حاجة تتصفر','info');
-    showConfirm('fa-check-double','تصفير حساب السائق',
-        `هتصفّر حساب <b>${driver.name}</b>؟<br><br>الطلبات: <b>${stats.ordersCount}</b><br>الصافي: <b>${stats.owesDriver} ج</b>`,
+    
+    if(stats.ordersCount===0){
+        showToast('مفيش حاجة تتصفر — السائق مفيهوش طلبات جارية','info');
+        return;
+    }
+    
+    showConfirm(
+        'fa-check-double',
+        'تصفير حساب السائق',
+        `هتصفّر حساب <b>${driver.name}</b>؟<br><br>
+        📦 الطلبات: <b>${stats.ordersCount}</b><br>
+        💵 الرصيد الأصلي: <b>${stats.originalTotal} ج</b><br>
+        📥 المدفوع: <b>${stats.paidTotal} ج</b><br>
+        💰 عمولتنا: <b>${stats.commissionTotal} ج</b><br>
+        ⭐ الصافي للسائق: <b style="color:#34d399">${stats.owesDriver} ج</b>`,
         ()=>{
-            const sid=db.ref(`driver_settlements/${activeArea}/${driverKey}/history`).push().key;
             const now=Date.now();
-            const settlement={settledAt:now,dateStr:new Date(now).toLocaleString('ar-EG'),ordersCount:stats.ordersCount,originalTotal:stats.originalTotal,paidTotal:stats.paidTotal,commissionTotal:stats.commissionTotal,discountTotal:stats.discountTotal,owesDriver:stats.owesDriver,driverName:driver.name};
-            db.ref(`driver_settlements/${activeArea}/${driverKey}/history/${sid}`).set(settlement);
+            const dateStr=new Date(now).toLocaleString('ar-EG');
+            
+            /* ✅ 1. سجّل عملية التصفير في driver_settlements */
+            const settlementId=db.ref(`driver_settlements/${activeArea}/${driverKey}/history`).push().key;
+            db.ref(`driver_settlements/${activeArea}/${driverKey}/history/${settlementId}`).set({
+                settledAt:now,
+                dateStr:dateStr,
+                ordersCount:stats.ordersCount,
+                originalTotal:stats.originalTotal,
+                paidTotal:stats.paidTotal,
+                commissionTotal:stats.commissionTotal,
+                discountTotal:stats.discountTotal,
+                owesDriver:stats.owesDriver,
+                driverName:driver.name,
+                driverPhone:driver.phone,
+                driverRole:driver.role||''
+            });
+            
+            /* ✅ 2. حدّث lastSettledAt */
             db.ref(`driver_settlements/${activeArea}/${driverKey}/lastSettledAt`).set(now);
+            
+            /* ✅ 3. اكتب settledDebt في providers (ده اللي السائق هيقراه) */
+            db.ref(`providers/${activeArea}/${driverKey}/settledDebt`).transaction(current=>{
+                return (Number(current)||0) + stats.commissionTotal;
+            });
+            
+            /* ✅ 4. حوّل الطلبات الحالية لـ archived */
             Object.keys(ordersCache).forEach(id=>{
                 const o=ordersCache[id];
                 if(!o)return;
@@ -2020,11 +1876,13 @@ function settleDriver(driverKey){
                 if(o.status!=='completed')return;
                 db.ref(`orders/${id}/status`).set('archived');
             });
-            showToast(`✅ تم تصفير ${driver.name}`,'success');
-        });
+            
+            showToast(`✅ تم تصفير حساب ${driver.name} بنجاح`,'success');
+            setTimeout(()=>renderDriversTable(),500);
+        }
+    );
 }
 
-/* ============ REWARDS ============ */
 function saveRewardBaseSettings(){
     if(!activeArea)return showToast('اختر منطقة','error');
     const data={
@@ -2122,8 +1980,6 @@ function deleteFakkaCard(node,id){
     if(!confirm('حذف الكارت؟'))return;
     db.ref(`reward_settings/${activeArea}/${node}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
 }
-
-/* ============ DESTINATIONS ============ */
 function addDestination(){
     if(!activeArea)return showToast('اختر منطقة','error');
     const name=$id('destName').value.trim();
@@ -2150,8 +2006,6 @@ function loadDestinations(){
         if(tbody)tbody.innerHTML=html||'<tr><td colspan="3" class="empty-state">لا توجد وجهات</td></tr>';
     });
 }
-
-/* ============ PROVIDERS ============ */
 function saveProviderWithCustomCode(){
     if(!activeArea)return showToast('اختر منطقة','error');
     const name=$id('pName').value.trim();
@@ -2181,8 +2035,6 @@ function loadProviders(){
         if(tbody)tbody.innerHTML=html||'<tr><td colspan="4" class="empty-state">لا يوجد سائقين</td></tr>';
     });
 }
-
-/* ============ DISCOUNTS ============ */
 function loadDiscountsSummary(){
     if(!activeArea)return;
     db.ref('orders').on('value',snap=>{
@@ -2213,8 +2065,6 @@ function loadDiscountsSummary(){
         if(tbody)tbody.innerHTML=html||'<tr><td colspan="5" class="empty-state">لا توجد خصومات</td></tr>';
     });
 }
-
-/* ============ DAILY ORDERS ============ */
 function loadDailyOrders(){
     if(!activeArea)return;
     db.ref('orders').on('value',snap=>{
@@ -2241,8 +2091,6 @@ function loadDailyOrders(){
         if(tbody)tbody.innerHTML=html||'<tr><td colspan="6" class="empty-state">لا توجد طلبات</td></tr>';
     });
 }
-
-/* ============ DASHBOARD STATS ============ */
 function loadDashboardStats(){
     if(!activeArea)return;
     db.ref('orders').on('value',snap=>{
@@ -2295,4 +2143,3 @@ function loadDashboardStats(){
 </script>
 </body>
 </html>
-</script>
