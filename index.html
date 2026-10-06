@@ -7,76 +7,237 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--primary:#8b5cf6;--primary-glow:rgba(139,92,246,.4);--secondary:#06b6d4;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--bg-deep:#090d16;--bg-card:rgba(20,27,45,.75);--glass-border:rgba(255,255,255,.08);--text-main:#f1f5f9;--text-muted:#94a3b8;--sidebar-w:260px}
+:root{
+  --primary:#8b5cf6;
+  --primary-glow:rgba(139,92,246,.4);
+  --secondary:#06b6d4;
+  --success:#10b981;
+  --warning:#f59e0b;
+  --danger:#ef4444;
+  --bg-deep:#090d16;
+  --bg-card:rgba(20,27,45,.75);
+  --glass-border:rgba(255,255,255,.08);
+  --text-main:#f1f5f9;
+  --text-muted:#94a3b8;
+  --sidebar-w:260px;
+}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
-body{background:radial-gradient(circle at 15% 15%,rgba(139,92,246,.12) 0,transparent 45%),radial-gradient(circle at 85% 85%,rgba(6,182,212,.1) 0,transparent 45%),#090d16;color:var(--text-main);min-height:100vh;overflow-x:hidden}
+body{
+  background:
+    radial-gradient(circle at 15% 15%,rgba(139,92,246,.12) 0,transparent 45%),
+    radial-gradient(circle at 85% 85%,rgba(6,182,212,.1) 0,transparent 45%),
+    #090d16;
+  color:var(--text-main);
+  min-height:100vh;
+  overflow-x:hidden;
+}
 .app-layout{display:flex;min-height:100vh}
-.sidebar{width:var(--sidebar-w);background:linear-gradient(180deg,rgba(20,27,45,.98),rgba(15,22,38,.98));border-left:1px solid var(--glass-border);backdrop-filter:blur(20px);display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;z-index:100;transition:transform .3s;overflow-y:auto}
+
+/* ═══════ SIDEBAR ═══════ */
+.sidebar{
+  width:var(--sidebar-w);
+  background:linear-gradient(180deg,rgba(20,27,45,.98),rgba(15,22,38,.98));
+  border-left:1px solid var(--glass-border);
+  backdrop-filter:blur(20px);
+  display:flex;
+  flex-direction:column;
+  position:fixed;
+  top:0;right:0;bottom:0;
+  z-index:100;
+  transition:transform .3s;
+  overflow-y:auto;
+}
 .sidebar::-webkit-scrollbar{width:6px}
 .sidebar::-webkit-scrollbar-thumb{background:rgba(139,92,246,.3);border-radius:10px}
-.sidebar-header{padding:24px 20px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center;gap:12px}
-.sidebar-logo{width:45px;height:45px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;box-shadow:0 8px 20px rgba(139,92,246,.4);flex-shrink:0}
+.sidebar-header{
+  padding:24px 20px;
+  border-bottom:1px solid var(--glass-border);
+  display:flex;align-items:center;gap:12px;
+}
+.sidebar-logo{
+  width:45px;height:45px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#fff;
+  box-shadow:0 8px 20px rgba(139,92,246,.4);
+  flex-shrink:0;
+}
 .sidebar-title{font-size:16px;font-weight:900;color:#a78bfa;line-height:1.2}
 .sidebar-title small{display:block;font-size:10px;color:var(--text-muted);font-weight:500;margin-top:2px}
 .sidebar-area-selector{padding:15px 20px;border-bottom:1px solid var(--glass-border)}
 .sidebar-area-selector label{font-size:11px;color:var(--text-muted);font-weight:700;display:block;margin-bottom:6px}
-.area-trigger{width:100%;padding:10px 12px;background:rgba(10,15,28,.8);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-muted);font-size:13px;font-weight:700;cursor:pointer;font-family:'Cairo',sans-serif;text-align:right;display:flex;justify-content:space-between;align-items:center}
+.area-trigger{
+  width:100%;padding:10px 12px;
+  background:rgba(10,15,28,.8);
+  border:1px solid var(--glass-border);
+  border-radius:10px;color:var(--text-muted);
+  font-size:13px;font-weight:700;cursor:pointer;
+  font-family:'Cairo',sans-serif;text-align:right;
+  display:flex;justify-content:space-between;align-items:center;
+}
 .sidebar-nav{padding:15px 12px;flex:1}
-.nav-section-title{font-size:10px;color:var(--text-muted);font-weight:700;padding:12px 10px 6px;text-transform:uppercase;letter-spacing:1px}
-.nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;cursor:pointer;transition:all .2s;margin-bottom:3px;color:var(--text-muted);font-size:13.5px;font-weight:600;position:relative}
+.nav-section-title{
+  font-size:10px;color:var(--text-muted);font-weight:700;
+  padding:12px 10px 6px;text-transform:uppercase;letter-spacing:1px;
+}
+.nav-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:12px;cursor:pointer;
+  transition:all .2s;margin-bottom:3px;
+  color:var(--text-muted);font-size:13.5px;font-weight:600;position:relative;
+}
 .nav-item:hover{background:rgba(139,92,246,.1);color:#fff}
-.nav-item.active{background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(6,182,212,.15));color:#fff;border:1px solid rgba(139,92,246,.4)}
+.nav-item.active{
+  background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(6,182,212,.15));
+  color:#fff;border:1px solid rgba(139,92,246,.4);
+}
 .nav-item i{width:20px;text-align:center;font-size:15px}
-.nav-item .badge{margin-right:auto;background:var(--danger);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:900;animation:pulseBadge 1.5s infinite}
+.nav-item .badge{
+  margin-right:auto;background:var(--danger);color:#fff;
+  padding:2px 8px;border-radius:10px;font-size:10px;font-weight:900;
+  animation:pulseBadge 1.5s infinite;
+}
 @keyframes pulseBadge{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-.main-content{margin-right:var(--sidebar-w);flex:1;padding:20px 30px;min-height:100vh;width:calc(100% - var(--sidebar-w))}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;flex-wrap:wrap;gap:15px}
+
+/* ═══════ MAIN CONTENT ═══════ */
+.main-content{
+  margin-right:var(--sidebar-w);
+  flex:1;padding:20px 30px;
+  min-height:100vh;width:calc(100% - var(--sidebar-w));
+}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:25px;flex-wrap:wrap;gap:15px;
+}
 .topbar h1{font-size:24px;font-weight:900;color:#fff;display:flex;align-items:center;gap:12px}
 .topbar h1 i{color:var(--primary);font-size:22px}
-.menu-toggle{display:none;background:var(--bg-card);border:1px solid var(--glass-border);color:#fff;width:42px;height:42px;border-radius:12px;cursor:pointer;font-size:18px}
+.menu-toggle{
+  display:none;background:var(--bg-card);border:1px solid var(--glass-border);
+  color:#fff;width:42px;height:42px;border-radius:12px;cursor:pointer;font-size:18px;
+}
 .page{display:none;animation:fadeIn .3s ease}
 .page.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.card{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;padding:20px;margin-bottom:20px;box-shadow:0 15px 35px rgba(0,0,0,.3)}
-.card-title{font-size:15px;font-weight:900;color:#fff;margin-bottom:15px;display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--glass-border)}
-.card-title i{width:32px;height:32px;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(6,182,212,.15));border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:15px;flex-shrink:0}
+
+/* ═══════ CARDS ═══════ */
+.card{
+  background:var(--bg-card);backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);border-radius:20px;
+  padding:20px;margin-bottom:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+}
+.card-title{
+  font-size:15px;font-weight:900;color:#fff;margin-bottom:15px;
+  display:flex;align-items:center;gap:10px;
+  padding-bottom:12px;border-bottom:1px solid var(--glass-border);
+}
+.card-title i{
+  width:32px;height:32px;
+  background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(6,182,212,.15));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  color:var(--primary);font-size:15px;flex-shrink:0;
+}
 .card-subtitle{font-size:12px;color:var(--text-muted);margin-bottom:15px;line-height:1.7}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-bottom:20px}
-.stat-card{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.08));border:1px solid rgba(139,92,246,.25);border-radius:18px;padding:18px}
-.stat-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+
+/* ═══════ STATS ═══════ */
+.stats-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;margin-bottom:20px;
+}
+.stat-card{
+  background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.08));
+  border:1px solid rgba(139,92,246,.25);border-radius:18px;padding:18px;
+}
+.stat-icon{
+  width:42px;height:42px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;margin-bottom:12px;
+}
 .stat-value{font-size:26px;font-weight:900;color:#fff;line-height:1.2}
 .stat-label{font-size:12px;color:var(--text-muted);font-weight:600;margin-top:4px}
-input,select,textarea{width:100%;padding:12px 15px;background:rgba(10,15,28,.7);border:1.5px solid var(--glass-border);border-radius:12px;color:#fff;font-size:13.5px;margin:6px 0;outline:none;font-family:'Cairo',sans-serif}
-input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 15px var(--primary-glow)}
+
+/* ═══════ FORMS ═══════ */
+input,select,textarea{
+  width:100%;padding:12px 15px;
+  background:rgba(10,15,28,.7);
+  border:1.5px solid var(--glass-border);
+  border-radius:12px;color:#fff;font-size:13.5px;
+  margin:6px 0;outline:none;font-family:'Cairo',sans-serif;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 15px var(--primary-glow);
+}
 select option{background:#0f172a;color:#fff}
-label.field-label{font-size:12px;font-weight:700;color:#cbd5e1;display:block;margin-top:10px;margin-bottom:2px}
-.btn{padding:12px 20px;border:none;border-radius:12px;cursor:pointer;font-weight:700;font-size:13.5px;color:#fff;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+label.field-label{
+  font-size:12px;font-weight:700;color:#cbd5e1;
+  display:block;margin-top:10px;margin-bottom:2px;
+}
+
+/* ═══════ BUTTONS ═══════ */
+.btn{
+  padding:12px 20px;border:none;border-radius:12px;
+  cursor:pointer;font-weight:700;font-size:13.5px;
+  color:#fff;font-family:'Cairo',sans-serif;
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;transition:.2s;
+}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:linear-gradient(135deg,var(--primary),#7c3aed);width:100%;margin-top:10px}
 .btn-success{background:linear-gradient(135deg,#059669,#10b981)}
 .btn-warning{background:linear-gradient(135deg,#d97706,#f59e0b)}
 .btn-danger{background:linear-gradient(135deg,#dc2626,#ef4444)}
 .btn-sm{padding:6px 12px;font-size:11px;border-radius:8px}
-.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(10,15,28,.4);border:1px solid var(--glass-border);border-radius:14px;margin-bottom:10px}
+
+/* ═══════ TOGGLE ═══════ */
+.toggle-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 16px;background:rgba(10,15,28,.4);
+  border:1px solid var(--glass-border);border-radius:14px;margin-bottom:10px;
+}
 .toggle-label{font-size:13px;font-weight:700;color:#e2e8f0}
 .toggle-label small{display:block;font-size:10px;color:var(--text-muted);font-weight:500;margin-top:2px}
 .switch{position:relative;display:inline-block;width:48px;height:26px;flex-shrink:0}
 .switch input{opacity:0;width:0;height:0}
-.slider-sw{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#334155;transition:.3s;border-radius:34px}
-.slider-sw:before{position:absolute;content:"";height:18px;width:18px;left:4px;bottom:4px;background-color:#fff;transition:.3s;border-radius:50%}
+.slider-sw{
+  position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;
+  background-color:#334155;transition:.3s;border-radius:34px;
+}
+.slider-sw:before{
+  position:absolute;content:"";height:18px;width:18px;
+  left:4px;bottom:4px;background-color:#fff;transition:.3s;border-radius:50%;
+}
 input:checked + .slider-sw{background-color:var(--success);box-shadow:0 0 12px rgba(16,185,129,.5)}
 input:checked + .slider-sw:before{transform:translateX(22px)}
+
+/* ═══════ TABLES ═══════ */
 .table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--glass-border)}
 .data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:1000px}
-.data-table th{background:rgba(10,15,28,.9);color:var(--text-muted);font-weight:700;padding:12px 8px;text-align:center;font-size:11px;text-transform:uppercase;white-space:nowrap}
-.data-table td{padding:12px 8px;text-align:center;border-bottom:1px solid var(--glass-border);color:#e2e8f0;font-size:12.5px;white-space:nowrap}
+.data-table th{
+  background:rgba(10,15,28,.9);color:var(--text-muted);font-weight:700;
+  padding:12px 8px;text-align:center;font-size:11px;
+  text-transform:uppercase;white-space:nowrap;
+}
+.data-table td{
+  padding:12px 8px;text-align:center;
+  border-bottom:1px solid var(--glass-border);
+  color:#e2e8f0;font-size:12.5px;white-space:nowrap;
+}
 .data-table tr:last-child td{border-bottom:none}
 .data-table tr:hover td{background:rgba(139,92,246,.05)}
 .data-table .driver-name{font-weight:900;color:#fff;font-size:13px}
-.role-badge{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:900;display:inline-block}
+
+/* ═══════ BADGES ═══════ */
+.role-badge{
+  padding:3px 10px;border-radius:20px;font-size:10px;font-weight:900;
+  display:inline-block;
+}
 .role-tuktuk{background:rgba(139,92,246,.2);color:#a78bfa;border:1px solid rgba(139,92,246,.4)}
 .role-delegate{background:rgba(6,182,212,.2);color:#22d3ee;border:1px solid rgba(6,182,212,.4)}
 .role-shipping{background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
+
+/* ═══════ MONEY ═══════ */
 .money-val{font-weight:900;font-size:13px}
 .money-green{color:var(--success)}
 .money-blue{color:#60a5fa}
@@ -84,76 +245,227 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .money-red{color:#fca5a5}
 .money-primary{color:#c4b5fd;font-size:15px;font-weight:900}
 .money-negative{color:#f87171;font-size:15px;font-weight:900}
+
+/* ═══════ ACTION BUTTONS ═══════ */
 .action-btns{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-.icon-btn{padding:6px 10px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;border:1px solid;transition:.2s;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.icon-btn{
+  padding:6px 10px;border-radius:8px;cursor:pointer;
+  font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;
+  border:1px solid;transition:.2s;
+  display:inline-flex;align-items:center;gap:4px;white-space:nowrap;
+}
 .icon-btn.blue{color:#93c5fd;background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.4)}
 .icon-btn.yellow{color:#fde047;background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.4)}
 .icon-btn.red{color:#fca5a5;background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4)}
 .icon-btn.green{color:#34d399;background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.4)}
 .icon-btn.purple{color:#c4b5fd;background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.4)}
-.del-btn{color:#fca5a5;border:1px solid rgba(239,68,68,.4);background:rgba(239,68,68,.15);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif}
-.discount-summary{background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(245,158,11,.08));border:1px solid rgba(239,68,68,.35);border-radius:18px;padding:20px;margin-bottom:20px}
-.discount-title{color:#fca5a5;font-size:15px;font-weight:900;margin-bottom:15px;display:flex;align-items:center;gap:10px}
-.discount-stat{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:13px}
+.del-btn{
+  color:#fca5a5;border:1px solid rgba(239,68,68,.4);
+  background:rgba(239,68,68,.15);
+  padding:6px 12px;border-radius:8px;cursor:pointer;
+  font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;
+}
+
+/* ═══════ DISCOUNT SUMMARY ═══════ */
+.discount-summary{
+  background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(245,158,11,.08));
+  border:1px solid rgba(239,68,68,.35);
+  border-radius:18px;padding:20px;margin-bottom:20px;
+}
+.discount-title{
+  color:#fca5a5;font-size:15px;font-weight:900;
+  margin-bottom:15px;display:flex;align-items:center;gap:10px;
+}
+.discount-stat{
+  display:flex;justify-content:space-between;
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:13px;
+}
 .discount-stat:last-child{border-bottom:none}
 .discount-stat span:last-child{color:#fde047;font-weight:900}
-.info-note{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:12px;padding:12px;font-size:12px;color:#93c5fd;margin:10px 0;line-height:1.7}
-.danger-note{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);color:#fca5a5}
-.success-note{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.3);color:#34d399}
+
+/* ═══════ NOTES ═══════ */
+.info-note{
+  background:rgba(59,130,246,.1);
+  border:1px solid rgba(59,130,246,.3);
+  border-radius:12px;padding:12px;
+  font-size:12px;color:#93c5fd;margin:10px 0;line-height:1.7;
+}
+.danger-note{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:#fca5a5}
+.success-note{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.3);color:#34d399}
+
+/* ═══════ GRIDS ═══════ */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.shop-preview{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:10px;position:relative;overflow:hidden}
-.shop-preview::before{content:'';position:absolute;top:-20px;right:-20px;width:70px;height:70px;background:radial-gradient(circle,var(--sc1),transparent 70%);opacity:.15;border-radius:50%}
-.shop-preview-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0;background:linear-gradient(135deg,var(--sc1),var(--sc2));position:relative;z-index:1}
+
+/* ═══════ SHOP PREVIEW ═══════ */
+.shop-preview{
+  background:rgba(10,15,28,.5);border:1px solid var(--glass-border);
+  border-radius:14px;padding:14px;display:flex;align-items:center;
+  gap:12px;margin-bottom:10px;position:relative;overflow:hidden;
+}
+.shop-preview::before{
+  content:'';position:absolute;top:-20px;right:-20px;
+  width:70px;height:70px;
+  background:radial-gradient(circle,var(--sc1),transparent 70%);
+  opacity:.15;border-radius:50%;
+}
+.shop-preview-icon{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:#fff;flex-shrink:0;
+  background:linear-gradient(135deg,var(--sc1),var(--sc2));
+  position:relative;z-index:1;
+}
 .shop-preview-info{flex:1;min-width:0;position:relative;z-index:1}
 .shop-preview-name{font-size:14px;font-weight:900;color:#fff;margin-bottom:2px}
 .shop-preview-link{font-size:11px;color:#22d3ee;word-break:break-all;direction:ltr;text-align:left}
 .shop-preview-desc{font-size:10.5px;color:var(--text-muted);margin-top:3px}
 .shop-preview-actions{display:flex;gap:6px;position:relative;z-index:1}
-.shop-preview-img-wrap{position:relative;border-radius:14px;overflow:hidden;border:1.5px solid rgba(139,92,246,.4);max-width:320px}
-.shop-preview-img-wrap img{width:100%;height:auto;display:block;max-height:280px;object-fit:cover;background:rgba(0,0,0,.3)}
-.shop-preview-img-label{position:absolute;bottom:8px;right:8px;background:rgba(16,185,129,.9);color:#fff;padding:4px 10px;border-radius:10px;font-size:10.5px;font-weight:900}
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:linear-gradient(135deg,rgba(30,41,59,.98),rgba(15,23,42,.98));border:1px solid var(--glass-border);border-radius:16px;padding:14px 22px;color:#fff;font-weight:700;font-size:13.5px;box-shadow:0 20px 40px rgba(0,0,0,.6);z-index:9999;opacity:0;transition:all .35s;display:flex;align-items:center;gap:12px;max-width:90vw}
+.shop-preview-img-wrap{
+  position:relative;border-radius:14px;overflow:hidden;
+  border:1.5px solid rgba(139,92,246,.4);max-width:320px;
+}
+.shop-preview-img-wrap img{
+  width:100%;height:auto;display:block;
+  max-height:280px;object-fit:cover;background:rgba(0,0,0,.3);
+}
+.shop-preview-img-label{
+  position:absolute;bottom:8px;right:8px;
+  background:rgba(16,185,129,.9);color:#fff;
+  padding:4px 10px;border-radius:10px;font-size:10.5px;font-weight:900;
+}
+
+/* ═══════ TOAST ═══════ */
+.toast{
+  position:fixed;bottom:30px;left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:linear-gradient(135deg,rgba(30,41,59,.98),rgba(15,23,42,.98));
+  border:1px solid var(--glass-border);
+  border-radius:16px;padding:14px 22px;
+  color:#fff;font-weight:700;font-size:13.5px;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+  z-index:9999;opacity:0;transition:all .35s;
+  display:flex;align-items:center;gap:12px;max-width:90vw;
+}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .toast.success{border-color:var(--success)}
 .toast.success i{color:var(--success)}
 .toast.error{border-color:var(--danger)}
 .toast.error i{color:var(--danger)}
 .toast.info i{color:var(--secondary)}
-.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;backdrop-filter:blur(3px)}
+
+/* ═══════ SIDEBAR OVERLAY ═══════ */
+.sidebar-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.6);z-index:99;backdrop-filter:blur(3px);
+}
 .sidebar-overlay.show{display:block}
+
+/* ═══════ EMPTY STATE ═══════ */
 .empty-state{text-align:center;padding:30px 20px;color:var(--text-muted)}
 .empty-state i{font-size:40px;color:rgba(139,92,246,.3);margin-bottom:10px;display:block}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);z-index:5000;opacity:0;visibility:hidden;transition:.3s}
+
+/* ═══════ MODALS ═══════ */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);
+  backdrop-filter:blur(10px);z-index:5000;
+  opacity:0;visibility:hidden;transition:.3s;
+}
 .modal-overlay.show{opacity:1;visibility:visible}
-.center-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);background:linear-gradient(160deg,rgba(30,40,60,.98),rgba(15,23,42,1));border:1.5px solid rgba(139,92,246,.4);border-radius:24px;z-index:5001;width:calc(100% - 40px);max-width:520px;max-height:80vh;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:all .3s;box-shadow:0 30px 60px rgba(0,0,0,.6)}
-.center-modal.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
-.center-modal-header{padding:18px 20px 14px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center;gap:12px}
-.center-modal-icon{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0}
+.center-modal{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(.85);
+  background:linear-gradient(160deg,rgba(30,40,60,.98),rgba(15,23,42,1));
+  border:1.5px solid rgba(139,92,246,.4);
+  border-radius:24px;z-index:5001;
+  width:calc(100% - 40px);max-width:520px;max-height:80vh;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transition:all .3s;
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+.center-modal.show{
+  opacity:1;visibility:visible;
+  transform:translate(-50%,-50%) scale(1);
+}
+.center-modal-header{
+  padding:18px 20px 14px;
+  border-bottom:1px solid var(--glass-border);
+  display:flex;align-items:center;gap:12px;
+}
+.center-modal-icon{
+  width:42px;height:42px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:#fff;flex-shrink:0;
+}
 .center-modal-title{font-size:16px;font-weight:900;color:#fff}
 .center-modal-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
-.center-modal-close{margin-right:auto;width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid var(--glass-border);color:var(--text-muted);cursor:pointer;font-size:13px}
+.center-modal-close{
+  margin-right:auto;width:32px;height:32px;
+  border-radius:10px;background:rgba(255,255,255,.08);
+  border:1px solid var(--glass-border);color:var(--text-muted);
+  cursor:pointer;font-size:13px;
+}
 .center-modal-body{padding:14px;overflow-y:auto;flex:1;max-height:70vh}
-.area-item{padding:14px 16px;background:rgba(10,15,28,.6);border:1px solid var(--glass-border);border-radius:14px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:8px;transition:.2s}
+
+/* ═══════ AREA ITEM ═══════ */
+.area-item{
+  padding:14px 16px;background:rgba(10,15,28,.6);
+  border:1px solid var(--glass-border);border-radius:14px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;margin-bottom:8px;transition:.2s;
+}
 .area-item:hover{background:rgba(139,92,246,.15);border-color:var(--primary)}
 .area-item.selected{background:rgba(139,92,246,.2);border-color:var(--primary)}
-.area-item-icon{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;background:linear-gradient(135deg,var(--primary),#7c3aed);flex-shrink:0}
+.area-item-icon{
+  width:38px;height:38px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#fff;
+  background:linear-gradient(135deg,var(--primary),#7c3aed);
+  flex-shrink:0;
+}
 .area-item-name{flex:1;font-weight:700;color:#fff;font-size:14px}
 .area-item-check{color:var(--success);font-size:18px}
-.driver-info-header{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.08));border:1px solid rgba(139,92,246,.35);border-radius:18px;padding:20px;margin-bottom:20px;text-align:center}
-.driver-info-avatar{width:80px;height:80px;border-radius:26px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-size:34px;color:#fff;margin:0 auto 12px;font-weight:900;box-shadow:0 10px 25px rgba(139,92,246,.4)}
+
+/* ═══════ DRIVER INFO HEADER ═══════ */
+.driver-info-header{
+  background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.08));
+  border:1px solid rgba(139,92,246,.35);
+  border-radius:18px;padding:20px;margin-bottom:20px;text-align:center;
+}
+.driver-info-avatar{
+  width:80px;height:80px;border-radius:26px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;
+  font-size:34px;color:#fff;margin:0 auto 12px;
+  font-weight:900;box-shadow:0 10px 25px rgba(139,92,246,.4);
+}
 .driver-info-name{font-size:20px;font-weight:900;color:#fff;margin-bottom:6px}
 .driver-info-role{margin-bottom:12px}
-.driver-info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.driver-info-row{
+  display:flex;justify-content:space-between;
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;
+}
 .driver-info-row:last-child{border-bottom:none}
 .driver-info-row span:first-child{color:var(--text-muted);font-weight:600}
 .driver-info-row span:last-child{color:#fff;font-weight:900}
-.order-row-item{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+/* ═══════ ORDER ROW ITEM ═══════ */
+.order-row-item{
+  background:rgba(10,15,28,.5);border:1px solid var(--glass-border);
+  border-radius:12px;padding:12px;margin-bottom:8px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+}
 .order-row-item-info{flex:1;min-width:0}
 .order-row-item-type{font-size:13px;font-weight:900;color:#fff}
 .order-row-item-time{font-size:10.5px;color:var(--text-muted);margin-top:2px}
 .order-row-item-price{font-size:15px;font-weight:900;color:var(--success);text-align:left}
-.ship-alert-card{background:rgba(10,15,28,.6);border:1.5px solid var(--glass-border);border-radius:16px;padding:14px;margin-bottom:12px;position:relative;overflow:hidden;border-right-width:5px}
+
+/* ═══════ SHIP ALERT CARD ═══════ */
+.ship-alert-card{
+  background:rgba(10,15,28,.6);border:1.5px solid var(--glass-border);
+  border-radius:16px;padding:14px;margin-bottom:12px;
+  position:relative;overflow:hidden;border-right-width:5px;
+}
 .ship-alert-card.status-ontime{border-right-color:#10b981}
 .ship-alert-card.status-today{border-right-color:#f59e0b}
 .ship-alert-card.status-late{border-right-color:#ef4444}
@@ -163,9 +475,18 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .ship-alert-card.status-active{border-right-color:#38bdf8}
 .ship-alert-card.status-pending{border-right-color:#60a5fa}
 .ship-alert-card.status-returned{border-right-color:#f43f5e}
-.ship-alert-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.ship-alert-code{font-size:12px;font-weight:900;color:#38bdf8;font-family:'Courier New',monospace;letter-spacing:1px}
-.ship-alert-badge{padding:4px 10px;border-radius:10px;font-size:10.5px;font-weight:900;display:inline-flex;align-items:center;gap:4px}
+.ship-alert-header{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:10px;margin-bottom:10px;flex-wrap:wrap;
+}
+.ship-alert-code{
+  font-size:12px;font-weight:900;color:#38bdf8;
+  font-family:'Courier New',monospace;letter-spacing:1px;
+}
+.ship-alert-badge{
+  padding:4px 10px;border-radius:10px;font-size:10.5px;font-weight:900;
+  display:inline-flex;align-items:center;gap:4px;
+}
 .ship-alert-badge.ontime{background:rgba(16,185,129,.2);color:#34d399}
 .ship-alert-badge.today{background:rgba(245,158,11,.2);color:#fbbf24}
 .ship-alert-badge.late{background:rgba(239,68,68,.2);color:#fca5a5}
@@ -174,31 +495,87 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .ship-alert-badge.assigned{background:rgba(139,92,246,.15);color:#a78bfa}
 .ship-alert-badge.active{background:rgba(56,189,248,.15);color:#38bdf8}
 .ship-alert-badge.returned{background:rgba(244,63,94,.15);color:#fb7185}
-.ship-alert-row{display:flex;justify-content:space-between;padding:6px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.ship-alert-row{
+  display:flex;justify-content:space-between;
+  padding:6px 0;font-size:12px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
 .ship-alert-row:last-child{border-bottom:none}
 .ship-alert-row span:first-child{color:var(--text-muted);font-weight:600}
 .ship-alert-row span:last-child{color:#fff;font-weight:900}
-.ship-alert-actions{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
-.ship-alert-actions button{padding:8px 14px;border-radius:10px;border:none;font-weight:900;font-size:11.5px;cursor:pointer;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:5px;flex:1;justify-content:center;min-width:100px}
+.ship-alert-actions{
+  display:flex;gap:8px;margin-top:12px;
+  padding-top:12px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;
+}
+.ship-alert-actions button{
+  padding:8px 14px;border-radius:10px;border:none;
+  font-weight:900;font-size:11.5px;cursor:pointer;
+  font-family:'Cairo',sans-serif;
+  display:inline-flex;align-items:center;gap:5px;
+  flex:1;justify-content:center;min-width:100px;
+}
 .btn-assign{background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff}
 .btn-reassign{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
-.btn-call-driver{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;text-decoration:none}
-.tabs-shipping{display:flex;gap:6px;background:rgba(10,15,28,.6);border:1px solid var(--glass-border);border-radius:14px;padding:5px;margin-bottom:15px;overflow-x:auto}
-.tab-shipping{flex:1;min-width:80px;padding:10px 8px;border:none;background:transparent;color:var(--text-muted);font-weight:700;font-size:11.5px;cursor:pointer;border-radius:10px;font-family:'Cairo',sans-serif;display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap}
+.btn-call-driver{
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;text-decoration:none;
+}
+
+/* ═══════ TABS SHIPPING ═══════ */
+.tabs-shipping{
+  display:flex;gap:6px;background:rgba(10,15,28,.6);
+  border:1px solid var(--glass-border);border-radius:14px;
+  padding:5px;margin-bottom:15px;overflow-x:auto;
+}
+.tab-shipping{
+  flex:1;min-width:80px;padding:10px 8px;border:none;
+  background:transparent;color:var(--text-muted);
+  font-weight:700;font-size:11.5px;cursor:pointer;
+  border-radius:10px;font-family:'Cairo',sans-serif;
+  display:flex;align-items:center;justify-content:center;
+  gap:5px;white-space:nowrap;
+}
 .tab-shipping.active{background:linear-gradient(135deg,var(--primary),#7c3aed);color:#fff}
-.tab-shipping .cnt{background:rgba(255,255,255,.2);padding:1px 7px;border-radius:10px;font-size:10px;margin-right:3px}
-.market-category-item{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.market-cat-icon-box{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(6,182,212,.15));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.tab-shipping .cnt{
+  background:rgba(255,255,255,.2);
+  padding:1px 7px;border-radius:10px;font-size:10px;margin-right:3px;
+}
+
+/* ═══════ MARKET CATEGORY ═══════ */
+.market-category-item{
+  background:rgba(10,15,28,.5);border:1px solid var(--glass-border);
+  border-radius:14px;padding:14px 16px;
+  display:flex;align-items:center;gap:12px;margin-bottom:10px;
+}
+.market-cat-icon-box{
+  width:50px;height:50px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(6,182,212,.15));
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;flex-shrink:0;
+}
 .market-cat-info{flex:1;min-width:0}
 .market-cat-name{font-size:14px;font-weight:900;color:#fff;margin-bottom:2px}
 .market-cat-meta{font-size:11px;color:var(--text-muted)}
 .market-cat-actions{display:flex;gap:6px}
-.market-product-row{background:rgba(10,15,28,.5);border:1px solid var(--glass-border);border-radius:14px;padding:12px;margin-bottom:10px;display:flex;align-items:center;gap:14px}
-.market-prod-img{width:70px;height:70px;border-radius:12px;overflow:hidden;flex-shrink:0;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+
+/* ═══════ MARKET PRODUCT ROW ═══════ */
+.market-product-row{
+  background:rgba(10,15,28,.5);border:1px solid var(--glass-border);
+  border-radius:14px;padding:12px;margin-bottom:10px;
+  display:flex;align-items:center;gap:14px;
+}
+.market-prod-img{
+  width:70px;height:70px;border-radius:12px;overflow:hidden;
+  flex-shrink:0;background:rgba(0,0,0,.3);
+  display:flex;align-items:center;justify-content:center;
+}
 .market-prod-img img{width:100%;height:100%;object-fit:cover}
 .market-prod-img i{font-size:26px;color:rgba(139,92,246,.4)}
 .market-prod-info{flex:1;min-width:0}
-.market-prod-name{font-size:14px;font-weight:900;color:#fff;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.market-prod-name{
+  font-size:14px;font-weight:900;color:#fff;margin-bottom:4px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
 .market-prod-tag{font-size:9.5px;padding:2px 8px;border-radius:8px;font-weight:900}
 .market-tag-active{background:rgba(16,185,129,.2);color:#34d399}
 .market-tag-hidden{background:rgba(100,116,139,.2);color:#cbd5e1}
@@ -206,28 +583,92 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .market-tag-discount{background:rgba(245,158,11,.2);color:#fbbf24}
 .market-prod-meta{font-size:11.5px;color:var(--text-muted);line-height:1.6}
 .market-prod-meta b{color:#a78bfa}
-.market-prod-price{font-size:16px;font-weight:900;color:var(--success);flex-shrink:0;text-align:center;min-width:70px}
-.market-prod-price small{display:block;font-size:10px;color:var(--text-muted);text-decoration:line-through;margin-top:2px}
+.market-prod-price{
+  font-size:16px;font-weight:900;color:var(--success);
+  flex-shrink:0;text-align:center;min-width:70px;
+}
+.market-prod-price small{
+  display:block;font-size:10px;color:var(--text-muted);
+  text-decoration:line-through;margin-top:2px;
+}
 .market-prod-actions{display:flex;gap:6px;flex-shrink:0}
-.pharmacy-item{background:rgba(20,27,45,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* ═══════ PHARMACY ═══════ */
+.pharmacy-item{
+  background:rgba(20,27,45,.6);border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;padding:14px;margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;flex-wrap:wrap;
+}
 .pharmacy-item-info{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
-.pharmacy-item-icon{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#06b6d4,#0891b2);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}
+.pharmacy-item-icon{
+  width:44px;height:44px;border-radius:13px;
+  background:linear-gradient(135deg,#06b6d4,#0891b2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:#fff;flex-shrink:0;
+}
 .pharmacy-item-text{flex:1;min-width:0}
 .pharmacy-item-name{font-weight:900;color:#fff;font-size:14px;margin-bottom:2px}
 .pharmacy-item-meta{font-size:11.5px;color:#94a3b8}
+
+/* ═══════ QUICK LOAD ═══════ */
+.quick-load-section{
+  background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.08));
+  border:1.5px dashed rgba(16,185,129,.5);
+  border-radius:18px;padding:20px;margin-bottom:20px;
+}
+.quick-load-title{
+  font-size:15px;font-weight:900;color:#34d399;margin-bottom:8px;
+  display:flex;align-items:center;gap:10px;
+}
+.quick-load-title i{
+  width:36px;height:36px;
+  background:linear-gradient(135deg,#10b981,#059669);
+  border-radius:11px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:16px;
+}
+.quick-load-desc{font-size:12px;color:#6ee7b7;line-height:1.7;margin-bottom:15px}
+.quick-cat-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:10px;margin-bottom:15px;
+}
+.quick-cat-btn{
+  background:rgba(10,15,28,.6);
+  border:1.5px solid rgba(16,185,129,.3);
+  border-radius:14px;padding:14px;cursor:pointer;
+  display:flex;align-items:center;gap:12px;
+  font-family:'Cairo',sans-serif;color:#fff;
+  transition:.2s;text-align:right;
+}
+.quick-cat-btn:hover{
+  background:rgba(16,185,129,.15);
+  border-color:#10b981;transform:translateY(-2px);
+}
+.quick-cat-btn:active{transform:scale(.97)}
+.quick-cat-btn.loading{opacity:.6;pointer-events:none}
+.quick-cat-icon{
+  width:40px;height:40px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;background:linear-gradient(135deg,#10b981,#059669);
+  flex-shrink:0;
+}
+.quick-cat-info{flex:1;min-width:0}
+.quick-cat-name{font-size:13.5px;font-weight:900;color:#fff;margin-bottom:3px}
+.quick-cat-count{font-size:10.5px;color:#94a3b8;font-weight:600}
+
+/* ═══════ RESPONSIVE ═══════ */
 @media(max-width:900px){
-.sidebar{transform:translateX(100%)}
-.sidebar.open{transform:translateX(0)}
-.main-content{margin-right:0;width:100%;padding:15px}
-.menu-toggle{display:flex;align-items:center;justify-content:center}
-.grid-2,.grid-3{grid-template-columns:1fr}
-.stats-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-.market-product-row{flex-wrap:wrap}
-.market-prod-actions{width:100%;justify-content:flex-start}
+  .sidebar{transform:translateX(100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main-content{margin-right:0;width:100%;padding:15px}
+  .menu-toggle{display:flex;align-items:center;justify-content:center}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .market-product-row{flex-wrap:wrap}
+  .market-prod-actions{width:100%;justify-content:flex-start}
 }
 </style>
-</head>
-<body>
+</head><body>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
 <div class="app-layout">
@@ -291,6 +732,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Dashboard ═══════ -->
 <div class="page active" id="page-dashboard">
 <div class="stats-grid">
 <div class="stat-card"><div class="stat-icon" style="background:rgba(139,92,246,.2);color:#a78bfa"><i class="fas fa-shopping-bag"></i></div><div class="stat-value" id="statTodayOrders">0</div><div class="stat-label">طلبات اليوم</div></div>
@@ -320,6 +762,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Areas ═══════ -->
 <div class="page" id="page-areas">
 <div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة منطقة جديدة</div>
 <label class="field-label">اسم المنطقة</label>
@@ -331,6 +774,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Market Categories ═══════ -->
 <div class="page" id="page-marketCategories">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة تصنيف جديد</div>
@@ -349,6 +793,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Market Add Product ═══════ -->
 <div class="page" id="page-marketAddProduct">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة منتج جديد</div>
@@ -365,7 +810,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <input type="text" id="newProdNote" placeholder="مثال: 1 لتر - طبيعي 100%">
 <label class="field-label">🖼️ رابط الصورة (اختياري)</label>
 <input type="text" id="newProdImage" placeholder="https://example.com/image.jpg" style="direction:ltr;text-align:left" oninput="previewProductImage()">
-<div class="helper-text"><i class="fas fa-info-circle"></i> الصق لينك صورة من الإنترنت</div>
 <div id="prodImagePreview" style="display:none;margin-top:12px">
 <div class="shop-preview-img-wrap">
 <img id="prodImagePreviewImg" src="" alt="معاينة">
@@ -387,6 +831,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 <button class="btn btn-success" onclick="addNewMarketProduct()"><i class="fas fa-save"></i> حفظ المنتج</button>
 </div>
+
 <div class="card" id="editProductCard" style="display:none">
 <div class="card-title" style="color:#fbbf24"><i class="fas fa-edit"></i> تعديل المنتج</div>
 <input type="hidden" id="editProdId">
@@ -428,10 +873,31 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Market Products ═══════ -->
 <div class="page" id="page-marketProducts">
+
+<!-- ══════════ QUICK LOAD SECTION ══════════ -->
+<div class="quick-load-section">
+<div class="quick-load-title">
+<i class="fas fa-magic"></i>
+<span>🎁 تحميل منتجات جاهزة (لكل المناطق)</span>
+</div>
+<div class="quick-load-desc">
+💡 اضغط على أي تصنيف لتحميل المنتجات الجاهزة بصورها وأسعارها في <b>كل المناطق دفعة واحدة</b>. تقدر تعدل أو تخفي أي منتج بعدين.
+</div>
+
+<div class="quick-cat-grid" id="quickCatGrid">
+<!-- سيتم توليد الأزرار تلقائياً من ملف products.js -->
+</div>
+
+<div class="info-note" style="background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.3);color:#fbbf24">
+⚠️ <b>تنبيه:</b> المنتجات هتتضاف في <b>كل المناطق</b> دفعة واحدة. تقدر تخفي/تعدل أي منتج بعدين عادي.
+</div>
+</div>
+
 <div class="card">
 <div class="card-title"><i class="fas fa-boxes"></i> إدارة المنتجات</div>
-<div class="card-subtitle">البحث والفلترة + تعديل وحذف المنتجات</div>
+<div class="card-subtitle">البحث والفلترة + تعديل وحذف وإخفاء المنتجات</div>
 <div class="grid-2" style="margin-bottom:12px">
 <div><label class="field-label">🔍 بحث</label><input type="text" id="marketProductSearch" placeholder="ابحث باسم المنتج..." oninput="renderMarketProductsTable()"></div>
 <div><label class="field-label">📂 فلترة بالتصنيف</label>
@@ -443,12 +909,14 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div class="stats-grid" style="margin-bottom:14px">
 <div class="stat-card" style="padding:12px"><div class="stat-value" id="mpStatTotal" style="font-size:20px">0</div><div class="stat-label" style="font-size:11px">إجمالي</div></div>
 <div class="stat-card" style="padding:12px"><div class="stat-value" id="mpStatActive" style="font-size:20px;color:#34d399">0</div><div class="stat-label" style="font-size:11px">نشط</div></div>
+<div class="stat-card" style="padding:12px"><div class="stat-value" id="mpStatHidden" style="font-size:20px;color:#cbd5e1">0</div><div class="stat-label" style="font-size:11px">مخفي</div></div>
 <div class="stat-card" style="padding:12px"><div class="stat-value" id="mpStatOut" style="font-size:20px;color:#fca5a5">0</div><div class="stat-label" style="font-size:11px">خلص</div></div>
 </div>
 <div id="marketProductsTableContainer"><div class="empty-state"><i class="fas fa-boxes"></i><p>لا توجد منتجات بعد</p></div></div>
 </div>
 </div>
 
+<!-- ═══════ PAGE: Visibility ═══════ -->
 <div class="page" id="page-visibility">
 <div class="card"><div class="card-title"><i class="fas fa-shield-alt"></i> تحكم ظهور الأقسام</div>
 <div class="card-subtitle">أي قسم تقفله، هيختفي تمامًا من واجهة الزبون.</div>
@@ -462,6 +930,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Pharmacies ═══════ -->
 <div class="page" id="page-pharmacies">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> تسجيل صيدلية جديدة</div>
@@ -484,10 +953,11 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Work Hours ═══════ -->
 <div class="page" id="page-workHours">
 <div class="card">
 <div class="card-title"><i class="fas fa-clock"></i> ساعات عمل التطبيق</div>
-<div class="card-subtitle">بره الساعات دي، تطبيق الزبون هيقفل تلقائي.</div>
+<div class="card-subtitle">بره الساعات دي، تطبيق الزبون هيقفل تلقائي. تطبيق السائق والصيدلي هيفضلوا شغالين عادي.</div>
 <div class="toggle-row" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3)">
 <div class="toggle-label"><div style="color:#a78bfa">⏰ تفعيل ساعات العمل</div><small>لو مقفول، التطبيق هيشتغل 24 ساعة</small></div>
 <label class="switch"><input type="checkbox" id="workHoursEnabled" onchange="saveWorkHours()"><span class="slider-sw"></span></label>
@@ -503,6 +973,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div class="card"><div class="card-title"><i class="fas fa-info-circle"></i> معاينة</div><div id="workHoursPreview"></div></div>
 </div>
 
+<!-- ═══════ PAGE: Rewards ═══════ -->
 <div class="page" id="page-rewards">
 <div class="card"><div class="card-title"><i class="fas fa-toggle-on"></i> إعدادات نظام النقاط</div>
 <div class="toggle-row"><div class="toggle-label"><div>تفعيل نظام المكافآت<small>لو مقفول، مش هيكسبوا نقاط</small></div></div><label class="switch"><input type="checkbox" id="rewardSystemActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
@@ -521,6 +992,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Features ═══════ -->
 <div class="page" id="page-features">
 <div class="card"><div class="card-title"><i class="fas fa-fire"></i> النقاط المضاعفة</div>
 <div class="toggle-row" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3)"><div class="toggle-label"><div style="color:#fde047">⚡ تفعيل النقاط المضاعفة ×2</div></div><label class="switch"><input type="checkbox" id="doublePointsActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
@@ -539,9 +1011,11 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Fakka ═══════ -->
 <div class="page" id="page-fakka">
 <div class="card">
 <div class="card-title"><i class="fas fa-eye"></i> تحكم ظهور كروت الفكة</div>
+<div class="card-subtitle">تحكم في ظهور زر استبدال كارت الفكة للزبون</div>
 <div class="toggle-row"><div class="toggle-label"><div>🎫 إظهار زر كارت الفكة للزبون</div><small>لو مقفول، الزر هيختفي من صفحة الزبون</small></div><label class="switch"><input type="checkbox" id="showFakkaButtonToggle" onchange="saveFakkaButtonSetting(this.checked)"><span class="slider-sw"></span></label></div>
 </div>
 <div class="card"><div class="card-title"><i class="fas fa-eye"></i> تحكم إضافي</div>
@@ -565,6 +1039,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Support ═══════ -->
 <div class="page" id="page-support">
 <div class="card">
 <div class="card-title"><i class="fab fa-whatsapp" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff"></i> رقم الواتساب للدعم</div>
@@ -575,6 +1050,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Shipping Settings ═══════ -->
 <div class="page" id="page-shippingSettings">
 <div class="card">
 <div class="card-title"><i class="fas fa-power-off"></i> تفعيل/إيقاف خدمة الشحن</div>
@@ -591,6 +1067,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 <div class="card">
 <div class="card-title"><i class="fas fa-money-bill-wave"></i> سعر ومدة الشحن</div>
+<div class="card-subtitle">السعر والمدة اللي بيظهرا للزبون وقت طلب الشحنة</div>
 <div class="grid-2">
 <div><label class="field-label">💰 سعر الشحن (ج)</label><input type="number" id="shippingPriceInput" placeholder="30" onchange="saveShippingSettings()"></div>
 <div><label class="field-label">📅 المدة المتوقعة (أيام)</label><input type="number" id="shippingDaysInput" placeholder="3" min="0" onchange="saveShippingSettings()"></div>
@@ -601,9 +1078,11 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Shops ═══════ -->
 <div class="page" id="page-shops">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة متجر جديد</div>
+<div class="card-subtitle">المتجر ده هيظهر للزبون في قسم "متاجرنا" تحت الخدمات. لما يدوس عليه، هيفتح اللينك.</div>
 <label class="field-label">🏪 اسم المتجر</label>
 <input type="text" id="shopName" placeholder="مثال: متجر الأمانة">
 <label class="field-label">🔗 لينك المتجر</label>
@@ -648,9 +1127,11 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Shipping Orders ═══════ -->
 <div class="page" id="page-shippingOrders">
 <div class="card">
 <div class="card-title"><i class="fas fa-truck"></i> الشحنات الواردة</div>
+<div class="card-subtitle">إدارة كل شحنات المنطقة + تعيين مندوب لكل شحنة</div>
 <div class="tabs-shipping">
 <button class="tab-shipping active" id="shipTab-new" onclick="switchShippingTab('new')"><i class="fas fa-bell"></i> جديدة <span class="cnt" id="shipCountNew">0</span></button>
 <button class="tab-shipping" id="shipTab-assigned" onclick="switchShippingTab('assigned')"><i class="fas fa-user-check"></i> معيّنة <span class="cnt" id="shipCountAssigned">0</span></button>
@@ -662,6 +1143,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Drivers ═══════ -->
 <div class="page" id="page-drivers">
 <div class="card">
 <div class="card-title"><i class="fas fa-users-cog"></i> حسابات السائقين</div>
@@ -675,11 +1157,13 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Driver Details ═══════ -->
 <div class="page" id="page-driverDetails">
 <button class="btn btn-primary" style="width:auto;margin-bottom:15px;background:rgba(255,255,255,.1)" onclick="switchPage('drivers')"><i class="fas fa-arrow-right"></i> رجوع</button>
 <div id="driverDetailsContent"></div>
 </div>
 
+<!-- ═══════ PAGE: Discounts ═══════ -->
 <div class="page" id="page-discounts">
 <div class="discount-summary">
 <div class="discount-title"><i class="fas fa-tags"></i> 💸 ملخص الخصومات (على حساب المشروع)</div>
@@ -693,6 +1177,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Pricing ═══════ -->
 <div class="page" id="page-pricing">
 <div class="card"><div class="card-title"><i class="fas fa-dollar-sign"></i> الأسعار والعمولات</div>
 <label class="field-label">💵 سعر التوصيل العام (ج)</label>
@@ -705,12 +1190,14 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Orders ═══════ -->
 <div class="page" id="page-orders">
 <div class="card"><div class="card-title"><i class="fas fa-box-open"></i> الطلبات النشطة</div>
 <div class="table-wrap"><table class="data-table"><thead><tr><th>النوع</th><th>العميل</th><th>التفاصيل</th><th>السعر</th><th>الحالة</th><th>حذف</th></tr></thead><tbody id="dailyOrdersTableBody"><tr><td colspan="6" class="empty-state">جاري التحميل...</td></tr></tbody></table></div>
 </div>
 </div>
 
+<!-- ═══════ PAGE: Destinations ═══════ -->
 <div class="page" id="page-destinations">
 <div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة وجهة جديدة</div>
 <div class="grid-2">
@@ -724,6 +1211,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Add Driver ═══════ -->
 <div class="page" id="page-addDriver">
 <div class="card"><div class="card-title"><i class="fas fa-id-card"></i> تسجيل سائق جديد</div>
 <label class="field-label">الاسم</label>
@@ -742,6 +1230,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ PAGE: Drivers List ═══════ -->
 <div class="page" id="page-driversList">
 <div class="card"><div class="card-title"><i class="fas fa-user-friends"></i> السائقين المسجلين</div>
 <div class="table-wrap"><table class="data-table" style="min-width:400px"><thead><tr><th>الاسم</th><th>الدور</th><th>الكود</th><th>حذف</th></tr></thead><tbody id="providersList"><tr><td colspan="4" class="empty-state">لا يوجد سائقين</td></tr></tbody></table></div>
@@ -751,6 +1240,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </main>
 </div>
 
+<!-- ═══════ Area Modal ═══════ -->
 <div class="modal-overlay" id="areaModalOverlay" onclick="closeAreaModal()"></div>
 <div class="center-modal" id="areaModal">
 <div class="center-modal-header">
@@ -761,6 +1251,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div class="center-modal-body" id="areaModalList"></div>
 </div>
 
+<!-- ═══════ Assign Driver Modal ═══════ -->
 <div class="modal-overlay" id="assignDriverOverlay" onclick="closeAssignDriver()"></div>
 <div class="center-modal" id="assignDriverModal">
 <div class="center-modal-header">
@@ -777,6 +1268,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
+<!-- ═══════ Confirm Modal ═══════ -->
 <div class="modal-overlay" id="confirmOverlay" onclick="closeConfirm()"></div>
 <div class="center-modal" id="confirmModal" style="max-width:420px;padding:25px 20px;text-align:center">
 <div style="text-align:center;margin-bottom:15px">
@@ -790,144 +1282,167 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<div class="toast" id="toast"><i class="fas fa-info-circle"></i><span id="toastMessage">رسالة</span></div>
-
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<div class="toast" id="toast"><i class="fas fa-info-circle"></i><span id="toastMessage">رسالة</span></div><script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+<script src="products.js"></script>
 <script>
-const firebaseConfig={apiKey:"AIzaSyAR98tJfqxO0_LZT7GRn-peOqQB1PgP6D4",authDomain:"family-4ff2a.firebaseapp.com",databaseURL:"https://family-4ff2a-default-rtdb.firebaseio.com",projectId:"family-4ff2a"};
+/* ═══════════════════════════════════════════════════════════
+   مشوارك - لوحة التحكم
+   Firebase Setup + Core Functions
+   ═══════════════════════════════════════════════════════════ */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAR98tJfqxO0_LZT7GRn-peOqQB1PgP6D4",
+    authDomain: "family-4ff2a.firebaseapp.com",
+    databaseURL: "https://family-4ff2a-default-rtdb.firebaseio.com",
+    projectId: "family-4ff2a"
+};
 firebase.initializeApp(firebaseConfig);
-const db=firebase.database();
+const db = firebase.database();
 
-let activeArea="";
-let areasCache={};
-let driversCache={};
-let ordersCache={};
-let settlementsCache={};
-let pricingCache={tuktukCommission:10,delegateCommission:10,shippingCommission:10};
-let shopsCache={};
-let shippingSettingsCache={price:30,days:3};
-let currentShippingTab='new';
-let currentAssignOrderId=null;
-let marketCategoriesCache={};
-let marketProductsCache={};
+/* ═══════════ Global State ═══════════ */
+let activeArea = "";
+let areasCache = {};
+let driversCache = {};
+let ordersCache = {};
+let settlementsCache = {};
+let pricingCache = { tuktukCommission:10, delegateCommission:10, shippingCommission:10 };
+let shopsCache = {};
+let shippingSettingsCache = { price:30, days:3 };
+let currentShippingTab = 'new';
+let currentAssignOrderId = null;
+let marketCategoriesCache = {};
+let marketProductsCache = {};
 
-function $id(id){return document.getElementById(id);}
+/* ═══════════ Helper Functions ═══════════ */
+function $id(id){ return document.getElementById(id); }
+
 let toastTimer;
-function showToast(msg,type='info'){
-    const t=$id('toast');if(!t)return;
-    $id('toastMessage').innerText=msg;
-    t.className='toast show '+type;
-    const i=t.querySelector('i');
-    i.className=type==='success'?'fas fa-check-circle':type==='error'?'fas fa-times-circle':'fas fa-info-circle';
-    clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3500);
+function showToast(msg, type='info'){
+    const t = $id('toast'); if(!t) return;
+    $id('toastMessage').innerText = msg;
+    t.className = 'toast show ' + type;
+    const i = t.querySelector('i');
+    i.className = type==='success' ? 'fas fa-check-circle'
+                 : type==='error'   ? 'fas fa-times-circle'
+                 : 'fas fa-info-circle';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>t.classList.remove('show'), 3500);
 }
+
 function toggleSidebar(){
     $id('sidebar').classList.toggle('open');
     $id('sidebarOverlay').classList.toggle('show');
 }
-let confirmCb=null;
-function showConfirm(icon,title,msg,cb){
-    $id('confirmIcon').innerHTML=`<i class="fas ${icon}" style="font-size:32px"></i>`;
-    $id('confirmTitle').innerText=title;
-    $id('confirmMessage').innerHTML=msg;
-    confirmCb=cb;
+
+let confirmCb = null;
+function showConfirm(icon, title, msg, cb){
+    $id('confirmIcon').innerHTML = `<i class="fas ${icon}" style="font-size:32px"></i>`;
+    $id('confirmTitle').innerText = title;
+    $id('confirmMessage').innerHTML = msg;
+    confirmCb = cb;
     $id('confirmOverlay').classList.add('show');
     $id('confirmModal').classList.add('show');
-    $id('confirmYesBtn').onclick=()=>{closeConfirm();if(confirmCb)confirmCb();};
+    $id('confirmYesBtn').onclick = ()=>{ closeConfirm(); if(confirmCb) confirmCb(); };
 }
-function closeConfirm(){$id('confirmOverlay').classList.remove('show');$id('confirmModal').classList.remove('show');}
+function closeConfirm(){
+    $id('confirmOverlay').classList.remove('show');
+    $id('confirmModal').classList.remove('show');
+}
 
-const pageTitles={
-    dashboard:{icon:'fa-chart-line',title:'لوحة القيادة'},
-    areas:{icon:'fa-map-marked-alt',title:'إدارة المناطق'},
-    marketCategories:{icon:'fa-tags',title:'تصنيفات المتجر'},
-    marketAddProduct:{icon:'fa-plus-circle',title:'إضافة منتج'},
-    marketProducts:{icon:'fa-boxes',title:'إدارة المنتجات'},
-    visibility:{icon:'fa-shield-alt',title:'تحكم الأقسام'},
-    rewards:{icon:'fa-gift',title:'المكافآت والنقاط'},
-    features:{icon:'fa-rocket',title:'الميزات المتقدمة'},
-    fakka:{icon:'fa-ticket-alt',title:'كروت الفكة'},
-    shippingSettings:{icon:'fa-shipping-fast',title:'إعدادات الشحن'},
-    shops:{icon:'fa-store',title:'متاجرنا'},
-    pharmacies:{icon:'fa-prescription-bottle',title:'الصيدليات'},
-    workHours:{icon:'fa-clock',title:'ساعات العمل'},
-    support:{icon:'fa-headset',title:'الدعم والمساعدة'},
-    drivers:{icon:'fa-users-cog',title:'حسابات السائقين'},
-    driverDetails:{icon:'fa-user-circle',title:'تفاصيل السائق'},
-    discounts:{icon:'fa-tags',title:'الخصومات'},
-    pricing:{icon:'fa-dollar-sign',title:'الأسعار والعمولات'},
-    orders:{icon:'fa-box-open',title:'الطلبات النشطة'},
-    shippingOrders:{icon:'fa-truck',title:'الشحنات الواردة'},
-    destinations:{icon:'fa-route',title:'الوجهات'},
-    addDriver:{icon:'fa-id-card',title:'تسجيل سائق'},
-    driversList:{icon:'fa-user-friends',title:'السائقين المسجلين'}
+/* ═══════════ Page Titles ═══════════ */
+const pageTitles = {
+    dashboard:       { icon:'fa-chart-line',       title:'لوحة القيادة' },
+    areas:           { icon:'fa-map-marked-alt',   title:'إدارة المناطق' },
+    marketCategories:{ icon:'fa-tags',             title:'تصنيفات المتجر' },
+    marketAddProduct:{ icon:'fa-plus-circle',      title:'إضافة منتج' },
+    marketProducts:  { icon:'fa-boxes',            title:'إدارة المنتجات' },
+    visibility:      { icon:'fa-shield-alt',       title:'تحكم الأقسام' },
+    rewards:         { icon:'fa-gift',             title:'المكافآت والنقاط' },
+    features:        { icon:'fa-rocket',           title:'الميزات المتقدمة' },
+    fakka:           { icon:'fa-ticket-alt',       title:'كروت الفكة' },
+    shippingSettings:{ icon:'fa-shipping-fast',    title:'إعدادات الشحن' },
+    shops:           { icon:'fa-store',            title:'متاجرنا' },
+    pharmacies:      { icon:'fa-prescription-bottle', title:'الصيدليات' },
+    workHours:       { icon:'fa-clock',            title:'ساعات العمل' },
+    support:         { icon:'fa-headset',          title:'الدعم والمساعدة' },
+    drivers:         { icon:'fa-users-cog',        title:'حسابات السائقين' },
+    driverDetails:   { icon:'fa-user-circle',      title:'تفاصيل السائق' },
+    discounts:       { icon:'fa-tags',             title:'الخصومات' },
+    pricing:         { icon:'fa-dollar-sign',      title:'الأسعار والعمولات' },
+    orders:          { icon:'fa-box-open',         title:'الطلبات النشطة' },
+    shippingOrders:  { icon:'fa-truck',            title:'الشحنات الواردة' },
+    destinations:    { icon:'fa-route',            title:'الوجهات' },
+    addDriver:       { icon:'fa-id-card',          title:'تسجيل سائق' },
+    driversList:     { icon:'fa-user-friends',     title:'السائقين المسجلين' }
 };
+
 function switchPage(page){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-    const p=$id('page-'+page);if(p)p.classList.add('active');
-    const n=document.querySelector(`.nav-item[data-page="${page}"]`);if(n)n.classList.add('active');
-    const info=pageTitles[page];
-    if(info)$id('pageTitle').innerHTML=`<i class="fas ${info.icon}"></i> ${info.title}`;
+    const p = $id('page-'+page); if(p) p.classList.add('active');
+    const n = document.querySelector(`.nav-item[data-page="${page}"]`);
+    if(n) n.classList.add('active');
+    const info = pageTitles[page];
+    if(info) $id('pageTitle').innerHTML = `<i class="fas ${info.icon}"></i> ${info.title}`;
     if(window.innerWidth<=900){
         $id('sidebar').classList.remove('open');
         $id('sidebarOverlay').classList.remove('show');
     }
-    if(page==='marketCategories')renderMarketCategoriesList();
-    if(page==='marketAddProduct')populateCategoryDropdowns();
-    if(page==='marketProducts'){populateCategoryDropdowns();renderMarketProductsTable();}
-    if(page==='pharmacies'){loadPharmaciesDropdown();renderPharmacies();}
-    if(page==='workHours')loadWorkHours();
-    if(page==='dashboard')loadDashboardStats();
+    if(page==='marketCategories')  renderMarketCategoriesList();
+    if(page==='marketAddProduct')  populateCategoryDropdowns();
+    if(page==='marketProducts'){   populateCategoryDropdowns(); renderMarketProductsTable(); }
+    if(page==='pharmacies'){       loadPharmaciesDropdown(); renderPharmacies(); }
+    if(page==='workHours')         loadWorkHours();
+    if(page==='dashboard')         loadDashboardStats();
 }
 
+/* ═══════════ Areas ═══════════ */
 function openAreaModal(){
-    const list=$id('areaModalList');if(!list)return;
-    const keys=Object.keys(areasCache);
+    const list = $id('areaModalList'); if(!list) return;
+    const keys = Object.keys(areasCache);
     if(keys.length===0){
-        list.innerHTML='<div class="empty-state"><i class="fas fa-map"></i><p>لا توجد مناطق مضافة</p></div>';
-    }else{
-        let html='';
+        list.innerHTML = '<div class="empty-state"><i class="fas fa-map"></i><p>لا توجد مناطق مضافة</p></div>';
+    } else {
+        let html = '';
         keys.forEach(k=>{
-            const name=areasCache[k];
-            const isSel=(name===activeArea);
-            html+=`<div class="area-item ${isSel?'selected':''}" onclick="pickArea('${name}')">
+            const name = areasCache[k];
+            const isSel = (name===activeArea);
+            html += `<div class="area-item ${isSel?'selected':''}" onclick="pickArea('${name}')">
                 <div class="area-item-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <div class="area-item-name">${name}</div>
                 ${isSel?'<i class="fas fa-check-circle area-item-check"></i>':''}
             </div>`;
         });
-        list.innerHTML=html;
+        list.innerHTML = html;
     }
     $id('areaModalOverlay').classList.add('show');
     $id('areaModal').classList.add('show');
 }
-function closeAreaModal(){$id('areaModalOverlay').classList.remove('show');$id('areaModal').classList.remove('show');}
-function pickArea(name){switchArea(name);closeAreaModal();}
-
-window.onload=function(){
-    loadAreas();
-    loadSupportWhatsapp();
-};
+function closeAreaModal(){
+    $id('areaModalOverlay').classList.remove('show');
+    $id('areaModal').classList.remove('show');
+}
+function pickArea(name){ switchArea(name); closeAreaModal(); }
 
 function addNewArea(){
-    const name=$id('newAreaName').value.trim();
-    if(!name)return showToast('اكتب اسم المنطقة','error');
-    db.ref('areas').push({name,active:true,createdAt:Date.now()}).then(()=>{
-        $id('newAreaName').value='';
+    const name = $id('newAreaName').value.trim();
+    if(!name) return showToast('اكتب اسم المنطقة','error');
+    db.ref('areas').push({ name, active:true, createdAt:Date.now() }).then(()=>{
+        $id('newAreaName').value = '';
         showToast('✅ تمت الإضافة','success');
     });
 }
+
 function loadAreas(){
-    db.ref('areas').on('value',snap=>{
-        areasCache={};
-        let html='';
+    db.ref('areas').on('value', snap=>{
+        areasCache = {};
+        let html = '';
         snap.forEach(c=>{
-            const name=c.val().name;const key=c.key;
-            if(!name)return;
-            areasCache[key]=name;
-            html+=`<div style="background:rgba(20,27,45,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
+            const name = c.val().name; const key = c.key;
+            if(!name) return;
+            areasCache[key] = name;
+            html += `<div style="background:rgba(20,27,45,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
                 <div style="display:flex;align-items:center;gap:10px">
                     <i class="fas fa-map-marker-alt" style="color:#a78bfa;font-size:18px"></i>
                     <span style="font-weight:700;font-size:14px">${name}</span>
@@ -935,139 +1450,157 @@ function loadAreas(){
                 <button class="del-btn" onclick="deleteArea('${key}')"><i class="fas fa-trash"></i> حذف</button>
             </div>`;
         });
-        const c=$id('areasListContainer');
-        if(c)c.innerHTML=html||'<div class="empty-state"><i class="fas fa-map"></i><p>لا توجد مناطق</p></div>';
-        const label=$id('areaTriggerLabel');
-        if(label&&activeArea)label.innerText=activeArea;
+        const c = $id('areasListContainer');
+        if(c) c.innerHTML = html || '<div class="empty-state"><i class="fas fa-map"></i><p>لا توجد مناطق</p></div>';
+        const label = $id('areaTriggerLabel');
+        if(label && activeArea) label.innerText = activeArea;
     });
 }
+
 function deleteArea(key){
-    if(!confirm('حذف المنطقة؟'))return;
+    if(!confirm('حذف المنطقة؟')) return;
     db.ref('areas/'+key).remove().then(()=>showToast('✅ تم الحذف','success'));
 }
+
 function switchArea(name){
-    activeArea=name;
-    const badge=$id('activeAreaBadge');
+    activeArea = name;
+    const badge = $id('activeAreaBadge');
     if(name){
-        badge.innerHTML=`<i class="fas fa-map-marker-alt"></i> ${name}`;
-        const label=$id('areaTriggerLabel');if(label)label.innerText=name;
-    }else{badge.innerHTML=`<i class="fas fa-map-marker-alt"></i> لم يتم اختيار منطقة`;}
-    if(!name)return;
-    loadSettings();loadRewardSettings();loadFakkaCardsInventory();loadDestinations();
-    loadProviders();loadDriversAndWallets();loadDailyOrders();loadDiscountsSummary();loadDashboardStats();
-    loadShippingSettings();loadShops();loadShippingOrders();
-    loadMarketCategories();loadMarketProducts();
+        badge.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${name}`;
+        const label = $id('areaTriggerLabel'); if(label) label.innerText = name;
+    } else {
+        badge.innerHTML = `<i class="fas fa-map-marker-alt"></i> لم يتم اختيار منطقة`;
+    }
+    if(!name) return;
+    loadSettings();
+    loadRewardSettings();
+    loadFakkaCardsInventory();
+    loadDestinations();
+    loadProviders();
+    loadDriversAndWallets();
+    loadDailyOrders();
+    loadDiscountsSummary();
+    loadDashboardStats();
+    loadShippingSettings();
+    loadShops();
+    loadShippingOrders();
+    loadMarketCategories();
+    loadMarketProducts();
 }
 
-function updateServiceVisibility(key,visible){
-    if(!activeArea)return showToast('اختر منطقة','error');
+/* ═══════════ Service Visibility ═══════════ */
+function updateServiceVisibility(key, visible){
+    if(!activeArea) return showToast('اختر منطقة','error');
     db.ref(`settings/${activeArea}/${key}`).set(visible);
 }
+
 function loadSettings(){
-    db.ref('settings/'+activeArea).on('value',snap=>{
-        const s=snap.val()||{};
+    db.ref('settings/'+activeArea).on('value', snap=>{
+        const s = snap.val()||{};
         ['tuktuk','market','pharmacy','vegetables','package','customRequest'].forEach(serv=>{
-            const el=$id('masterToggle'+serv.charAt(0).toUpperCase()+serv.slice(1));
-            if(el)el.checked=(s[serv]!==false);
+            const el = $id('masterToggle'+serv.charAt(0).toUpperCase()+serv.slice(1));
+            if(el) el.checked = (s[serv]!==false);
         });
-        const shopsToggle=$id('masterToggleShops');
-        if(shopsToggle)shopsToggle.checked=(s.shopsEnabled!==false);
-        const shTog=$id('shippingEnabledToggle');
-        if(shTog)shTog.checked=(s.shippingEnabled!==false);
-        const fbTog=$id('showFakkaButtonToggle');
-        if(fbTog)fbTog.checked=(s.showFakkaButton!==false);
+        const shopsToggle = $id('masterToggleShops');
+        if(shopsToggle) shopsToggle.checked = (s.shopsEnabled!==false);
+        const shTog = $id('shippingEnabledToggle');
+        if(shTog) shTog.checked = (s.shippingEnabled!==false);
+        const fbTog = $id('showFakkaButtonToggle');
+        if(fbTog) fbTog.checked = (s.showFakkaButton!==false);
     });
     db.ref('pricing/'+activeArea).once('value').then(snap=>{
-        const p=snap.val()||{};
-        const gd=$id('generalDeliveryPriceInput');if(gd)gd.value=p.generalDeliveryPrice||'';
-        const tk=$id('tuktukCommInput');if(tk)tk.value=p.tuktukCommission||'';
-        const dl=$id('delegateCommInput');if(dl)dl.value=p.delegateCommission||'';
-    });
-}
-function savePricesAndCommissions(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    db.ref('pricing/'+activeArea).update({
-        generalDeliveryPrice:Number($id('generalDeliveryPriceInput').value)||0,
-        tuktukCommission:Number($id('tuktukCommInput').value)||0,
-        delegateCommission:Number($id('delegateCommInput').value)||0
-    }).then(()=>showToast('✅ تم الحفظ','success'));
-}
-function saveFakkaButtonSetting(enabled){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    db.ref(`settings/${activeArea}/showFakkaButton`).set(enabled).then(()=>{
-        showToast(enabled?'✅ تم إظهار زر كارت الفكة':'⏸️ تم إخفاء زر كارت الفكة',enabled?'success':'info');
-    });
-}
-function loadShippingSettings(){
-    if(!activeArea)return;
-    db.ref('settings/'+activeArea).once('value').then(snap=>{
-        const s=snap.val()||{};
-        const tog=$id('shippingEnabledToggle');
-        if(tog)tog.checked=(s.shippingEnabled!==false);
-        const sp=$id('shippingPriceInput');if(sp)sp.value=s.shippingPrice||30;
-        const sd=$id('shippingDaysInput');if(sd)sd.value=s.shippingDays||3;
-        const sc=$id('shippingCommission');if(sc)sc.value=s.shippingCommission||10;
-        shippingSettingsCache={price:Number(s.shippingPrice)||30,days:Number(s.shippingDays)||3};
-    });
-}
-function saveShippingSettings(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    db.ref('settings/'+activeArea).update({
-        shippingPrice:Number($id('shippingPriceInput').value)||30,
-        shippingDays:Number($id('shippingDaysInput').value)||3,
-        shippingCommission:Number($id('shippingCommission').value)||10
-    }).then(()=>showToast('✅ تم حفظ إعدادات الشحن','success'));
-}
-function toggleShippingService(enabled){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    db.ref(`settings/${activeArea}/shippingEnabled`).set(enabled).then(()=>{
-        showToast(enabled?'✅ تم تفعيل الشحن':'⏸️ تم إيقاف الشحن',enabled?'success':'info');
+        const p = snap.val()||{};
+        const gd = $id('generalDeliveryPriceInput'); if(gd) gd.value = p.generalDeliveryPrice||'';
+        const tk = $id('tuktukCommInput'); if(tk) tk.value = p.tuktukCommission||'';
+        const dl = $id('delegateCommInput'); if(dl) dl.value = p.delegateCommission||'';
     });
 }
 
+function savePricesAndCommissions(){
+    if(!activeArea) return showToast('اختر منطقة','error');
+    db.ref('pricing/'+activeArea).update({
+        generalDeliveryPrice: Number($id('generalDeliveryPriceInput').value)||0,
+        tuktukCommission:     Number($id('tuktukCommInput').value)||0,
+        delegateCommission:   Number($id('delegateCommInput').value)||0
+    }).then(()=>showToast('✅ تم الحفظ','success'));
+}
+
+function saveFakkaButtonSetting(enabled){
+    if(!activeArea) return showToast('اختر منطقة','error');
+    db.ref(`settings/${activeArea}/showFakkaButton`).set(enabled).then(()=>{
+        showToast(enabled?'✅ تم إظهار زر كارت الفكة':'⏸️ تم إخفاء زر كارت الفكة', enabled?'success':'info');
+    });
+}
+
+/* ═══════════ Shipping Settings ═══════════ */
+function loadShippingSettings(){
+    if(!activeArea) return;
+    db.ref('settings/'+activeArea).once('value').then(snap=>{
+        const s = snap.val()||{};
+        const tog = $id('shippingEnabledToggle');
+        if(tog) tog.checked = (s.shippingEnabled!==false);
+        const sp = $id('shippingPriceInput'); if(sp) sp.value = s.shippingPrice||30;
+        const sd = $id('shippingDaysInput'); if(sd) sd.value = s.shippingDays||3;
+        const sc = $id('shippingCommission'); if(sc) sc.value = s.shippingCommission||10;
+        shippingSettingsCache = { price:Number(s.shippingPrice)||30, days:Number(s.shippingDays)||3 };
+    });
+}
+
+function saveShippingSettings(){
+    if(!activeArea) return showToast('اختر منطقة','error');
+    db.ref('settings/'+activeArea).update({
+        shippingPrice:      Number($id('shippingPriceInput').value)||30,
+        shippingDays:       Number($id('shippingDaysInput').value)||3,
+        shippingCommission: Number($id('shippingCommission').value)||10
+    }).then(()=>showToast('✅ تم حفظ إعدادات الشحن','success'));
+}
+
+function toggleShippingService(enabled){
+    if(!activeArea) return showToast('اختر منطقة','error');
+    db.ref(`settings/${activeArea}/shippingEnabled`).set(enabled).then(()=>{
+        showToast(enabled?'✅ تم تفعيل الشحن':'⏸️ تم إيقاف الشحن', enabled?'success':'info');
+    });
+}
+
+/* ═══════════ Work Hours ═══════════ */
 function loadWorkHours(){
     db.ref('settings/work_hours').once('value').then(snap=>{
-        const d=snap.val()||{};
-        const enabled=$id('workHoursEnabled');
-        if(enabled)enabled.checked=(d.enabled===true);
-        const open=$id('workHoursOpen');
-        if(open)open.value=d.openTime||'08:00';
-        const close=$id('workHoursClose');
-        if(close)close.value=d.closeTime||'23:00';
-        const phone=$id('workHoursSupportPhone');
-        if(phone)phone.value=d.supportPhone||'';
+        const d = snap.val()||{};
+        const enabled = $id('workHoursEnabled'); if(enabled) enabled.checked = (d.enabled===true);
+        const open = $id('workHoursOpen'); if(open) open.value = d.openTime||'08:00';
+        const close = $id('workHoursClose'); if(close) close.value = d.closeTime||'23:00';
+        const phone = $id('workHoursSupportPhone'); if(phone) phone.value = d.supportPhone||'';
         renderWorkHoursPreview();
     });
 }
+
 function saveWorkHours(){
-    const enabled=$id('workHoursEnabled').checked;
-    const openTime=$id('workHoursOpen').value||'08:00';
-    const closeTime=$id('workHoursClose').value||'23:00';
-    const supportPhone=$id('workHoursSupportPhone').value.trim();
+    const enabled = $id('workHoursEnabled').checked;
+    const openTime = $id('workHoursOpen').value||'08:00';
+    const closeTime = $id('workHoursClose').value||'23:00';
+    const supportPhone = $id('workHoursSupportPhone').value.trim();
     db.ref('settings/work_hours').update({
-        enabled:enabled,
-        openTime:openTime,
-        closeTime:closeTime,
-        supportPhone:supportPhone||'',
-        updatedAt:Date.now()
+        enabled, openTime, closeTime,
+        supportPhone: supportPhone||'',
+        updatedAt: Date.now()
     }).then(()=>{
         showToast('✅ تم حفظ ساعات العمل','success');
         renderWorkHoursPreview();
     });
 }
+
 function renderWorkHoursPreview(){
-    const c=$id('workHoursPreview');
-    if(!c)return;
+    const c = $id('workHoursPreview'); if(!c) return;
     db.ref('settings/work_hours').once('value').then(snap=>{
-        const d=snap.val()||{};
+        const d = snap.val()||{};
         if(!d.enabled){
-            c.innerHTML='<div class="info-note success-note">✅ التطبيق شغال <b>24 ساعة</b> — مفيش إغلاق</div>';
+            c.innerHTML = '<div class="info-note success-note">✅ التطبيق شغال <b>24 ساعة</b> — مفيش إغلاق</div>';
             return;
         }
-        const open=d.openTime||'08:00';
-        const close=d.closeTime||'23:00';
-        const phone=d.supportPhone||'';
-        c.innerHTML=`<div class="info-note" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.3);color:#c4b5fd;line-height:2">
+        const open = d.openTime||'08:00';
+        const close = d.closeTime||'23:00';
+        const phone = d.supportPhone||'';
+        c.innerHTML = `<div class="info-note" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.3);color:#c4b5fd;line-height:2">
             🕐 <b>وقت الفتح:</b> ${formatTime12(open)}<br>
             🕐 <b>وقت القفل:</b> ${formatTime12(close)}<br>
             📞 <b>رقم الدعم:</b> ${phone||'رقم الواتساب العام'}<br>
@@ -1076,73 +1609,77 @@ function renderWorkHoursPreview(){
         </div>`;
     });
 }
+
 function formatTime12(time24){
-    if(!time24)return '-';
-    const [h,m]=time24.split(':');
-    let hour=parseInt(h);
-    const ampm=hour>=12?'مساءً':'صباحاً';
-    hour=hour%12||12;
+    if(!time24) return '-';
+    const [h,m] = time24.split(':');
+    let hour = parseInt(h);
+    const ampm = hour>=12 ? 'مساءً' : 'صباحاً';
+    hour = hour%12 || 12;
     return `${hour}:${m} ${ampm}`;
 }
-function calculateDuration(open,close){
-    if(!open||!close)return 0;
-    const [oh,om]=open.split(':').map(Number);
-    const [ch,cm]=close.split(':').map(Number);
-    let openMin=oh*60+om;
-    let closeMin=ch*60+cm;
-    if(closeMin<openMin)closeMin+=24*60;
-    const diffMin=closeMin-openMin;
-    return Math.round(diffMin/60*10)/10;
+
+function calculateDuration(open, close){
+    if(!open || !close) return 0;
+    const [oh,om] = open.split(':').map(Number);
+    const [ch,cm] = close.split(':').map(Number);
+    let openMin = oh*60+om;
+    let closeMin = ch*60+cm;
+    if(closeMin < openMin) closeMin += 24*60;
+    return Math.round((closeMin-openMin)/60*10)/10;
 }
 
+/* ═══════════ Pharmacies ═══════════ */
 function loadPharmaciesDropdown(){
-    const sel=$id('pharmArea');
-    if(!sel)return;
-    const keys=Object.keys(areasCache);
-    let html='<option value="">-- اختر منطقة --</option>';
-    keys.forEach(k=>{
-        const name=areasCache[k];
-        html+=`<option value="${name}">${name}</option>`;
-    });
-    sel.innerHTML=html;
+    const sel = $id('pharmArea'); if(!sel) return;
+    const keys = Object.keys(areasCache);
+    let html = '<option value="">-- اختر منطقة --</option>';
+    keys.forEach(k=>{ html += `<option value="${areasCache[k]}">${areasCache[k]}</option>`; });
+    sel.innerHTML = html;
 }
+
 function addNewPharmacy(){
-    const name=$id('pharmName').value.trim();
-    const phone=$id('pharmPhone').value.trim();
-    const code=$id('pharmCode').value.trim();
-    const area=$id('pharmArea').value;
-    const address=$id('pharmAddress').value.trim();
-    if(!name){return showToast('اكتب اسم الصيدلية','error');}
-    if(phone.length<11){return showToast('رقم الموبايل لازم 11 رقم','error');}
-    if(!code||code.length<4){return showToast('كود الدخول لازم 4 أرقام على الأقل','error');}
-    if(!area){return showToast('اختر المنطقة','error');}
+    const name = $id('pharmName').value.trim();
+    const phone = $id('pharmPhone').value.trim();
+    const code = $id('pharmCode').value.trim();
+    const area = $id('pharmArea').value;
+    const address = $id('pharmAddress').value.trim();
+    if(!name) return showToast('اكتب اسم الصيدلية','error');
+    if(phone.length<11) return showToast('رقم الموبايل لازم 11 رقم','error');
+    if(!code || code.length<4) return showToast('كود الدخول لازم 4 أرقام على الأقل','error');
+    if(!area) return showToast('اختر المنطقة','error');
     db.ref(`pharmacies/${area}`).once('value').then(snap=>{
         if(snap.exists() && snap.numChildren()>0){
             showToast('في صيدلية مسجلة بالفعل في المنطقة دي','error');
             return;
         }
         db.ref(`pharmacies/${area}`).push({
-            name:name,phone:phone,code:code,area:area,
-            address:address||'',createdAt:Date.now(),active:true
+            name, phone, code, area,
+            address: address||'',
+            createdAt: Date.now(),
+            active: true
         }).then(()=>{
-            $id('pharmName').value='';$id('pharmPhone').value='';
-            $id('pharmCode').value='';$id('pharmArea').value='';$id('pharmAddress').value='';
+            $id('pharmName').value = '';
+            $id('pharmPhone').value = '';
+            $id('pharmCode').value = '';
+            $id('pharmArea').value = '';
+            $id('pharmAddress').value = '';
             showToast('✅ تم تسجيل الصيدلية','success');
             renderPharmacies();
         });
     });
 }
+
 function renderPharmacies(){
-    const c=$id('pharmaciesContainer');
-    if(!c)return;
+    const c = $id('pharmaciesContainer'); if(!c) return;
     db.ref('pharmacies').once('value').then(snap=>{
-        let html='';
+        let html = '';
         snap.forEach(areaSnap=>{
-            const areaName=areaSnap.key;
+            const areaName = areaSnap.key;
             areaSnap.forEach(pharmSnap=>{
-                const p=pharmSnap.val();
-                if(!p)return;
-                html+=`<div class="pharmacy-item">
+                const p = pharmSnap.val();
+                if(!p) return;
+                html += `<div class="pharmacy-item">
                     <div class="pharmacy-item-info">
                         <div class="pharmacy-item-icon"><i class="fas fa-prescription-bottle"></i></div>
                         <div class="pharmacy-item-text">
@@ -1154,9 +1691,10 @@ function renderPharmacies(){
                 </div>`;
             });
         });
-        c.innerHTML=html||'<div class="empty-state"><i class="fas fa-prescription-bottle"></i><p>لا توجد صيدليات مسجلة</p></div>';
+        c.innerHTML = html || '<div class="empty-state"><i class="fas fa-prescription-bottle"></i><p>لا توجد صيدليات مسجلة</p></div>';
     });
 }
+
 function deletePharmacy(area, id){
     showConfirm('fa-trash','حذف الصيدلية','متأكد إنك عايز تحذف الصيدلية دي؟',()=>{
         db.ref(`pharmacies/${area}/${id}`).remove().then(()=>{
@@ -1166,28 +1704,30 @@ function deletePharmacy(area, id){
     });
 }
 
+/* ═══════════ Market: Categories ═══════════ */
 function loadMarketCategories(){
-    if(!activeArea)return;
-    db.ref(`market_categories/${activeArea}`).on('value',snap=>{
-        marketCategoriesCache={};
-        snap.forEach(c=>{marketCategoriesCache[c.key]=c.val();});
+    if(!activeArea) return;
+    db.ref(`market_categories/${activeArea}`).on('value', snap=>{
+        marketCategoriesCache = {};
+        snap.forEach(c=>{ marketCategoriesCache[c.key] = c.val(); });
         renderMarketCategoriesList();
         populateCategoryDropdowns();
     });
 }
+
 function renderMarketCategoriesList(){
-    const c=$id('marketCategoriesList');if(!c)return;
-    const cats=Object.keys(marketCategoriesCache).map(k=>({id:k,...marketCategoriesCache[k]}));
+    const c = $id('marketCategoriesList'); if(!c) return;
+    const cats = Object.keys(marketCategoriesCache).map(k=>({ id:k, ...marketCategoriesCache[k] }));
     cats.sort((a,b)=>(a.order||999)-(b.order||999));
     if(cats.length===0){
-        c.innerHTML='<div class="empty-state"><i class="fas fa-tags"></i><p>لا توجد تصنيفات بعد</p></div>';
+        c.innerHTML = '<div class="empty-state"><i class="fas fa-tags"></i><p>لا توجد تصنيفات بعد</p></div>';
         return;
     }
-    let html='';
+    let html = '';
     cats.forEach(cat=>{
-        const icon=cat.icon||'📦';
-        const active=cat.active!==false;
-        html+=`<div class="market-category-item">
+        const icon = cat.icon||'📦';
+        const active = cat.active!==false;
+        html += `<div class="market-category-item">
             <div class="market-cat-icon-box">${icon}</div>
             <div class="market-cat-info">
                 <div class="market-cat-name">${cat.name||'تصنيف'}
@@ -1201,156 +1741,178 @@ function renderMarketCategoriesList(){
             </div>
         </div>`;
     });
-    c.innerHTML=html;
+    c.innerHTML = html;
 }
+
 function addNewMarketCategory(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    const name=$id('newCatName').value.trim();
-    const icon=$id('newCatIcon').value.trim()||'📦';
-    const order=Number($id('newCatOrder').value)||999;
-    if(!name){showToast('اكتب اسم التصنيف','error');return;}
-    db.ref(`market_categories/${activeArea}`).push({name,icon,order,active:true,createdAt:Date.now()}).then(()=>{
-        $id('newCatName').value='';$id('newCatIcon').value='';$id('newCatOrder').value='';
+    if(!activeArea) return showToast('اختر منطقة','error');
+    const name = $id('newCatName').value.trim();
+    const icon = $id('newCatIcon').value.trim()||'📦';
+    const order = Number($id('newCatOrder').value)||999;
+    if(!name){ showToast('اكتب اسم التصنيف','error'); return; }
+    db.ref(`market_categories/${activeArea}`).push({
+        name, icon, order, active:true, createdAt:Date.now()
+    }).then(()=>{
+        $id('newCatName').value = '';
+        $id('newCatIcon').value = '';
+        $id('newCatOrder').value = '';
         showToast('✅ تم إضافة التصنيف','success');
     });
 }
+
 function editMarketCategory(id){
-    const cat=marketCategoriesCache[id];
-    if(!cat)return;
-    const newName=prompt('اسم التصنيف الجديد:',cat.name||'');
-    if(newName===null)return;
-    const newIcon=prompt('أيقونة التصنيف (إيموجي):',cat.icon||'📦');
-    if(newIcon===null)return;
-    const newOrder=prompt('ترتيب العرض:',cat.order||'');
-    if(newOrder===null)return;
-    const active=confirm('هل التصنيف نشط؟ (OK=نشط / Cancel=مخفي)');
+    const cat = marketCategoriesCache[id]; if(!cat) return;
+    const newName = prompt('اسم التصنيف الجديد:', cat.name||'');
+    if(newName===null) return;
+    const newIcon = prompt('أيقونة التصنيف (إيموجي):', cat.icon||'📦');
+    if(newIcon===null) return;
+    const newOrder = prompt('ترتيب العرض:', cat.order||'');
+    if(newOrder===null) return;
+    const active = confirm('هل التصنيف نشط؟ (OK=نشط / Cancel=مخفي)');
     db.ref(`market_categories/${activeArea}/${id}`).update({
-        name:newName.trim()||cat.name,
-        icon:newIcon.trim()||'📦',
-        order:Number(newOrder)||cat.order||999,
+        name: newName.trim()||cat.name,
+        icon: newIcon.trim()||'📦',
+        order: Number(newOrder)||cat.order||999,
         active
     }).then(()=>showToast('✅ تم التعديل','success'));
 }
+
 function deleteMarketCategory(id){
-    const cat=marketCategoriesCache[id];
-    if(!cat)return;
-    const productsInCat=Object.keys(marketProductsCache).filter(k=>marketProductsCache[k].categoryId===id).length;
-    let msg=`متأكد من حذف تصنيف <b>${cat.name}</b>؟`;
-    if(productsInCat>0)msg+=`<br><br>⚠️ فيه <b>${productsInCat}</b> منتج مرتبطين بالتصنيف ده، هيفضلوا بدون تصنيف.`;
-    showConfirm('fa-trash','حذف التصنيف',msg,()=>{
+    const cat = marketCategoriesCache[id]; if(!cat) return;
+    const productsInCat = Object.keys(marketProductsCache).filter(k=>marketProductsCache[k].categoryId===id).length;
+    let msg = `متأكد من حذف تصنيف <b>${cat.name}</b>؟`;
+    if(productsInCat>0) msg += `<br><br>⚠️ فيه <b>${productsInCat}</b> منتج مرتبطين بالتصنيف ده، هيفضلوا بدون تصنيف.`;
+    showConfirm('fa-trash','حذف التصنيف', msg, ()=>{
         db.ref(`market_categories/${activeArea}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
     });
 }
+
 function populateCategoryDropdowns(){
-    const dropdowns=['newProdCategory','editProdCategory','marketProductFilterCat'];
-    const cats=Object.keys(marketCategoriesCache).map(k=>({id:k,...marketCategoriesCache[k]}));
+    const dropdowns = ['newProdCategory','editProdCategory','marketProductFilterCat'];
+    const cats = Object.keys(marketCategoriesCache).map(k=>({ id:k, ...marketCategoriesCache[k] }));
     cats.sort((a,b)=>(a.order||999)-(b.order||999));
     dropdowns.forEach(ddId=>{
-        const dd=$id(ddId);if(!dd)return;
-        const currentVal=dd.value;
-        const isFilter=(ddId==='marketProductFilterCat');
-        let html=isFilter?'<option value="all">كل التصنيفات</option>':'<option value="">-- اختر تصنيف --</option>';
+        const dd = $id(ddId); if(!dd) return;
+        const currentVal = dd.value;
+        const isFilter = (ddId==='marketProductFilterCat');
+        let html = isFilter ? '<option value="all">كل التصنيفات</option>' : '<option value="">-- اختر تصنيف --</option>';
         cats.forEach(c=>{
-            html+=`<option value="${c.id}">${c.icon||'📦'} ${c.name}</option>`;
+            html += `<option value="${c.id}">${c.icon||'📦'} ${c.name}</option>`;
         });
-        dd.innerHTML=html;
-        if(currentVal)dd.value=currentVal;
+        dd.innerHTML = html;
+        if(currentVal) dd.value = currentVal;
     });
 }
 
+/* ═══════════ Market: Products ═══════════ */
 function loadMarketProducts(){
-    if(!activeArea)return;
-    db.ref(`market_products/${activeArea}`).on('value',snap=>{
-        marketProductsCache={};
-        snap.forEach(c=>{marketProductsCache[c.key]=c.val();});
+    if(!activeArea) return;
+    db.ref(`market_products/${activeArea}`).on('value', snap=>{
+        marketProductsCache = {};
+        snap.forEach(c=>{ marketProductsCache[c.key] = c.val(); });
         renderMarketProductsTable();
         updateMarketStats();
     });
 }
+
 function updateMarketStats(){
-    const ids=Object.keys(marketProductsCache);
-    const total=ids.length;
-    let active=0,out=0;
+    const ids = Object.keys(marketProductsCache);
+    const total = ids.length;
+    let active=0, hidden=0, out=0;
     ids.forEach(k=>{
-        const p=marketProductsCache[k];
-        if(p.active!==false)active++;
-        if(p.outOfStock===true)out++;
+        const p = marketProductsCache[k];
+        if(p.active!==false) active++; else hidden++;
+        if(p.outOfStock===true) out++;
     });
-    const t=$id('mpStatTotal');if(t)t.innerText=total;
-    const a=$id('mpStatActive');if(a)a.innerText=active;
-    const o=$id('mpStatOut');if(o)o.innerText=out;
+    const t = $id('mpStatTotal'); if(t) t.innerText = total;
+    const a = $id('mpStatActive'); if(a) a.innerText = active;
+    const h = $id('mpStatHidden'); if(h) h.innerText = hidden;
+    const o = $id('mpStatOut'); if(o) o.innerText = out;
 }
+
 function previewProductImage(){
-    const url=$id('newProdImage').value.trim();
-    const prev=$id('prodImagePreview');
-    const img=$id('prodImagePreviewImg');
-    if(!prev||!img)return;
-    if(url&&url.startsWith('http')){img.src=url;prev.style.display='block';}
-    else prev.style.display='none';
+    const url = $id('newProdImage').value.trim();
+    const prev = $id('prodImagePreview');
+    const img = $id('prodImagePreviewImg');
+    if(!prev || !img) return;
+    if(url && url.startsWith('http')){ img.src = url; prev.style.display = 'block'; }
+    else prev.style.display = 'none';
 }
+
 function previewEditProductImage(){
-    const url=$id('editProdImage').value.trim();
-    const prev=$id('editProdImagePreview');
-    const img=$id('editProdImagePreviewImg');
-    if(!prev||!img)return;
-    if(url&&url.startsWith('http')){img.src=url;prev.style.display='block';}
-    else prev.style.display='none';
+    const url = $id('editProdImage').value.trim();
+    const prev = $id('editProdImagePreview');
+    const img = $id('editProdImagePreviewImg');
+    if(!prev || !img) return;
+    if(url && url.startsWith('http')){ img.src = url; prev.style.display = 'block'; }
+    else prev.style.display = 'none';
 }
+
 function addNewMarketProduct(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    const name=$id('newProdName').value.trim();
-    const price=Number($id('newProdPrice').value);
-    const oldPrice=Number($id('newProdOldPrice').value)||0;
-    const categoryId=$id('newProdCategory').value;
-    const note=$id('newProdNote').value.trim();
-    const image=$id('newProdImage').value.trim();
-    const order=Number($id('newProdOrder').value)||9999;
-    const active=$id('newProdActive').value==='true';
-    const outOfStock=$id('newProdOutOfStock').checked;
-    if(!name){showToast('اكتب اسم المنتج','error');return;}
-    if(!price||price<=0){showToast('اكتب سعر صحيح','error');return;}
-    if(!categoryId){showToast('اختر تصنيف','error');return;}
-    if(image&&!image.startsWith('http')){showToast('رابط الصورة لازم يبدأ بـ http','error');return;}
+    if(!activeArea) return showToast('اختر منطقة','error');
+    const name = $id('newProdName').value.trim();
+    const price = Number($id('newProdPrice').value);
+    const oldPrice = Number($id('newProdOldPrice').value)||0;
+    const categoryId = $id('newProdCategory').value;
+    const note = $id('newProdNote').value.trim();
+    const image = $id('newProdImage').value.trim();
+    const order = Number($id('newProdOrder').value)||9999;
+    const active = $id('newProdActive').value==='true';
+    const outOfStock = $id('newProdOutOfStock').checked;
+    if(!name) return showToast('اكتب اسم المنتج','error');
+    if(!price || price<=0) return showToast('اكتب سعر صحيح','error');
+    if(!categoryId) return showToast('اختر تصنيف','error');
+    if(image && !image.startsWith('http')) return showToast('رابط الصورة لازم يبدأ بـ http','error');
     db.ref(`market_products/${activeArea}`).push({
-        name,price,oldPrice:oldPrice>0?oldPrice:null,
-        categoryId,note:note||null,image:image||null,
-        order,active,outOfStock,createdAt:Date.now()
+        name, price,
+        oldPrice: oldPrice>0 ? oldPrice : null,
+        categoryId,
+        note: note||null,
+        image: image||null,
+        order, active, outOfStock,
+        createdAt: Date.now()
     }).then(()=>{
-        $id('newProdName').value='';$id('newProdPrice').value='';$id('newProdOldPrice').value='';
-        $id('newProdNote').value='';$id('newProdImage').value='';$id('newProdOrder').value='';
-        $id('newProdOutOfStock').checked=false;
-        $id('prodImagePreview').style.display='none';
+        $id('newProdName').value = '';
+        $id('newProdPrice').value = '';
+        $id('newProdOldPrice').value = '';
+        $id('newProdNote').value = '';
+        $id('newProdImage').value = '';
+        $id('newProdOrder').value = '';
+        $id('newProdOutOfStock').checked = false;
+        $id('prodImagePreview').style.display = 'none';
         showToast('✅ تم إضافة المنتج بنجاح','success');
     });
 }
+
 function renderMarketProductsTable(){
-    const c=$id('marketProductsTableContainer');if(!c)return;
-    const search=($id('marketProductSearch')?.value||'').toLowerCase().trim();
-    const filterCat=$id('marketProductFilterCat')?.value||'all';
-    let ids=Object.keys(marketProductsCache);
-    ids=ids.filter(k=>{
-        const p=marketProductsCache[k];
-        if(filterCat!=='all'&&p.categoryId!==filterCat)return false;
-        if(search&&!(p.name||'').toLowerCase().includes(search))return false;
+    const c = $id('marketProductsTableContainer'); if(!c) return;
+    const search = ($id('marketProductSearch')?.value||'').toLowerCase().trim();
+    const filterCat = $id('marketProductFilterCat')?.value||'all';
+    let ids = Object.keys(marketProductsCache);
+    ids = ids.filter(k=>{
+        const p = marketProductsCache[k];
+        if(filterCat!=='all' && p.categoryId!==filterCat) return false;
+        if(search && !(p.name||'').toLowerCase().includes(search)) return false;
         return true;
     });
     ids.sort((a,b)=>(marketProductsCache[a].order||9999)-(marketProductsCache[b].order||9999));
     if(ids.length===0){
-        c.innerHTML='<div class="empty-state"><i class="fas fa-boxes"></i><p>لا توجد منتجات مطابقة</p></div>';
+        c.innerHTML = '<div class="empty-state"><i class="fas fa-boxes"></i><p>لا توجد منتجات مطابقة</p></div>';
         return;
     }
-    let html='';
+    let html = '';
     ids.forEach(k=>{
-        const p=marketProductsCache[k];
-        const cat=p.categoryId?marketCategoriesCache[p.categoryId]:null;
-        const catName=cat?`${cat.icon||'📦'} ${cat.name}`:'بدون تصنيف';
-        const imgHtml=p.image?`<img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'">`:`<i class="fas fa-image"></i>`;
-        let tags='';
-        if(p.active===false)tags+=`<span class="market-prod-tag market-tag-hidden">مخفي</span>`;
-        else tags+=`<span class="market-prod-tag market-tag-active">نشط</span>`;
-        if(p.outOfStock===true)tags+=`<span class="market-prod-tag market-tag-out">خلص</span>`;
-        if(p.oldPrice&&Number(p.oldPrice)>Number(p.price))tags+=`<span class="market-prod-tag market-tag-discount">خصم</span>`;
-        html+=`<div class="market-product-row">
+        const p = marketProductsCache[k];
+        const cat = p.categoryId ? marketCategoriesCache[p.categoryId] : null;
+        const catName = cat ? `${cat.icon||'📦'} ${cat.name}` : 'بدون تصنيف';
+        const imgHtml = p.image ? `<img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'">` : `<i class="fas fa-image"></i>`;
+        const isActive = (p.active!==false);
+        let tags = '';
+        if(!isActive) tags += `<span class="market-prod-tag market-tag-hidden">مخفي</span>`;
+        else tags += `<span class="market-prod-tag market-tag-active">نشط</span>`;
+        if(p.outOfStock===true) tags += `<span class="market-prod-tag market-tag-out">خلص</span>`;
+        if(p.oldPrice && Number(p.oldPrice)>Number(p.price)) tags += `<span class="market-prod-tag market-tag-discount">خصم</span>`;
+        html += `<div class="market-product-row">
             <div class="market-prod-img">${imgHtml}</div>
             <div class="market-prod-info">
                 <div class="market-prod-name">${p.name} ${tags}</div>
@@ -1361,89 +1923,240 @@ function renderMarketProductsTable(){
                 ${p.oldPrice&&Number(p.oldPrice)>Number(p.price)?`<small>${p.oldPrice} ج</small>`:''}
             </div>
             <div class="market-prod-actions">
+                <button class="icon-btn ${isActive?'green':'yellow'}" onclick="toggleProductVisibility('${k}')" title="${isActive?'إخفاء':'إظهار'}">
+                    <i class="fas ${isActive?'fa-eye':'fa-eye-slash'}"></i> ${isActive?'إخفاء':'إظهار'}
+                </button>
                 <button class="icon-btn yellow" onclick="openProductEditor('${k}')"><i class="fas fa-edit"></i></button>
                 <button class="icon-btn red" onclick="deleteMarketProduct('${k}')"><i class="fas fa-trash"></i></button>
             </div>
         </div>`;
     });
-    c.innerHTML=html;
+    c.innerHTML = html;
 }
+
+function toggleProductVisibility(id){
+    const p = marketProductsCache[id]; if(!p) return;
+    const newState = (p.active===false) ? true : false;
+    db.ref(`market_products/${activeArea}/${id}/active`).set(newState).then(()=>{
+        showToast(newState?'✅ تم إظهار المنتج':'⏸️ تم إخفاء المنتج', newState?'success':'info');
+    });
+}
+
 function openProductEditor(id){
-    const p=marketProductsCache[id];if(!p)return;
-    $id('editProdId').value=id;
-    $id('editProdName').value=p.name||'';
-    $id('editProdPrice').value=p.price||'';
-    $id('editProdOldPrice').value=p.oldPrice||'';
-    $id('editProdNote').value=p.note||'';
-    $id('editProdImage').value=p.image||'';
-    $id('editProdOrder').value=p.order||'';
-    $id('editProdActive').value=(p.active!==false)?'true':'false';
-    $id('editProdOutOfStock').checked=(p.outOfStock===true);
+    const p = marketProductsCache[id]; if(!p) return;
+    $id('editProdId').value = id;
+    $id('editProdName').value = p.name||'';
+    $id('editProdPrice').value = p.price||'';
+    $id('editProdOldPrice').value = p.oldPrice||'';
+    $id('editProdNote').value = p.note||'';
+    $id('editProdImage').value = p.image||'';
+    $id('editProdOrder').value = p.order||'';
+    $id('editProdActive').value = (p.active!==false) ? 'true' : 'false';
+    $id('editProdOutOfStock').checked = (p.outOfStock===true);
     populateCategoryDropdowns();
-    $id('editProdCategory').value=p.categoryId||'';
+    $id('editProdCategory').value = p.categoryId||'';
     previewEditProductImage();
-    $id('editProductCard').style.display='block';
-    window.scrollTo({top:0,behavior:'smooth'});
+    $id('editProductCard').style.display = 'block';
+    switchPage('marketAddProduct');
+    setTimeout(()=>{
+        $id('editProductCard').scrollIntoView({ behavior:'smooth' });
+    },300);
 }
+
 function cancelProductEdit(){
-    $id('editProductCard').style.display='none';
-    $id('editProdId').value='';
-    $id('editProdImagePreview').style.display='none';
+    $id('editProductCard').style.display = 'none';
+    $id('editProdId').value = '';
+    $id('editProdImagePreview').style.display = 'none';
 }
+
 function saveMarketProductEdit(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    const id=$id('editProdId').value;
-    if(!id)return showToast('خطأ','error');
-    const name=$id('editProdName').value.trim();
-    const price=Number($id('editProdPrice').value);
-    const oldPrice=Number($id('editProdOldPrice').value)||0;
-    const categoryId=$id('editProdCategory').value;
-    const note=$id('editProdNote').value.trim();
-    const image=$id('editProdImage').value.trim();
-    const order=Number($id('editProdOrder').value)||9999;
-    const active=$id('editProdActive').value==='true';
-    const outOfStock=$id('editProdOutOfStock').checked;
-    if(!name){showToast('اكتب اسم المنتج','error');return;}
-    if(!price||price<=0){showToast('اكتب سعر صحيح','error');return;}
-    if(!categoryId){showToast('اختر تصنيف','error');return;}
-    if(image&&!image.startsWith('http')){showToast('رابط الصورة لازم يبدأ بـ http','error');return;}
+    if(!activeArea) return showToast('اختر منطقة','error');
+    const id = $id('editProdId').value;
+    if(!id) return showToast('خطأ','error');
+    const name = $id('editProdName').value.trim();
+    const price = Number($id('editProdPrice').value);
+    const oldPrice = Number($id('editProdOldPrice').value)||0;
+    const categoryId = $id('editProdCategory').value;
+    const note = $id('editProdNote').value.trim();
+    const image = $id('editProdImage').value.trim();
+    const order = Number($id('editProdOrder').value)||9999;
+    const active = $id('editProdActive').value==='true';
+    const outOfStock = $id('editProdOutOfStock').checked;
+    if(!name) return showToast('اكتب اسم المنتج','error');
+    if(!price || price<=0) return showToast('اكتب سعر صحيح','error');
+    if(!categoryId) return showToast('اختر تصنيف','error');
+    if(image && !image.startsWith('http')) return showToast('رابط الصورة لازم يبدأ بـ http','error');
     db.ref(`market_products/${activeArea}/${id}`).update({
-        name,price,oldPrice:oldPrice>0?oldPrice:null,
-        categoryId,note:note||null,image:image||null,
-        order,active,outOfStock,updatedAt:Date.now()
+        name, price,
+        oldPrice: oldPrice>0 ? oldPrice : null,
+        categoryId,
+        note: note||null,
+        image: image||null,
+        order, active, outOfStock,
+        updatedAt: Date.now()
     }).then(()=>{
         showToast('✅ تم حفظ التعديلات','success');
         cancelProductEdit();
+        switchPage('marketProducts');
     });
 }
+
 function deleteMarketProduct(id){
-    const p=marketProductsCache[id];if(!p)return;
-    showConfirm('fa-trash','حذف المنتج',`متأكد من حذف <b>${p.name}</b>؟`,()=>{
+    const p = marketProductsCache[id]; if(!p) return;
+    showConfirm('fa-trash','حذف المنتج', `متأكد من حذف <b>${p.name}</b>؟`, ()=>{
         db.ref(`market_products/${activeArea}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
     });
 }
 
+/* ═══════════ Quick Load Products ═══════════ */
+/* ⚠️ الدالة دي بتعتمد على ملف products.js اللي هيرفع بعدين */
+
+async function ensureCategory(area, catName, icon){
+    const snap = await db.ref(`market_categories/${area}`).once('value');
+    let catId = null;
+    snap.forEach(c=>{
+        const d = c.val();
+        if(d && d.name===catName) catId = c.key;
+    });
+    if(catId) return catId;
+    const newRef = db.ref(`market_categories/${area}`).push();
+    await newRef.set({
+        name: catName,
+        icon: icon || '📦',
+        order: 999,
+        active: true,
+        createdAt: Date.now()
+    });
+    return newRef.key;
+}
+
+async function quickLoadCategory(categoryKey){
+    if(typeof quickProductsDatabase === 'undefined'){
+        return showToast('⚠️ ملف products.js غير محمّل','error');
+    }
+    if(!categoryKey) return;
+    const catData = quickProductsDatabase[categoryKey];
+    if(!catData){
+        return showToast('التصنيف مش موجود','error');
+    }
+    // دعم شكلين: {name, icon, products} أو array مباشر
+    let products, catName, catIcon;
+    if(Array.isArray(catData)){
+        products = catData;
+        catName = categoryKey;
+        catIcon = '📦';
+    } else {
+        products = catData.products || [];
+        catName = catData.name || categoryKey;
+        catIcon = catData.icon || '📦';
+    }
+    if(products.length===0){
+        return showToast('التصنيف فاضي','error');
+    }
+    showConfirm(
+        'fa-magic',
+        'تحميل منتجات جاهزة',
+        `هيتم تحميل <b>${products.length} منتج</b> من تصنيف <b>${catIcon} ${catName}</b><br><br>
+        ⚠️ هيتم إضافتهم في <b>كل المناطق</b> المضافة في النظام<br>
+        هتقدر تخفي/تعدل أي منتج بعد كده`,
+        async ()=>{
+            try {
+                showToast('⏳ جاري التحميل...','info');
+                const areasSnap = await db.ref('areas').once('value');
+                const areas = [];
+                areasSnap.forEach(c=>{
+                    const d = c.val();
+                    if(d && d.name && d.active!==false) areas.push(d.name);
+                });
+                if(areas.length===0){
+                    showToast('مفيش مناطق مضافة','error');
+                    return;
+                }
+                let totalAdded = 0;
+                for(const area of areas){
+                    const catId = await ensureCategory(area, catName, catIcon);
+                    for(let i=0; i<products.length; i++){
+                        const p = products[i];
+                        await db.ref(`market_products/${area}`).push({
+                            name: p.name,
+                            price: p.price,
+                            oldPrice: p.oldPrice||null,
+                            categoryId: catId,
+                            note: p.note||null,
+                            image: p.image||null,
+                            order: i+1,
+                            active: true,
+                            outOfStock: false,
+                            createdAt: Date.now()
+                        });
+                        totalAdded++;
+                    }
+                }
+                showToast(`✅ تم إضافة ${totalAdded} منتج في ${areas.length} منطقة`,'success');
+                if(typeof loadMarketProducts === 'function') loadMarketProducts();
+            } catch(err){
+                console.error(err);
+                showToast('❌ خطأ: ' + err.message,'error');
+            }
+        }
+    );
+}
+
+/* توليد أزرار Quick Load تلقائياً */
+function renderQuickLoadButtons(){
+    const grid = $id('quickCatGrid');
+    if(!grid) return;
+    if(typeof quickProductsDatabase === 'undefined'){
+        grid.innerHTML = '<div class="info-note danger-note">⚠️ ملف products.js غير محمّل — تأكد من رفعه</div>';
+        return;
+    }
+    let html = '';
+    Object.keys(quickProductsDatabase).forEach(key=>{
+        const catData = quickProductsDatabase[key];
+        let catName, catIcon, count;
+        if(Array.isArray(catData)){
+            catName = key;
+            catIcon = '📦';
+            count = catData.length;
+        } else {
+            catName = catData.name || key;
+            catIcon = catData.icon || '📦';
+            count = (catData.products||[]).length;
+        }
+        html += `<button class="quick-cat-btn" onclick="quickLoadCategory('${key}')">
+            <div class="quick-cat-icon">${catIcon}</div>
+            <div class="quick-cat-info">
+                <div class="quick-cat-name">${catName}</div>
+                <div class="quick-cat-count">${count} منتج</div>
+            </div>
+        </button>`;
+    });
+    grid.innerHTML = html || '<div class="empty-state"><p>مفيش تصنيفات</p></div>';
+}
+
+/* ═══════════ Shops ═══════════ */
 function loadShops(){
-    if(!activeArea)return;
-    db.ref(`shops/${activeArea}`).on('value',snap=>{
-        shopsCache={};
-        snap.forEach(c=>{shopsCache[c.key]=c.val();});
+    if(!activeArea) return;
+    db.ref(`shops/${activeArea}`).on('value', snap=>{
+        shopsCache = {};
+        snap.forEach(c=>{ shopsCache[c.key] = c.val(); });
         renderShops();
     });
 }
+
 function renderShops(){
-    const c=$id('shopsContainer');if(!c)return;
-    const shops=Object.keys(shopsCache).map(k=>({id:k,...shopsCache[k]}));
+    const c = $id('shopsContainer'); if(!c) return;
+    const shops = Object.keys(shopsCache).map(k=>({ id:k, ...shopsCache[k] }));
     if(shops.length===0){
-        c.innerHTML='<div class="empty-state"><i class="fas fa-store"></i><p>لا توجد متاجر بعد</p></div>';
+        c.innerHTML = '<div class="empty-state"><i class="fas fa-store"></i><p>لا توجد متاجر بعد</p></div>';
         return;
     }
-    let html='';
+    let html = '';
     shops.forEach(s=>{
-        const c1=s.color||'#8b5cf6';
-        const c2=shadeColor(c1,-20);
-        const icon=s.icon||'fa-store';
-        html+=`<div class="shop-preview" style="--sc1:${c1};--sc2:${c2}">
+        const c1 = s.color||'#8b5cf6';
+        const c2 = shadeColor(c1, -20);
+        const icon = s.icon||'fa-store';
+        html += `<div class="shop-preview" style="--sc1:${c1};--sc2:${c2}">
             <div class="shop-preview-icon"><i class="fas ${icon}"></i></div>
             <div class="shop-preview-info">
                 <div class="shop-preview-name">${s.name}</div>
@@ -1455,137 +2168,333 @@ function renderShops(){
             </div>
         </div>`;
     });
-    c.innerHTML=html;
+    c.innerHTML = html;
 }
-function shadeColor(color,percent){
-    const num=parseInt(color.replace('#',''),16);
-    const amt=Math.round(2.55*percent);
-    const R=Math.max(0,Math.min(255,(num>>16)+amt));
-    const G=Math.max(0,Math.min(255,((num>>8)&0x00FF)+amt));
-    const B=Math.max(0,Math.min(255,(num&0x0000FF)+amt));
+
+function shadeColor(color, percent){
+    const num = parseInt(color.replace('#',''),16);
+    const amt = Math.round(2.55*percent);
+    const R = Math.max(0, Math.min(255, (num>>16)+amt));
+    const G = Math.max(0, Math.min(255, ((num>>8)&0x00FF)+amt));
+    const B = Math.max(0, Math.min(255, (num&0x0000FF)+amt));
     return '#'+(0x1000000+(R<<16)+(G<<8)+B).toString(16).slice(1);
 }
+
 function addNewShop(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    const name=$id('shopName').value.trim();
-    const link=$id('shopLink').value.trim();
-    const desc=$id('shopDesc').value.trim();
-    const icon=$id('shopIcon').value;
-    const color=$id('shopColor').value;
-    if(!name){showToast('اكتب اسم المتجر','error');return;}
-    if(!link||!link.startsWith('http')){showToast('اكتب لينك صحيح يبدأ بـ http','error');return;}
+    if(!activeArea) return showToast('اختر منطقة','error');
+    const name = $id('shopName').value.trim();
+    const link = $id('shopLink').value.trim();
+    const desc = $id('shopDesc').value.trim();
+    const icon = $id('shopIcon').value;
+    const color = $id('shopColor').value;
+    if(!name) return showToast('اكتب اسم المتجر','error');
+    if(!link || !link.startsWith('http')) return showToast('اكتب لينك صحيح يبدأ بـ http','error');
     db.ref(`shops/${activeArea}`).push({
-        name,link,description:desc,icon,color,
-        createdAt:Date.now(),order:Object.keys(shopsCache).length+1
+        name, link,
+        description: desc,
+        icon, color,
+        createdAt: Date.now(),
+        order: Object.keys(shopsCache).length+1
     }).then(()=>{
-        $id('shopName').value='';$id('shopLink').value='';$id('shopDesc').value='';
+        $id('shopName').value = '';
+        $id('shopLink').value = '';
+        $id('shopDesc').value = '';
         showToast('✅ تم إضافة المتجر','success');
     });
 }
+
 function deleteShop(id){
     showConfirm('fa-trash','حذف المتجر','متأكد إنك عايز تحذف المتجر ده؟',()=>{
         db.ref(`shops/${activeArea}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
     });
 }
 
+/* ═══════════ Support ═══════════ */
+function saveSupportWhatsapp(){
+    const num = $id('supportWhatsappInput').value.trim();
+    if(!num) return showToast('اكتب الرقم','error');
+    db.ref('settings/support/whatsapp').set(num).then(()=>showToast('✅ تم الحفظ','success'));
+}
+
+function loadSupportWhatsapp(){
+    db.ref('settings/support/whatsapp').once('value').then(s=>{
+        const input = $id('supportWhatsappInput');
+        if(input) input.value = s.val()||'01115699940';
+    });
+}
+
+/* ═══════════ Fakka Cards ═══════════ */
+function addNewFakkaCard(){
+    if(!activeArea) return showToast('اختر منطقة','error');
+    const code = $id('newFakkaCode').value.trim();
+    const network = $id('fakkaNetworkType').value;
+    if(!code) return showToast('اكتب الكود','error');
+    const dateStr = new Date().toLocaleDateString('ar-EG');
+    const node = network==='اتصالات' ? 'fakka_cards_etisalat' : 'fakka_cards_vodafone';
+    db.ref(`reward_settings/${activeArea}/${node}`).push({ code, network, date:dateStr }).then(()=>{
+        $id('newFakkaCode').value = '';
+        showToast(`✅ تم إضافة كارت ${network}`,'success');
+    });
+}
+
+function loadFakkaCardsInventory(){
+    if(!activeArea) return;
+    db.ref(`reward_settings/${activeArea}`).on('value', snap=>{
+        const data = snap.val()||{};
+        let html = '';
+        ['fakka_cards_etisalat','fakka_cards_vodafone'].forEach(node=>{
+            const cards = data[node]||{};
+            Object.keys(cards).forEach(id=>{
+                const c = cards[id];
+                if(!c || !c.code) return;
+                const color = node.includes('etisalat') ? '#10b981' : '#ef4444';
+                html += `<tr>
+                    <td><span style="color:${color};font-weight:700">${c.network}</span></td>
+                    <td><b style="color:#fde047">${c.code}</b></td>
+                    <td style="color:#94a3b8;font-size:11px">${c.date||''}</td>
+                    <td><button class="del-btn" onclick="deleteFakkaCard('${node}','${id}')"><i class="fas fa-trash"></i></button></td>
+                </tr>`;
+            });
+        });
+        const tbody = $id('fakkaCardsTableBody');
+        if(tbody) tbody.innerHTML = html || '<tr><td colspan="4" class="empty-state">لا توجد كروت</td></tr>';
+    });
+}
+
+function deleteFakkaCard(node, id){
+    if(!confirm('حذف الكارت؟')) return;
+    db.ref(`reward_settings/${activeArea}/${node}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
+}
+
+/* ═══════════ Rewards ═══════════ */
+function saveRewardBaseSettings(){
+    if(!activeArea) return showToast('اختر منطقة','error');
+    const data = {
+        active: $id('rewardSystemActive').checked,
+        showDelivery: $id('showDeliveryReward').checked,
+        showTripDiscount: $id('showTripDiscountReward').checked,
+        pointsPerOrder: Number($id('pointsPerOrder').value)||10,
+        discountCost: Number($id('costDiscountReward').value)||100,
+        tripDiscountCost: Number($id('tripDiscountCost').value)||50,
+        directDiscountValue: Number($id('directDiscountValue').value)||20,
+        fakkaCost: Number($id('costFakkaReward').value)||150,
+        showFakka: $id('showFakkaToggle').checked,
+        showFakkaVodafone: $id('showFakkaVodafoneToggle').checked,
+        showFakkaEtisalat: $id('showFakkaEtisalatToggle').checked,
+        doublePointsActive: $id('doublePointsActive').checked,
+        challengeActive: $id('challengeActive').checked,
+        challengeTarget: Number($id('challengeTarget').value)||5,
+        challengeReward: Number($id('challengeReward').value)||100,
+        inviteActive: $id('inviteActive').checked,
+        inviteReward: Number($id('inviteReward').value)||50
+    };
+    db.ref(`reward_settings/${activeArea}`).update(data).then(()=>showToast('✅ تم الحفظ','success'));
+}
+
+function loadRewardSettings(){
+    db.ref(`reward_settings/${activeArea}`).once('value').then(snap=>{
+        const r = snap.val()||{};
+        const set = (id,val)=>{ const el = $id(id); if(el) el.checked = val; };
+        const setVal = (id,val)=>{ const el = $id(id); if(el) el.value = val; };
+        set('rewardSystemActive', r.active!==false);
+        set('showDeliveryReward', r.showDelivery!==false);
+        set('showTripDiscountReward', r.showTripDiscount!==false);
+        set('showFakkaToggle', r.showFakka!==false);
+        set('showFakkaVodafoneToggle', r.showFakkaVodafone!==false);
+        set('showFakkaEtisalatToggle', r.showFakkaEtisalat!==false);
+        set('doublePointsActive', r.doublePointsActive===true);
+        set('challengeActive', r.challengeActive!==false);
+        set('inviteActive', r.inviteActive!==false);
+        setVal('pointsPerOrder', r.pointsPerOrder||10);
+        setVal('costDiscountReward', r.discountCost||100);
+        setVal('tripDiscountCost', r.tripDiscountCost||50);
+        setVal('directDiscountValue', r.directDiscountValue||20);
+        setVal('costFakkaReward', r.fakkaCost||150);
+        setVal('challengeTarget', r.challengeTarget||5);
+        setVal('challengeReward', r.challengeReward||100);
+        setVal('inviteReward', r.inviteReward||50);
+    });
+}
+
+/* ═══════════ Destinations ═══════════ */
+function addDestination(){
+    if(!activeArea) return showToast('اختر منطقة','error');
+    const name = $id('destName').value.trim();
+    const price = Number($id('destPrice').value);
+    if(!name || !price) return showToast('أدخل البيانات','error');
+    db.ref(`pricing/${activeArea}/destinations`).push({ name, price }).then(()=>{
+        $id('destName').value = '';
+        $id('destPrice').value = '';
+        showToast('✅ تم الإضافة','success');
+    });
+}
+
+function loadDestinations(){
+    if(!activeArea) return;
+    db.ref(`pricing/${activeArea}/destinations`).on('value', snap=>{
+        let html = '';
+        snap.forEach(c=>{
+            const item = c.val(), id = c.key;
+            html += `<tr>
+                <td>📍 ${item.name}</td>
+                <td style="color:#10b981;font-weight:700">${item.price} ج</td>
+                <td><button class="del-btn" onclick="db.ref('pricing/${activeArea}/destinations/${id}').remove()"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+        });
+        const tbody = $id('destTableBody');
+        if(tbody) tbody.innerHTML = html || '<tr><td colspan="3" class="empty-state">لا توجد وجهات</td></tr>';
+    });
+}
+
+/* ═══════════ Providers (Add & List) ═══════════ */
+function saveProviderWithCustomCode(){
+    if(!activeArea) return showToast('اختر منطقة','error');
+    const name = $id('pName').value.trim();
+    const phone = $id('pPhone').value.trim();
+    const role = $id('pRole').value;
+    const code = $id('customCode').value.trim();
+    if(!name || phone.length<11 || !code) return showToast('اكمل البيانات','error');
+    db.ref(`providers/${activeArea}`).push({ name, phone, role, code }).then(()=>{
+        $id('pName').value = '';
+        $id('pPhone').value = '';
+        $id('customCode').value = '';
+        showToast('✅ تم حفظ السائق','success');
+    });
+}
+
+function loadProviders(){
+    if(!activeArea) return;
+    db.ref(`providers/${activeArea}`).on('value', snap=>{
+        let html = '';
+        snap.forEach(c=>{
+            const item = c.val(), id = c.key;
+            html += `<tr>
+                <td>${item.name}</td>
+                <td>${item.role}</td>
+                <td style="color:#fde047;font-weight:700">${item.code}</td>
+                <td><button class="del-btn" onclick="db.ref('providers/${activeArea}/${id}').remove()"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+        });
+        const tbody = $id('providersList');
+        if(tbody) tbody.innerHTML = html || '<tr><td colspan="4" class="empty-state">لا يوجد سائقين</td></tr>';
+    });
+}
+
+/* ═══════════ Window Load ═══════════ */
+window.addEventListener('load', function(){
+    loadAreas();
+    loadSupportWhatsapp();
+    renderQuickLoadButtons();
+});
+/* ═══════════════════════════════════════════════════════════
+   الجزء 4: الشحنات + السائقين + الطلبات + الداشبورد
+   ═══════════════════════════════════════════════════════════ */
+
+/* ═══════════ Shipping Orders ═══════════ */
 function switchShippingTab(tab){
-    currentShippingTab=tab;
+    currentShippingTab = tab;
     ['new','assigned','active','done','returns'].forEach(t=>{
-        const el=$id('shipTab-'+t);
-        if(el)el.classList.toggle('active',t===tab);
+        const el = $id('shipTab-'+t);
+        if(el) el.classList.toggle('active', t===tab);
     });
     renderShippingOrders();
 }
+
 function loadShippingOrders(){
-    if(!activeArea)return;
-    db.ref('orders').on('value',snap=>{
-        ordersCache={};
-        snap.forEach(c=>{ordersCache[c.key]=c.val();});
+    if(!activeArea) return;
+    db.ref('orders').on('value', snap=>{
+        ordersCache = {};
+        snap.forEach(c=>{ ordersCache[c.key] = c.val(); });
         renderShippingOrders();
         updateShippingCounts();
     });
 }
+
 function getShippingByTab(){
-    const list=[];
+    const list = [];
     Object.keys(ordersCache).forEach(id=>{
-        const o=ordersCache[id];
-        if(!o)return;
-        if(!o.isShipping)return;
-        if(o.customerArea!==activeArea)return;
-        const tab=currentShippingTab;
-        const status=o.status||'';
+        const o = ordersCache[id];
+        if(!o) return;
+        if(!o.isShipping) return;
+        if(o.customerArea !== activeArea) return;
+        const tab = currentShippingTab;
+        const status = o.status||'';
         if(tab==='new'){
-            if(status!=='ready_for_driver')return;
-            if(o.assignedDriver)return;
+            if(status!=='ready_for_driver') return;
+            if(o.assignedDriver) return;
         }
         if(tab==='assigned'){
-            if(!o.assignedDriver)return;
-            if(status!=='assigned')return;
+            if(!o.assignedDriver) return;
+            if(status!=='assigned') return;
         }
-        if(tab==='active'){
-            if(status!=='active')return;
-        }
-        if(tab==='done'){
-            if(status!=='completed'&&status!=='archived')return;
-        }
-        if(tab==='returns'){
-            if(status!=='reported'&&status!=='returned')return;
-        }
-        list.push({id,...o});
+        if(tab==='active'){ if(status!=='active') return; }
+        if(tab==='done'){ if(status!=='completed' && status!=='archived') return; }
+        if(tab==='returns'){ if(status!=='reported' && status!=='returned') return; }
+        list.push({ id, ...o });
     });
     list.sort((a,b)=>(b.time||0)-(a.time||0));
     return list;
 }
+
 function updateShippingCounts(){
-    const tabs=['new','assigned','active','done','returns'];
+    const tabs = ['new','assigned','active','done','returns'];
     tabs.forEach(t=>{
-        const old=currentShippingTab;
-        currentShippingTab=t;
-        const count=getShippingByTab().length;
-        currentShippingTab=old;
-        const el=$id('shipCount'+t.charAt(0).toUpperCase()+t.slice(1));
-        if(el)el.innerText=count;
+        const old = currentShippingTab;
+        currentShippingTab = t;
+        const count = getShippingByTab().length;
+        currentShippingTab = old;
+        const el = $id('shipCount'+t.charAt(0).toUpperCase()+t.slice(1));
+        if(el) el.innerText = count;
     });
-    const old=currentShippingTab;currentShippingTab='new';
-    const newCount=getShippingByTab().length;
-    currentShippingTab=old;
-    const badge=$id('shippingOrdersBadge');
-    if(badge){badge.innerText=newCount;badge.style.display=newCount>0?'inline-block':'none';}
+    const old = currentShippingTab;
+    currentShippingTab = 'new';
+    const newCount = getShippingByTab().length;
+    currentShippingTab = old;
+    const badge = $id('shippingOrdersBadge');
+    if(badge){
+        badge.innerText = newCount;
+        badge.style.display = newCount>0 ? 'inline-block' : 'none';
+    }
 }
+
 function renderShippingOrders(){
-    const c=$id('shippingOrdersContainer');if(!c)return;
-    const orders=getShippingByTab();
+    const c = $id('shippingOrdersContainer'); if(!c) return;
+    const orders = getShippingByTab();
     if(orders.length===0){
-        c.innerHTML='<div class="empty-state"><i class="fas fa-truck"></i><p>لا توجد شحنات في القسم ده</p></div>';
+        c.innerHTML = '<div class="empty-state"><i class="fas fa-truck"></i><p>لا توجد شحنات في القسم ده</p></div>';
         return;
     }
-    let html='';
-    orders.forEach(o=>{html+=renderShippingCard(o);});
-    c.innerHTML=html;
+    let html = '';
+    orders.forEach(o=>{ html += renderShippingCard(o); });
+    c.innerHTML = html;
 }
+
 function renderShippingCard(o){
-    const status=o.status||'ready_for_driver';
-    let statusInfo={key:'pending',text:'جديدة',icon:'fa-bell'};
-    if(status==='assigned'){statusInfo={key:'assigned',text:'معيّنة',icon:'fa-user-check'};}
-    if(status==='active'){statusInfo={key:'active',text:'جارية',icon:'fa-truck'};}
-    if(status==='completed'||status==='archived'){statusInfo={key:'done',text:'مكتملة',icon:'fa-check-double'};}
-    if(status==='reported'){statusInfo={key:'returned',text:'العميل مش موجود',icon:'fa-user-slash'};}
-    if(status==='returned'){statusInfo={key:'returned',text:'مرتجع',icon:'fa-undo'};}
-    let driverHtml='';
+    const status = o.status||'ready_for_driver';
+    let statusInfo = { key:'pending', text:'جديدة', icon:'fa-bell' };
+    if(status==='assigned'){ statusInfo = { key:'assigned', text:'معيّنة', icon:'fa-user-check' }; }
+    if(status==='active'){ statusInfo = { key:'active', text:'جارية', icon:'fa-truck' }; }
+    if(status==='completed' || status==='archived'){ statusInfo = { key:'done', text:'مكتملة', icon:'fa-check-double' }; }
+    if(status==='reported'){ statusInfo = { key:'returned', text:'العميل مش موجود', icon:'fa-user-slash' }; }
+    if(status==='returned'){ statusInfo = { key:'returned', text:'مرتجع', icon:'fa-undo' }; }
+
+    let driverHtml = '';
     if(o.assignedDriver){
-        driverHtml=`<div class="ship-alert-row"><span>🚚 المندوب:</span><span style="color:#a78bfa">${o.assignedDriverName||'-'} (${o.assignedDriverPhone||'-'})</span></div>`;
+        driverHtml = `<div class="ship-alert-row"><span>🚚 المندوب:</span><span style="color:#a78bfa">${o.assignedDriverName||'-'} (${o.assignedDriverPhone||'-'})</span></div>`;
     }
-    let actionsHtml='';
+
+    let actionsHtml = '';
     if(currentShippingTab==='new'){
-        actionsHtml=`<button class="btn-assign" onclick="openAssignDriver('${o.id}')"><i class="fas fa-user-check"></i> تعيين مندوب</button>`;
-    }else if(currentShippingTab==='assigned'){
-        actionsHtml=`
+        actionsHtml = `<button class="btn-assign" onclick="openAssignDriver('${o.id}')"><i class="fas fa-user-check"></i> تعيين مندوب</button>`;
+    } else if(currentShippingTab==='assigned'){
+        actionsHtml = `
             <button class="btn-reassign" onclick="openAssignDriver('${o.id}')"><i class="fas fa-sync-alt"></i> تغيير المندوب</button>
             <a href="tel:${o.assignedDriverPhone||''}" class="btn-call-driver"><i class="fas fa-phone"></i> اتصال</a>
         `;
-    }else if(currentShippingTab==='active'){
-        actionsHtml=`<a href="tel:${o.assignedDriverPhone||''}" class="btn-call-driver"><i class="fas fa-phone"></i> اتصال بالمندوب</a>`;
+    } else if(currentShippingTab==='active'){
+        actionsHtml = `<a href="tel:${o.assignedDriverPhone||''}" class="btn-call-driver"><i class="fas fa-phone"></i> اتصال بالمندوب</a>`;
     }
+
     return `<div class="ship-alert-card status-${statusInfo.key}">
         <div class="ship-alert-header">
             <div>
@@ -1605,124 +2514,151 @@ function renderShippingCard(o){
         ${actionsHtml?`<div class="ship-alert-actions">${actionsHtml}</div>`:''}
     </div>`;
 }
+
 function openAssignDriver(orderId){
-    const o=ordersCache[orderId];
-    if(!o)return;
-    currentAssignOrderId=orderId;
-    const select=$id('assignDriverSelect');
-    select.innerHTML='<option value="">-- اختر مندوب --</option>';
+    const o = ordersCache[orderId]; if(!o) return;
+    currentAssignOrderId = orderId;
+    const select = $id('assignDriverSelect');
+    select.innerHTML = '<option value="">-- اختر مندوب --</option>';
     Object.keys(driversCache).forEach(k=>{
-        const d=driversCache[k];
-        const role=d.role||'';
+        const d = driversCache[k];
+        const role = d.role||'';
         if(role.includes('شحن')){
-            const opt=document.createElement('option');
-            opt.value=k;
-            opt.textContent=`${d.name} - ${d.phone}`;
-            if(o.assignedDriver===k)opt.selected=true;
+            const opt = document.createElement('option');
+            opt.value = k;
+            opt.textContent = `${d.name} - ${d.phone}`;
+            if(o.assignedDriver===k) opt.selected = true;
             select.appendChild(opt);
         }
     });
-    $id('assignDriverSub').innerText=`${o.trackingCode||'MISH-XXXX'} → اختر المندوب`;
-    $id('assignDriverNotes').value='';
+    $id('assignDriverSub').innerText = `${o.trackingCode||'MISH-XXXX'} → اختر المندوب`;
+    $id('assignDriverNotes').value = '';
     $id('assignDriverOverlay').classList.add('show');
     $id('assignDriverModal').classList.add('show');
 }
+
 function closeAssignDriver(){
     $id('assignDriverOverlay').classList.remove('show');
     $id('assignDriverModal').classList.remove('show');
-    currentAssignOrderId=null;
+    currentAssignOrderId = null;
 }
+
 function confirmAssignDriver(){
-    if(!currentAssignOrderId){showToast('خطأ','error');return;}
-    const driverKey=$id('assignDriverSelect').value;
-    const notes=$id('assignDriverNotes').value.trim();
-    if(!driverKey){showToast('اختار مندوب','error');return;}
-    const driver=driversCache[driverKey];
-    if(!driver){showToast('المندوب مش موجود','error');return;}
+    if(!currentAssignOrderId){ showToast('خطأ','error'); return; }
+    const driverKey = $id('assignDriverSelect').value;
+    const notes = $id('assignDriverNotes').value.trim();
+    if(!driverKey) return showToast('اختار مندوب','error');
+    const driver = driversCache[driverKey];
+    if(!driver) return showToast('المندوب مش موجود','error');
     db.ref('orders/'+currentAssignOrderId).update({
-        assignedDriver:driverKey,
-        assignedDriverName:driver.name,
-        assignedDriverPhone:driver.phone,
-        assignedAt:Date.now(),
-        assignNotes:notes,
-        status:'assigned'
+        assignedDriver: driverKey,
+        assignedDriverName: driver.name,
+        assignedDriverPhone: driver.phone,
+        assignedAt: Date.now(),
+        assignNotes: notes,
+        status: 'assigned'
     }).then(()=>{
         showToast('✅ تم تعيين المندوب','success');
         closeAssignDriver();
-    }).catch(()=>{showToast('خطأ في التعيين','error');});
+    }).catch(()=>{ showToast('خطأ في التعيين','error'); });
 }
 
-/* ══════════ DRIVERS & WALLETS ══════════ */
+/* ═══════════ Drivers & Wallets ═══════════ */
 function loadDriversAndWallets(){
-    if(!activeArea)return;
-    db.ref(`providers/${activeArea}`).on('value',snap=>{
-        driversCache={};
-        snap.forEach(c=>{driversCache[c.key]={...c.val(),key:c.key};});
+    if(!activeArea) return;
+    db.ref(`providers/${activeArea}`).on('value', snap=>{
+        driversCache = {};
+        snap.forEach(c=>{ driversCache[c.key] = { ...c.val(), key:c.key }; });
         renderDriversTable();
     });
-    db.ref('orders').on('value',snap=>{
-        ordersCache={};
-        snap.forEach(c=>{ordersCache[c.key]=c.val();});
+    db.ref('orders').on('value', snap=>{
+        ordersCache = {};
+        snap.forEach(c=>{ ordersCache[c.key] = c.val(); });
         renderDriversTable();
     });
-    db.ref(`pricing/${activeArea}`).on('value',snap=>{
-        const p=snap.val()||{};
-        pricingCache.tuktukCommission=Number(p.tuktukCommission)||10;
-        pricingCache.delegateCommission=Number(p.delegateCommission)||10;
+    db.ref(`pricing/${activeArea}`).on('value', snap=>{
+        const p = snap.val()||{};
+        pricingCache.tuktukCommission = Number(p.tuktukCommission)||10;
+        pricingCache.delegateCommission = Number(p.delegateCommission)||10;
         renderDriversTable();
     });
-    db.ref(`settings/${activeArea}/shippingCommission`).on('value',snap=>{
-        pricingCache.shippingCommission=Number(snap.val())||10;
+    db.ref(`settings/${activeArea}/shippingCommission`).on('value', snap=>{
+        pricingCache.shippingCommission = Number(snap.val())||10;
         renderDriversTable();
     });
-    db.ref(`driver_settlements/${activeArea}`).on('value',snap=>{
-        settlementsCache={};
-        snap.forEach(c=>{settlementsCache[c.key]=c.val();});
+    db.ref(`driver_settlements/${activeArea}`).on('value', snap=>{
+        settlementsCache = {};
+        snap.forEach(c=>{ settlementsCache[c.key] = c.val(); });
         renderDriversTable();
     });
 }
+
 function calcDriverStats(driver){
-    const role=driver.role||'';
-    let commRate=pricingCache.delegateCommission;
-    if(role.includes('توك')||role.includes('مشوار'))commRate=pricingCache.tuktukCommission;
-    else if(role.includes('شحن'))commRate=pricingCache.shippingCommission;
-    const lastSettlement=(settlementsCache[driver.key]&&settlementsCache[driver.key].lastSettledAt)||0;
-    let ordersCount=0,originalTotal=0,paidTotal=0,commissionTotal=0,discountTotal=0;
+    const role = driver.role||'';
+    let commRate = pricingCache.delegateCommission;
+    if(role.includes('توك') || role.includes('مشوار')) commRate = pricingCache.tuktukCommission;
+    else if(role.includes('شحن')) commRate = pricingCache.shippingCommission;
+
+    const lastSettlement = (settlementsCache[driver.key] && settlementsCache[driver.key].lastSettledAt) || 0;
+    let ordersCount=0, originalTotal=0, paidTotal=0, commissionTotal=0, discountTotal=0;
+
     Object.keys(ordersCache).forEach(id=>{
-        const o=ordersCache[id];if(!o)return;
-        const matched=(o.driverKey===driver.key)||(o.driverPhone===driver.phone);
-        if(!matched)return;
-        if(o.status!=='completed')return;
-        const orderTime=Number(o.completedAt||o.acceptedAt||o.time||0);
-        if(orderTime<lastSettlement)return;
-        const price=Number(o.price)||0;
-        const originalPrice=Number(o.originalPrice)||price;
-        const discount=Number(o.discountAmount)||0;
-        const rawComm=Number(o.commission);
-        const orderComm=(!isNaN(rawComm)&&o.commission!==undefined)?rawComm:(originalPrice*commRate)/100;
-        ordersCount++;originalTotal+=originalPrice;paidTotal+=price;discountTotal+=discount;commissionTotal+=orderComm;
+        const o = ordersCache[id]; if(!o) return;
+        const matched = (o.driverKey===driver.key) || (o.driverPhone===driver.phone);
+        if(!matched) return;
+        if(o.status!=='completed') return;
+        const orderTime = Number(o.completedAt||o.acceptedAt||o.time||0);
+        if(orderTime < lastSettlement) return;
+
+        const price = Number(o.price)||0;
+        const originalPrice = Number(o.originalPrice)||price;
+        const discount = Number(o.discountAmount)||0;
+        const rawComm = Number(o.commission);
+        const orderComm = (!isNaN(rawComm) && o.commission!==undefined)
+            ? rawComm
+            : (originalPrice * commRate) / 100;
+
+        ordersCount++;
+        originalTotal += originalPrice;
+        paidTotal += price;
+        discountTotal += discount;
+        commissionTotal += orderComm;
     });
-    let owesDriver=(originalTotal-commissionTotal)-paidTotal;
-    return {ordersCount,originalTotal:Math.round(originalTotal),paidTotal:Math.round(paidTotal),commissionTotal:Math.round(commissionTotal),discountTotal:Math.round(discountTotal),owesDriver:Math.round(owesDriver)};
+
+    const owesDriver = (originalTotal - commissionTotal) - paidTotal;
+    return {
+        ordersCount,
+        originalTotal: Math.round(originalTotal),
+        paidTotal: Math.round(paidTotal),
+        commissionTotal: Math.round(commissionTotal),
+        discountTotal: Math.round(discountTotal),
+        owesDriver: Math.round(owesDriver)
+    };
 }
+
 function renderDriversTable(){
-    const tbody=$id('driversTableBody');if(!tbody)return;
-    const drivers=Object.values(driversCache);
+    const tbody = $id('driversTableBody'); if(!tbody) return;
+    const drivers = Object.values(driversCache);
     if(drivers.length===0){
-        tbody.innerHTML='<tr><td colspan="9" class="empty-state">لا يوجد سائقين</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" class="empty-state">لا يوجد سائقين</td></tr>';
         return;
     }
-    let html='';
+    let html = '';
     drivers.forEach(driver=>{
-        const stats=calcDriverStats(driver);
-        const role=driver.role||'';
-        let roleClass='role-delegate',roleText='🛵 مندوب عام';
-        if(role.includes('توك')||role.includes('مشوار')){roleClass='role-tuktuk';roleText='🛺 توك توك';}
-        else if(role.includes('شحن')){roleClass='role-shipping';roleText='🚚 مندوب شحن';}
-        let owesHtml='';
-        if(stats.owesDriver>=0){owesHtml=`<span class="money-val money-primary">💵 ${stats.owesDriver} ج</span>`;}
-        else{const abs=Math.abs(stats.owesDriver);owesHtml=`<span class="money-negative">⚠️ -${abs} ج</span>`;}
-        html+=`<tr>
+        const stats = calcDriverStats(driver);
+        const role = driver.role||'';
+        let roleClass = 'role-delegate', roleText = '🛵 مندوب عام';
+        if(role.includes('توك') || role.includes('مشوار')){ roleClass = 'role-tuktuk'; roleText = '🛺 توك توك'; }
+        else if(role.includes('شحن')){ roleClass = 'role-shipping'; roleText = '🚚 مندوب شحن'; }
+
+        let owesHtml = '';
+        if(stats.owesDriver >= 0){
+            owesHtml = `<span class="money-val money-primary">💵 ${stats.owesDriver} ج</span>`;
+        } else {
+            const abs = Math.abs(stats.owesDriver);
+            owesHtml = `<span class="money-negative">⚠️ -${abs} ج</span>`;
+        }
+        html += `<tr>
             <td class="driver-name">${driver.name}</td>
             <td><span class="role-badge ${roleClass}">${roleText}</span></td>
             <td><span class="money-val">${stats.ordersCount}</span></td>
@@ -1737,32 +2673,35 @@ function renderDriversTable(){
             </div></td>
         </tr>`;
     });
-    tbody.innerHTML=html;
+    tbody.innerHTML = html;
 }
+
 function showDriverDetails(driverKey){
-    const driver=driversCache[driverKey];if(!driver)return;
-    const stats=calcDriverStats(driver);
-    const role=driver.role||'';
-    let roleClass='role-delegate',roleText='🛵 مندوب عام';
-    if(role.includes('توك')||role.includes('مشوار')){roleClass='role-tuktuk';roleText='🛺 توك توك';}
-    else if(role.includes('شحن')){roleClass='role-shipping';roleText='🚚 مندوب شحن';}
-    const lastSettlement=(settlementsCache[driverKey]&&settlementsCache[driverKey].lastSettledAt)||0;
-    const driverOrders=[];
+    const driver = driversCache[driverKey]; if(!driver) return;
+    const stats = calcDriverStats(driver);
+    const role = driver.role||'';
+    let roleClass = 'role-delegate', roleText = '🛵 مندوب عام';
+    if(role.includes('توك') || role.includes('مشوار')){ roleClass = 'role-tuktuk'; roleText = '🛺 توك توك'; }
+    else if(role.includes('شحن')){ roleClass = 'role-shipping'; roleText = '🚚 مندوب شحن'; }
+
+    const lastSettlement = (settlementsCache[driverKey] && settlementsCache[driverKey].lastSettledAt) || 0;
+    const driverOrders = [];
     Object.keys(ordersCache).forEach(id=>{
-        const o=ordersCache[id];if(!o)return;
-        const matched=(o.driverKey===driverKey)||(o.driverPhone===driver.phone);
-        if(!matched)return;
-        const orderTime=Number(o.completedAt||o.acceptedAt||o.time||0);
-        if(orderTime<lastSettlement)return;
-        driverOrders.push({id,...o});
+        const o = ordersCache[id]; if(!o) return;
+        const matched = (o.driverKey===driverKey) || (o.driverPhone===driver.phone);
+        if(!matched) return;
+        const orderTime = Number(o.completedAt||o.acceptedAt||o.time||0);
+        if(orderTime < lastSettlement) return;
+        driverOrders.push({ id, ...o });
     });
     driverOrders.sort((a,b)=>(b.time||0)-(a.time||0));
-    let ordersHtml='';
+
+    let ordersHtml = '';
     if(driverOrders.length===0){
-        ordersHtml='<div class="empty-state"><i class="fas fa-inbox"></i><p>لا توجد تسليمات</p></div>';
-    }else{
+        ordersHtml = '<div class="empty-state"><i class="fas fa-inbox"></i><p>لا توجد تسليمات</p></div>';
+    } else {
         driverOrders.forEach(o=>{
-            ordersHtml+=`<div class="order-row-item">
+            ordersHtml += `<div class="order-row-item">
                 <div class="order-row-item-info">
                     <div class="order-row-item-type">${o.type||'طلب'}</div>
                     <div class="order-row-item-time">🕐 ${o.orderTimeString||''} • ${o.customerName||o.name||'عميل'}</div>
@@ -1771,15 +2710,19 @@ function showDriverDetails(driverKey){
             </div>`;
         });
     }
-    const settlementsHistory=settlementsCache[driverKey]?.history||{};
-    const settlementsList=Object.keys(settlementsHistory).map(k=>({id:k,...settlementsHistory[k]})).sort((a,b)=>(b.settledAt||0)-(a.settledAt||0));
-    let settlementsHtml='';
+
+    const settlementsHistory = settlementsCache[driverKey]?.history || {};
+    const settlementsList = Object.keys(settlementsHistory)
+        .map(k=>({ id:k, ...settlementsHistory[k] }))
+        .sort((a,b)=>(b.settledAt||0)-(a.settledAt||0));
+
+    let settlementsHtml = '';
     if(settlementsList.length===0){
-        settlementsHtml='<div class="empty-state"><i class="fas fa-history"></i><p>لا يوجد سجل تصفير</p></div>';
-    }else{
-        settlementsHtml='<div class="table-wrap"><table class="data-table" style="min-width:600px"><thead><tr><th>التاريخ</th><th>الطلبات</th><th>الأصلي</th><th>المدفوع</th><th>العمولة</th><th>الصافي</th></tr></thead><tbody>';
+        settlementsHtml = '<div class="empty-state"><i class="fas fa-history"></i><p>لا يوجد سجل تصفير</p></div>';
+    } else {
+        settlementsHtml = '<div class="table-wrap"><table class="data-table" style="min-width:600px"><thead><tr><th>التاريخ</th><th>الطلبات</th><th>الأصلي</th><th>المدفوع</th><th>العمولة</th><th>الصافي</th></tr></thead><tbody>';
         settlementsList.forEach(s=>{
-            settlementsHtml+=`<tr>
+            settlementsHtml += `<tr>
                 <td style="font-size:11px">${s.dateStr||''}</td>
                 <td>${s.ordersCount||0}</td>
                 <td>${s.originalTotal||0} ج</td>
@@ -1788,10 +2731,11 @@ function showDriverDetails(driverKey){
                 <td style="color:#c4b5fd;font-weight:900">${s.owesDriver||0} ج</td>
             </tr>`;
         });
-        settlementsHtml+='</tbody></table></div>';
+        settlementsHtml += '</tbody></table></div>';
     }
-    const content=$id('driverDetailsContent');
-    content.innerHTML=`
+
+    const content = $id('driverDetailsContent');
+    content.innerHTML = `
         <div class="driver-info-header">
             <div class="driver-info-avatar">${(driver.name||'س').charAt(0)}</div>
             <div class="driver-info-name">${driver.name||'سائق'}</div>
@@ -1818,18 +2762,14 @@ function showDriverDetails(driverKey){
     switchPage('driverDetails');
 }
 
-/* ══════════ ✅ تصفير حساب السائق ══════════ */
+/* ═══════════ تصفير حساب السائق ═══════════ */
 function settleDriver(driverKey){
-    const driver=driversCache[driverKey];
-    if(!driver)return;
-    
-    const stats=calcDriverStats(driver);
-    
+    const driver = driversCache[driverKey]; if(!driver) return;
+    const stats = calcDriverStats(driver);
     if(stats.ordersCount===0){
         showToast('مفيش حاجة تتصفر — السائق مفيهوش طلبات جارية','info');
         return;
     }
-    
     showConfirm(
         'fa-check-double',
         'تصفير حساب السائق',
@@ -1840,244 +2780,56 @@ function settleDriver(driverKey){
         💰 عمولتنا: <b>${stats.commissionTotal} ج</b><br>
         ⭐ الصافي للسائق: <b style="color:#34d399">${stats.owesDriver} ج</b>`,
         ()=>{
-            const now=Date.now();
-            const dateStr=new Date(now).toLocaleString('ar-EG');
-            
-            /* ✅ 1. سجّل عملية التصفير في driver_settlements */
-            const settlementId=db.ref(`driver_settlements/${activeArea}/${driverKey}/history`).push().key;
+            const now = Date.now();
+            const dateStr = new Date(now).toLocaleString('ar-EG');
+            const settlementId = db.ref(`driver_settlements/${activeArea}/${driverKey}/history`).push().key;
             db.ref(`driver_settlements/${activeArea}/${driverKey}/history/${settlementId}`).set({
-                settledAt:now,
-                dateStr:dateStr,
-                ordersCount:stats.ordersCount,
-                originalTotal:stats.originalTotal,
-                paidTotal:stats.paidTotal,
-                commissionTotal:stats.commissionTotal,
-                discountTotal:stats.discountTotal,
-                owesDriver:stats.owesDriver,
-                driverName:driver.name,
-                driverPhone:driver.phone,
-                driverRole:driver.role||''
+                settledAt: now,
+                dateStr: dateStr,
+                ordersCount: stats.ordersCount,
+                originalTotal: stats.originalTotal,
+                paidTotal: stats.paidTotal,
+                commissionTotal: stats.commissionTotal,
+                discountTotal: stats.discountTotal,
+                owesDriver: stats.owesDriver,
+                driverName: driver.name,
+                driverPhone: driver.phone,
+                driverRole: driver.role||''
             });
-            
-            /* ✅ 2. حدّث lastSettledAt */
             db.ref(`driver_settlements/${activeArea}/${driverKey}/lastSettledAt`).set(now);
-            
-            /* ✅ 3. اكتب settledDebt في providers (ده اللي السائق هيقراه) */
             db.ref(`providers/${activeArea}/${driverKey}/settledDebt`).transaction(current=>{
                 return (Number(current)||0) + stats.commissionTotal;
             });
-            
-            /* ✅ 4. حوّل الطلبات الحالية لـ archived */
             Object.keys(ordersCache).forEach(id=>{
-                const o=ordersCache[id];
-                if(!o)return;
-                const matched=(o.driverKey===driverKey)||(o.driverPhone===driver.phone);
-                if(!matched)return;
-                if(o.status!=='completed')return;
+                const o = ordersCache[id]; if(!o) return;
+                const matched = (o.driverKey===driverKey) || (o.driverPhone===driver.phone);
+                if(!matched) return;
+                if(o.status!=='completed') return;
                 db.ref(`orders/${id}/status`).set('archived');
             });
-            
             showToast(`✅ تم تصفير حساب ${driver.name} بنجاح`,'success');
-            setTimeout(()=>renderDriversTable(),500);
+            setTimeout(()=>renderDriversTable(), 500);
         }
     );
 }
 
-function saveRewardBaseSettings(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    const data={
-        active:$id('rewardSystemActive').checked,
-        showDelivery:$id('showDeliveryReward').checked,
-        showTripDiscount:$id('showTripDiscountReward').checked,
-        pointsPerOrder:Number($id('pointsPerOrder').value)||10,
-        discountCost:Number($id('costDiscountReward').value)||100,
-        tripDiscountCost:Number($id('tripDiscountCost').value)||50,
-        directDiscountValue:Number($id('directDiscountValue').value)||20,
-        fakkaCost:Number($id('costFakkaReward').value)||150,
-        showFakka:$id('showFakkaToggle').checked,
-        showFakkaVodafone:$id('showFakkaVodafoneToggle').checked,
-        showFakkaEtisalat:$id('showFakkaEtisalatToggle').checked,
-        doublePointsActive:$id('doublePointsActive').checked,
-        challengeActive:$id('challengeActive').checked,
-        challengeTarget:Number($id('challengeTarget').value)||5,
-        challengeReward:Number($id('challengeReward').value)||100,
-        inviteActive:$id('inviteActive').checked,
-        inviteReward:Number($id('inviteReward').value)||50
-    };
-    db.ref(`reward_settings/${activeArea}`).update(data).then(()=>showToast('✅ تم الحفظ','success'));
-}
-function loadRewardSettings(){
-    db.ref(`reward_settings/${activeArea}`).once('value').then(snap=>{
-        const r=snap.val()||{};
-        const set=(id,val)=>{const el=$id(id);if(el)el.checked=val;};
-        const setVal=(id,val)=>{const el=$id(id);if(el)el.value=val;};
-        set('rewardSystemActive',r.active!==false);
-        set('showDeliveryReward',r.showDelivery!==false);
-        set('showTripDiscountReward',r.showTripDiscount!==false);
-        set('showFakkaToggle',r.showFakka!==false);
-        set('showFakkaVodafoneToggle',r.showFakkaVodafone!==false);
-        set('showFakkaEtisalatToggle',r.showFakkaEtisalat!==false);
-        set('doublePointsActive',r.doublePointsActive===true);
-        set('challengeActive',r.challengeActive!==false);
-        set('inviteActive',r.inviteActive!==false);
-        setVal('pointsPerOrder',r.pointsPerOrder||10);
-        setVal('costDiscountReward',r.discountCost||100);
-        setVal('tripDiscountCost',r.tripDiscountCost||50);
-        setVal('directDiscountValue',r.directDiscountValue||20);
-        setVal('costFakkaReward',r.fakkaCost||150);
-        setVal('challengeTarget',r.challengeTarget||5);
-        setVal('challengeReward',r.challengeReward||100);
-        setVal('inviteReward',r.inviteReward||50);
-    });
-}
-function saveSupportWhatsapp(){
-    const num=$id('supportWhatsappInput').value.trim();
-    if(!num)return showToast('اكتب الرقم','error');
-    db.ref('settings/support/whatsapp').set(num).then(()=>showToast('✅ تم الحفظ','success'));
-}
-function loadSupportWhatsapp(){
-    db.ref('settings/support/whatsapp').once('value').then(s=>{
-        const input=$id('supportWhatsappInput');
-        if(input)input.value=s.val()||'01115699940';
-    });
-}
-function addNewFakkaCard(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    const code=$id('newFakkaCode').value.trim();
-    const network=$id('fakkaNetworkType').value;
-    if(!code)return showToast('اكتب الكود','error');
-    const dateStr=new Date().toLocaleDateString('ar-EG');
-    const node=network==='اتصالات'?'fakka_cards_etisalat':'fakka_cards_vodafone';
-    db.ref(`reward_settings/${activeArea}/${node}`).push({code,network,date:dateStr}).then(()=>{
-        $id('newFakkaCode').value='';
-        showToast(`✅ تم إضافة كارت ${network}`,'success');
-    });
-}
-function loadFakkaCardsInventory(){
-    if(!activeArea)return;
-    db.ref(`reward_settings/${activeArea}`).on('value',snap=>{
-        const data=snap.val()||{};
-        let html='';
-        ['fakka_cards_etisalat','fakka_cards_vodafone'].forEach(node=>{
-            const cards=data[node]||{};
-            Object.keys(cards).forEach(id=>{
-                const c=cards[id];
-                if(!c||!c.code)return;
-                const color=node.includes('etisalat')?'#10b981':'#ef4444';
-                html+=`<tr>
-                    <td><span style="color:${color};font-weight:700">${c.network}</span></td>
-                    <td><b style="color:#fde047">${c.code}</b></td>
-                    <td style="color:#94a3b8;font-size:11px">${c.date||''}</td>
-                    <td><button class="del-btn" onclick="deleteFakkaCard('${node}','${id}')"><i class="fas fa-trash"></i></button></td>
-                </tr>`;
-            });
-        });
-        const tbody=$id('fakkaCardsTableBody');
-        if(tbody)tbody.innerHTML=html||'<tr><td colspan="4" class="empty-state">لا توجد كروت</td></tr>';
-    });
-}
-function deleteFakkaCard(node,id){
-    if(!confirm('حذف الكارت؟'))return;
-    db.ref(`reward_settings/${activeArea}/${node}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
-}
-function addDestination(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    const name=$id('destName').value.trim();
-    const price=Number($id('destPrice').value);
-    if(!name||!price)return showToast('أدخل البيانات','error');
-    db.ref(`pricing/${activeArea}/destinations`).push({name,price}).then(()=>{
-        $id('destName').value='';$id('destPrice').value='';
-        showToast('✅ تم الإضافة','success');
-    });
-}
-function loadDestinations(){
-    if(!activeArea)return;
-    db.ref(`pricing/${activeArea}/destinations`).on('value',snap=>{
-        let html='';
-        snap.forEach(c=>{
-            const item=c.val(),id=c.key;
-            html+=`<tr>
-                <td>📍 ${item.name}</td>
-                <td style="color:#10b981;font-weight:700">${item.price} ج</td>
-                <td><button class="del-btn" onclick="db.ref('pricing/${activeArea}/destinations/${id}').remove()"><i class="fas fa-trash"></i></button></td>
-            </tr>`;
-        });
-        const tbody=$id('destTableBody');
-        if(tbody)tbody.innerHTML=html||'<tr><td colspan="3" class="empty-state">لا توجد وجهات</td></tr>';
-    });
-}
-function saveProviderWithCustomCode(){
-    if(!activeArea)return showToast('اختر منطقة','error');
-    const name=$id('pName').value.trim();
-    const phone=$id('pPhone').value.trim();
-    const role=$id('pRole').value;
-    const code=$id('customCode').value.trim();
-    if(!name||phone.length<11||!code)return showToast('اكمل البيانات','error');
-    db.ref(`providers/${activeArea}`).push({name,phone,role,code}).then(()=>{
-        $id('pName').value='';$id('pPhone').value='';$id('customCode').value='';
-        showToast('✅ تم حفظ السائق','success');
-    });
-}
-function loadProviders(){
-    if(!activeArea)return;
-    db.ref(`providers/${activeArea}`).on('value',snap=>{
-        let html='';
-        snap.forEach(c=>{
-            const item=c.val(),id=c.key;
-            html+=`<tr>
-                <td>${item.name}</td>
-                <td>${item.role}</td>
-                <td style="color:#fde047;font-weight:700">${item.code}</td>
-                <td><button class="del-btn" onclick="db.ref('providers/${activeArea}/${id}').remove()"><i class="fas fa-trash"></i></button></td>
-            </tr>`;
-        });
-        const tbody=$id('providersList');
-        if(tbody)tbody.innerHTML=html||'<tr><td colspan="4" class="empty-state">لا يوجد سائقين</td></tr>';
-    });
-}
-function loadDiscountsSummary(){
-    if(!activeArea)return;
-    db.ref('orders').on('value',snap=>{
-        let totalDirect=0,totalFree=0;
-        let html='';
-        snap.forEach(c=>{
-            const o=c.val();
-            if(o.customerArea!==activeArea)return;
-            if(o.hasDiscount!==true)return;
-            if(o.status==='archived')return;
-            const amount=Number(o.discountAmount)||0;
-            const original=Number(o.originalPrice)||Number(o.price)||0;
-            const final=Number(o.finalPrice)||Number(o.price)||0;
-            if(o.discountType==='خصم مالي مباشر')totalDirect+=amount;
-            else if(o.discountType==='توصيل مجاني')totalFree+=amount;
-            html=`<tr style="background:rgba(239,68,68,.06)">
-                <td><b>${o.customerName||o.name||'عميل'}</b></td>
-                <td><b>${o.type}</b></td>
-                <td>${original} ج</td>
-                <td style="color:#fca5a5;font-weight:900">- ${amount} ج</td>
-                <td style="color:#10b981;font-weight:900">${final} ج</td>
-            </tr>`+html;
-        });
-        const td=$id('totalDirectDiscount');if(td)td.innerText=totalDirect+' ج';
-        const tf=$id('totalFreeDeliveries');if(tf)tf.innerText=totalFree+' ج';
-        const ta=$id('totalAllDiscounts');if(ta)ta.innerText=(totalDirect+totalFree)+' ج';
-        const tbody=$id('discountsTableBody');
-        if(tbody)tbody.innerHTML=html||'<tr><td colspan="5" class="empty-state">لا توجد خصومات</td></tr>';
-    });
-}
+/* ═══════════ Daily Orders ═══════════ */
 function loadDailyOrders(){
-    if(!activeArea)return;
-    db.ref('orders').on('value',snap=>{
-        let html='';
+    if(!activeArea) return;
+    db.ref('orders').on('value', snap=>{
+        let html = '';
         snap.forEach(c=>{
-            const o=c.val(),id=c.key;
-            if(o.customerArea===activeArea&&o.status!=='archived'&&!o.isShipping){
-                let statusColor='#f59e0b';
-                if(o.status==='ready_for_driver')statusColor='#38bdf8';
-                else if(o.status==='active')statusColor='#a78bfa';
-                else if(o.status==='completed')statusColor='#10b981';
-                const statusText=o.status==='ready_for_driver'?'انتظار مندوب':o.status==='active'?'جاري التنفيذ':o.status==='completed'?'مكتمل':o.status;
-                html+=`<tr>
+            const o = c.val(), id = c.key;
+            if(o.customerArea===activeArea && o.status!=='archived' && !o.isShipping){
+                let statusColor = '#f59e0b';
+                if(o.status==='ready_for_driver') statusColor = '#38bdf8';
+                else if(o.status==='active') statusColor = '#a78bfa';
+                else if(o.status==='completed') statusColor = '#10b981';
+                const statusText = o.status==='ready_for_driver' ? 'انتظار مندوب'
+                                 : o.status==='active' ? 'جاري التنفيذ'
+                                 : o.status==='completed' ? 'مكتمل'
+                                 : o.status;
+                html += `<tr>
                     <td><b>${o.type}</b></td>
                     <td>${o.customerName||o.name||'عميل'}</td>
                     <td style="font-size:11px;color:#94a3b8">${o.details||o.to||'مشوار'}</td>
@@ -2087,36 +2839,76 @@ function loadDailyOrders(){
                 </tr>`;
             }
         });
-        const tbody=$id('dailyOrdersTableBody');
-        if(tbody)tbody.innerHTML=html||'<tr><td colspan="6" class="empty-state">لا توجد طلبات</td></tr>';
+        const tbody = $id('dailyOrdersTableBody');
+        if(tbody) tbody.innerHTML = html || '<tr><td colspan="6" class="empty-state">لا توجد طلبات</td></tr>';
     });
 }
+
+/* ═══════════ Discounts Summary ═══════════ */
+function loadDiscountsSummary(){
+    if(!activeArea) return;
+    db.ref('orders').on('value', snap=>{
+        let totalDirect = 0, totalFree = 0;
+        let html = '';
+        snap.forEach(c=>{
+            const o = c.val();
+            if(o.customerArea !== activeArea) return;
+            if(o.hasDiscount !== true) return;
+            if(o.status==='archived') return;
+            const amount = Number(o.discountAmount)||0;
+            const original = Number(o.originalPrice)||Number(o.price)||0;
+            const final = Number(o.finalPrice)||Number(o.price)||0;
+            if(o.discountType==='خصم مالي مباشر') totalDirect += amount;
+            else if(o.discountType==='توصيل مجاني') totalFree += amount;
+            html = `<tr style="background:rgba(239,68,68,.06)">
+                <td><b>${o.customerName||o.name||'عميل'}</b></td>
+                <td><b>${o.type}</b></td>
+                <td>${original} ج</td>
+                <td style="color:#fca5a5;font-weight:900">- ${amount} ج</td>
+                <td style="color:#10b981;font-weight:900">${final} ج</td>
+            </tr>` + html;
+        });
+        const td = $id('totalDirectDiscount'); if(td) td.innerText = totalDirect+' ج';
+        const tf = $id('totalFreeDeliveries'); if(tf) tf.innerText = totalFree+' ج';
+        const ta = $id('totalAllDiscounts'); if(ta) ta.innerText = (totalDirect+totalFree)+' ج';
+        const tbody = $id('discountsTableBody');
+        if(tbody) tbody.innerHTML = html || '<tr><td colspan="5" class="empty-state">لا توجد خصومات</td></tr>';
+    });
+}
+
+/* ═══════════ Dashboard Stats ═══════════ */
 function loadDashboardStats(){
-    if(!activeArea)return;
-    db.ref('orders').on('value',snap=>{
-        const today=new Date();today.setHours(0,0,0,0);
-        const todayTime=today.getTime();
-        let todayOrders=0,completed=0,activeShipments=0;
-        let pharmaOrders=0,marketOrders=0,tripOrders=0;
-        let recentHtml='';
-        let recentCount=0;
-        const allOrders=[];
-        snap.forEach(c=>allOrders.push({id:c.key,...c.val()}));
+    if(!activeArea) return;
+    db.ref('orders').on('value', snap=>{
+        const today = new Date(); today.setHours(0,0,0,0);
+        const todayTime = today.getTime();
+        let todayOrders=0, completed=0, activeShipments=0;
+        let pharmaOrders=0, marketOrders=0, tripOrders=0;
+        let recentHtml = '';
+        let recentCount = 0;
+        const allOrders = [];
+        snap.forEach(c=>allOrders.push({ id:c.key, ...c.val() }));
         allOrders.reverse();
         allOrders.forEach(o=>{
-            if(o.customerArea!==activeArea)return;
-            if(o.status==='archived')return;
-            if(o.time>=todayTime)todayOrders++;
-            if(o.status==='completed'){completed++;}
-            if(o.isShipping&&(o.shipStatus==='pending'||o.shipStatus==='in_transit'||o.shipStatus==='out_for_delivery'||o.shipStatus==='picked_up'||o.status==='assigned'||o.status==='active'))activeShipments++;
-            const type=(o.type||'').trim();
-            if(type.includes('صيدلية'))pharmaOrders++;
-            if(type.includes('ماركت'))marketOrders++;
-            if(type.includes('مشوار'))tripOrders++;
-            if(recentCount<5){
-                const statusColor=o.status==='completed'?'#10b981':o.status==='active'?'#a78bfa':'#38bdf8';
-                const statusText=o.status==='ready_for_driver'?'انتظار':o.status==='active'?'جاري':o.status==='completed'?'مكتمل':o.status==='assigned'?'معيّن':o.status;
-                recentHtml+=`<tr>
+            if(o.customerArea !== activeArea) return;
+            if(o.status==='archived') return;
+            if(o.time >= todayTime) todayOrders++;
+            if(o.status==='completed'){ completed++; }
+            if(o.isShipping && (o.shipStatus==='pending' || o.shipStatus==='in_transit' || o.shipStatus==='out_for_delivery' || o.shipStatus==='picked_up' || o.status==='assigned' || o.status==='active')) activeShipments++;
+            const type = (o.type||'').trim();
+            if(type.includes('صيدلية')) pharmaOrders++;
+            if(type.includes('ماركت')) marketOrders++;
+            if(type.includes('مشوار')) tripOrders++;
+            if(recentCount < 5){
+                const statusColor = o.status==='completed' ? '#10b981'
+                                  : o.status==='active' ? '#a78bfa'
+                                  : '#38bdf8';
+                const statusText = o.status==='ready_for_driver' ? 'انتظار'
+                                 : o.status==='active' ? 'جاري'
+                                 : o.status==='completed' ? 'مكتمل'
+                                 : o.status==='assigned' ? 'معيّن'
+                                 : o.status;
+                recentHtml += `<tr>
                     <td>${o.customerName||o.name||'عميل'}</td>
                     <td>${o.type}</td>
                     <td style="color:#10b981;font-weight:700">${o.price||0} ج</td>
@@ -2126,20 +2918,26 @@ function loadDashboardStats(){
             }
         });
         db.ref(`providers/${activeArea}`).once('value').then(pSnap=>{
-            const el=$id('statActiveDrivers');if(el)el.innerText=pSnap.numChildren()||0;
+            const el = $id('statActiveDrivers'); if(el) el.innerText = pSnap.numChildren()||0;
         });
         db.ref(`market_products/${activeArea}`).once('value').then(mSnap=>{
-            const el=$id('statMarketProducts');if(el)el.innerText=mSnap.numChildren()||0;
+            const el = $id('statMarketProducts'); if(el) el.innerText = mSnap.numChildren()||0;
         });
-        const t1=$id('statTodayOrders');if(t1)t1.innerText=todayOrders;
-        const t2=$id('statCompletedOrders');if(t2)t2.innerText=completed;
-        const t3=$id('statActiveShipments');if(t3)t3.innerText=activeShipments;
-        const t4=$id('dashboardRecentOrders');if(t4)t4.innerHTML=recentHtml||'<tr><td colspan="4" class="empty-state">لا توجد طلبات</td></tr>';
-        const t5=$id('statPharmaOrders');if(t5)t5.innerText=pharmaOrders;
-        const t6=$id('statMarketOrders');if(t6)t6.innerText=marketOrders;
-        const t7=$id('statTripOrders');if(t7)t7.innerText=tripOrders;
+        const t1 = $id('statTodayOrders'); if(t1) t1.innerText = todayOrders;
+        const t2 = $id('statCompletedOrders'); if(t2) t2.innerText = completed;
+        const t3 = $id('statActiveShipments'); if(t3) t3.innerText = activeShipments;
+        const t4 = $id('dashboardRecentOrders'); if(t4) t4.innerHTML = recentHtml || '<tr><td colspan="4" class="empty-state">لا توجد طلبات</td></tr>';
+        const t5 = $id('statPharmaOrders'); if(t5) t5.innerText = pharmaOrders;
+        const t6 = $id('statMarketOrders'); if(t6) t6.innerText = marketOrders;
+        const t7 = $id('statTripOrders'); if(t7) t7.innerText = tripOrders;
     });
 }
+
+/* ═══════════════════════════════════════════════════════════
+   نهاية الكود
+   ═══════════════════════════════════════════════════════════ */
 </script>
 </body>
 </html>
+/* نهاية الجزء 3 - يكمل في الجزء 4 */
+</script>
