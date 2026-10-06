@@ -33,18 +33,15 @@ body{
 }
 .app-layout{display:flex;min-height:100vh}
 
-/* ═══════ SIDEBAR ═══════ */
+/* SIDEBAR */
 .sidebar{
   width:var(--sidebar-w);
   background:linear-gradient(180deg,rgba(20,27,45,.98),rgba(15,22,38,.98));
   border-left:1px solid var(--glass-border);
   backdrop-filter:blur(20px);
-  display:flex;
-  flex-direction:column;
-  position:fixed;
-  top:0;right:0;bottom:0;
-  z-index:100;
-  transition:transform .3s;
+  display:flex;flex-direction:column;
+  position:fixed;top:0;right:0;bottom:0;
+  z-index:100;transition:transform .3s;
   overflow-y:auto;
 }
 .sidebar::-webkit-scrollbar{width:6px}
@@ -100,7 +97,7 @@ body{
 }
 @keyframes pulseBadge{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 
-/* ═══════ MAIN CONTENT ═══════ */
+/* MAIN CONTENT */
 .main-content{
   margin-right:var(--sidebar-w);
   flex:1;padding:20px 30px;
@@ -120,7 +117,7 @@ body{
 .page.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* ═══════ CARDS ═══════ */
+/* CARDS */
 .card{
   background:var(--bg-card);backdrop-filter:blur(20px);
   border:1px solid var(--glass-border);border-radius:20px;
@@ -140,7 +137,7 @@ body{
 }
 .card-subtitle{font-size:12px;color:var(--text-muted);margin-bottom:15px;line-height:1.7}
 
-/* ═══════ STATS ═══════ */
+/* STATS */
 .stats-grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:15px;margin-bottom:20px;
@@ -157,7 +154,7 @@ body{
 .stat-value{font-size:26px;font-weight:900;color:#fff;line-height:1.2}
 .stat-label{font-size:12px;color:var(--text-muted);font-weight:600;margin-top:4px}
 
-/* ═══════ FORMS ═══════ */
+/* FORMS */
 input,select,textarea{
   width:100%;padding:12px 15px;
   background:rgba(10,15,28,.7);
@@ -175,7 +172,7 @@ label.field-label{
   display:block;margin-top:10px;margin-bottom:2px;
 }
 
-/* ═══════ BUTTONS ═══════ */
+/* BUTTONS */
 .btn{
   padding:12px 20px;border:none;border-radius:12px;
   cursor:pointer;font-weight:700;font-size:13.5px;
@@ -190,7 +187,7 @@ label.field-label{
 .btn-danger{background:linear-gradient(135deg,#dc2626,#ef4444)}
 .btn-sm{padding:6px 12px;font-size:11px;border-radius:8px}
 
-/* ═══════ TOGGLE ═══════ */
+/* TOGGLE */
 .toggle-row{
   display:flex;justify-content:space-between;align-items:center;
   padding:14px 16px;background:rgba(10,15,28,.4);
@@ -211,7 +208,7 @@ label.field-label{
 input:checked + .slider-sw{background-color:var(--success);box-shadow:0 0 12px rgba(16,185,129,.5)}
 input:checked + .slider-sw:before{transform:translateX(22px)}
 
-/* ═══════ TABLES ═══════ */
+/* TABLES */
 .table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--glass-border)}
 .data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:1000px}
 .data-table th{
@@ -228,7 +225,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .data-table tr:hover td{background:rgba(139,92,246,.05)}
 .data-table .driver-name{font-weight:900;color:#fff;font-size:13px}
 
-/* ═══════ BADGES ═══════ */
+/* BADGES */
 .role-badge{
   padding:3px 10px;border-radius:20px;font-size:10px;font-weight:900;
   display:inline-block;
@@ -237,7 +234,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .role-delegate{background:rgba(6,182,212,.2);color:#22d3ee;border:1px solid rgba(6,182,212,.4)}
 .role-shipping{background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
 
-/* ═══════ MONEY ═══════ */
+/* MONEY */
 .money-val{font-weight:900;font-size:13px}
 .money-green{color:var(--success)}
 .money-blue{color:#60a5fa}
@@ -246,7 +243,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .money-primary{color:#c4b5fd;font-size:15px;font-weight:900}
 .money-negative{color:#f87171;font-size:15px;font-weight:900}
 
-/* ═══════ ACTION BUTTONS ═══════ */
+/* ACTION BUTTONS */
 .action-btns{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
 .icon-btn{
   padding:6px 10px;border-radius:8px;cursor:pointer;
@@ -266,7 +263,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
   font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;
 }
 
-/* ═══════ DISCOUNT SUMMARY ═══════ */
+/* DISCOUNT SUMMARY */
 .discount-summary{
   background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(245,158,11,.08));
   border:1px solid rgba(239,68,68,.35);
@@ -283,7 +280,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .discount-stat:last-child{border-bottom:none}
 .discount-stat span:last-child{color:#fde047;font-weight:900}
 
-/* ═══════ NOTES ═══════ */
+/* NOTES */
 .info-note{
   background:rgba(59,130,246,.1);
   border:1px solid rgba(59,130,246,.3);
@@ -293,11 +290,11 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .danger-note{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:#fca5a5}
 .success-note{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.3);color:#34d399}
 
-/* ═══════ GRIDS ═══════ */
+/* GRIDS */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 
-/* ═══════ SHOP PREVIEW ═══════ */
+/* SHOP PREVIEW */
 .shop-preview{
   background:rgba(10,15,28,.5);border:1px solid var(--glass-border);
   border-radius:14px;padding:14px;display:flex;align-items:center;
@@ -335,7 +332,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
   padding:4px 10px;border-radius:10px;font-size:10.5px;font-weight:900;
 }
 
-/* ═══════ TOAST ═══════ */
+/* TOAST */
 .toast{
   position:fixed;bottom:30px;left:50%;
   transform:translateX(-50%) translateY(100px);
@@ -354,18 +351,18 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .toast.error i{color:var(--danger)}
 .toast.info i{color:var(--secondary)}
 
-/* ═══════ SIDEBAR OVERLAY ═══════ */
+/* SIDEBAR OVERLAY */
 .sidebar-overlay{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.6);z-index:99;backdrop-filter:blur(3px);
 }
 .sidebar-overlay.show{display:block}
 
-/* ═══════ EMPTY STATE ═══════ */
+/* EMPTY STATE */
 .empty-state{text-align:center;padding:30px 20px;color:var(--text-muted)}
 .empty-state i{font-size:40px;color:rgba(139,92,246,.3);margin-bottom:10px;display:block}
 
-/* ═══════ MODALS ═══════ */
+/* MODALS */
 .modal-overlay{
   position:fixed;inset:0;background:rgba(0,0,0,.75);
   backdrop-filter:blur(10px);z-index:5000;
@@ -407,7 +404,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 }
 .center-modal-body{padding:14px;overflow-y:auto;flex:1;max-height:70vh}
 
-/* ═══════ AREA ITEM ═══════ */
+/* AREA ITEM */
 .area-item{
   padding:14px 16px;background:rgba(10,15,28,.6);
   border:1px solid var(--glass-border);border-radius:14px;
@@ -426,7 +423,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .area-item-name{flex:1;font-weight:700;color:#fff;font-size:14px}
 .area-item-check{color:var(--success);font-size:18px}
 
-/* ═══════ DRIVER INFO HEADER ═══════ */
+/* DRIVER INFO HEADER */
 .driver-info-header{
   background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.08));
   border:1px solid rgba(139,92,246,.35);
@@ -449,7 +446,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .driver-info-row span:first-child{color:var(--text-muted);font-weight:600}
 .driver-info-row span:last-child{color:#fff;font-weight:900}
 
-/* ═══════ ORDER ROW ITEM ═══════ */
+/* ORDER ROW ITEM */
 .order-row-item{
   background:rgba(10,15,28,.5);border:1px solid var(--glass-border);
   border-radius:12px;padding:12px;margin-bottom:8px;
@@ -460,7 +457,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .order-row-item-time{font-size:10.5px;color:var(--text-muted);margin-top:2px}
 .order-row-item-price{font-size:15px;font-weight:900;color:var(--success);text-align:left}
 
-/* ═══════ SHIP ALERT CARD ═══════ */
+/* SHIP ALERT CARD */
 .ship-alert-card{
   background:rgba(10,15,28,.6);border:1.5px solid var(--glass-border);
   border-radius:16px;padding:14px;margin-bottom:12px;
@@ -521,7 +518,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
   color:#fff;text-decoration:none;
 }
 
-/* ═══════ TABS SHIPPING ═══════ */
+/* TABS SHIPPING */
 .tabs-shipping{
   display:flex;gap:6px;background:rgba(10,15,28,.6);
   border:1px solid var(--glass-border);border-radius:14px;
@@ -541,7 +538,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
   padding:1px 7px;border-radius:10px;font-size:10px;margin-right:3px;
 }
 
-/* ═══════ MARKET CATEGORY ═══════ */
+/* MARKET CATEGORY */
 .market-category-item{
   background:rgba(10,15,28,.5);border:1px solid var(--glass-border);
   border-radius:14px;padding:14px 16px;
@@ -558,7 +555,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .market-cat-meta{font-size:11px;color:var(--text-muted)}
 .market-cat-actions{display:flex;gap:6px}
 
-/* ═══════ MARKET PRODUCT ROW ═══════ */
+/* MARKET PRODUCT ROW */
 .market-product-row{
   background:rgba(10,15,28,.5);border:1px solid var(--glass-border);
   border-radius:14px;padding:12px;margin-bottom:10px;
@@ -593,7 +590,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 }
 .market-prod-actions{display:flex;gap:6px;flex-shrink:0}
 
-/* ═══════ PHARMACY ═══════ */
+/* PHARMACY */
 .pharmacy-item{
   background:rgba(20,27,45,.6);border:1px solid rgba(255,255,255,.08);
   border-radius:14px;padding:14px;margin-bottom:10px;
@@ -611,7 +608,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .pharmacy-item-name{font-weight:900;color:#fff;font-size:14px;margin-bottom:2px}
 .pharmacy-item-meta{font-size:11.5px;color:#94a3b8}
 
-/* ═══════ QUICK LOAD ═══════ */
+/* QUICK LOAD */
 .quick-load-section{
   background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.08));
   border:1.5px dashed rgba(16,185,129,.5);
@@ -645,7 +642,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
   border-color:#10b981;transform:translateY(-2px);
 }
 .quick-cat-btn:active{transform:scale(.97)}
-.quick-cat-btn.loading{opacity:.6;pointer-events:none}
 .quick-cat-icon{
   width:40px;height:40px;border-radius:12px;
   display:flex;align-items:center;justify-content:center;
@@ -656,7 +652,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .quick-cat-name{font-size:13.5px;font-weight:900;color:#fff;margin-bottom:3px}
 .quick-cat-count{font-size:10.5px;color:#94a3b8;font-weight:600}
 
-/* ═══════ RESPONSIVE ═══════ */
+/* RESPONSIVE */
 @media(max-width:900px){
   .sidebar{transform:translateX(100%)}
   .sidebar.open{transform:translateX(0)}
@@ -732,7 +728,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Dashboard ═══════ -->
+<!-- PAGE: Dashboard -->
 <div class="page active" id="page-dashboard">
 <div class="stats-grid">
 <div class="stat-card"><div class="stat-icon" style="background:rgba(139,92,246,.2);color:#a78bfa"><i class="fas fa-shopping-bag"></i></div><div class="stat-value" id="statTodayOrders">0</div><div class="stat-label">طلبات اليوم</div></div>
@@ -762,7 +758,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Areas ═══════ -->
+<!-- PAGE: Areas -->
 <div class="page" id="page-areas">
 <div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة منطقة جديدة</div>
 <label class="field-label">اسم المنطقة</label>
@@ -774,7 +770,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Market Categories ═══════ -->
+<!-- PAGE: Market Categories -->
 <div class="page" id="page-marketCategories">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة تصنيف جديد</div>
@@ -793,7 +789,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Market Add Product ═══════ -->
+<!-- PAGE: Market Add Product -->
 <div class="page" id="page-marketAddProduct">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة منتج جديد</div>
@@ -873,10 +869,9 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Market Products ═══════ -->
+<!-- PAGE: Market Products -->
 <div class="page" id="page-marketProducts">
 
-<!-- ══════════ QUICK LOAD SECTION ══════════ -->
 <div class="quick-load-section">
 <div class="quick-load-title">
 <i class="fas fa-magic"></i>
@@ -887,7 +882,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 
 <div class="quick-cat-grid" id="quickCatGrid">
-<!-- سيتم توليد الأزرار تلقائياً من ملف products.js -->
+<!-- يتم التوليد تلقائياً من products.js -->
 </div>
 
 <div class="info-note" style="background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.3);color:#fbbf24">
@@ -916,7 +911,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Visibility ═══════ -->
+<!-- PAGE: Visibility -->
 <div class="page" id="page-visibility">
 <div class="card"><div class="card-title"><i class="fas fa-shield-alt"></i> تحكم ظهور الأقسام</div>
 <div class="card-subtitle">أي قسم تقفله، هيختفي تمامًا من واجهة الزبون.</div>
@@ -930,7 +925,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Pharmacies ═══════ -->
+<!-- PAGE: Pharmacies -->
 <div class="page" id="page-pharmacies">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> تسجيل صيدلية جديدة</div>
@@ -953,7 +948,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Work Hours ═══════ -->
+<!-- PAGE: Work Hours -->
 <div class="page" id="page-workHours">
 <div class="card">
 <div class="card-title"><i class="fas fa-clock"></i> ساعات عمل التطبيق</div>
@@ -973,7 +968,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div class="card"><div class="card-title"><i class="fas fa-info-circle"></i> معاينة</div><div id="workHoursPreview"></div></div>
 </div>
 
-<!-- ═══════ PAGE: Rewards ═══════ -->
+<!-- PAGE: Rewards -->
 <div class="page" id="page-rewards">
 <div class="card"><div class="card-title"><i class="fas fa-toggle-on"></i> إعدادات نظام النقاط</div>
 <div class="toggle-row"><div class="toggle-label"><div>تفعيل نظام المكافآت<small>لو مقفول، مش هيكسبوا نقاط</small></div></div><label class="switch"><input type="checkbox" id="rewardSystemActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
@@ -992,7 +987,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Features ═══════ -->
+<!-- PAGE: Features -->
 <div class="page" id="page-features">
 <div class="card"><div class="card-title"><i class="fas fa-fire"></i> النقاط المضاعفة</div>
 <div class="toggle-row" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3)"><div class="toggle-label"><div style="color:#fde047">⚡ تفعيل النقاط المضاعفة ×2</div></div><label class="switch"><input type="checkbox" id="doublePointsActive" onchange="saveRewardBaseSettings()"><span class="slider-sw"></span></label></div>
@@ -1011,7 +1006,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Fakka ═══════ -->
+<!-- PAGE: Fakka -->
 <div class="page" id="page-fakka">
 <div class="card">
 <div class="card-title"><i class="fas fa-eye"></i> تحكم ظهور كروت الفكة</div>
@@ -1039,7 +1034,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Support ═══════ -->
+<!-- PAGE: Support -->
 <div class="page" id="page-support">
 <div class="card">
 <div class="card-title"><i class="fab fa-whatsapp" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff"></i> رقم الواتساب للدعم</div>
@@ -1050,7 +1045,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Shipping Settings ═══════ -->
+<!-- PAGE: Shipping Settings -->
 <div class="page" id="page-shippingSettings">
 <div class="card">
 <div class="card-title"><i class="fas fa-power-off"></i> تفعيل/إيقاف خدمة الشحن</div>
@@ -1078,7 +1073,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Shops ═══════ -->
+<!-- PAGE: Shops -->
 <div class="page" id="page-shops">
 <div class="card">
 <div class="card-title"><i class="fas fa-plus-circle"></i> إضافة متجر جديد</div>
@@ -1127,7 +1122,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Shipping Orders ═══════ -->
+<!-- PAGE: Shipping Orders -->
 <div class="page" id="page-shippingOrders">
 <div class="card">
 <div class="card-title"><i class="fas fa-truck"></i> الشحنات الواردة</div>
@@ -1143,7 +1138,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Drivers ═══════ -->
+<!-- PAGE: Drivers -->
 <div class="page" id="page-drivers">
 <div class="card">
 <div class="card-title"><i class="fas fa-users-cog"></i> حسابات السائقين</div>
@@ -1157,13 +1152,13 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Driver Details ═══════ -->
+<!-- PAGE: Driver Details -->
 <div class="page" id="page-driverDetails">
 <button class="btn btn-primary" style="width:auto;margin-bottom:15px;background:rgba(255,255,255,.1)" onclick="switchPage('drivers')"><i class="fas fa-arrow-right"></i> رجوع</button>
 <div id="driverDetailsContent"></div>
 </div>
 
-<!-- ═══════ PAGE: Discounts ═══════ -->
+<!-- PAGE: Discounts -->
 <div class="page" id="page-discounts">
 <div class="discount-summary">
 <div class="discount-title"><i class="fas fa-tags"></i> 💸 ملخص الخصومات (على حساب المشروع)</div>
@@ -1177,7 +1172,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Pricing ═══════ -->
+<!-- PAGE: Pricing -->
 <div class="page" id="page-pricing">
 <div class="card"><div class="card-title"><i class="fas fa-dollar-sign"></i> الأسعار والعمولات</div>
 <label class="field-label">💵 سعر التوصيل العام (ج)</label>
@@ -1190,14 +1185,14 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Orders ═══════ -->
+<!-- PAGE: Orders -->
 <div class="page" id="page-orders">
 <div class="card"><div class="card-title"><i class="fas fa-box-open"></i> الطلبات النشطة</div>
 <div class="table-wrap"><table class="data-table"><thead><tr><th>النوع</th><th>العميل</th><th>التفاصيل</th><th>السعر</th><th>الحالة</th><th>حذف</th></tr></thead><tbody id="dailyOrdersTableBody"><tr><td colspan="6" class="empty-state">جاري التحميل...</td></tr></tbody></table></div>
 </div>
 </div>
 
-<!-- ═══════ PAGE: Destinations ═══════ -->
+<!-- PAGE: Destinations -->
 <div class="page" id="page-destinations">
 <div class="card"><div class="card-title"><i class="fas fa-plus-circle"></i> إضافة وجهة جديدة</div>
 <div class="grid-2">
@@ -1211,7 +1206,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Add Driver ═══════ -->
+<!-- PAGE: Add Driver -->
 <div class="page" id="page-addDriver">
 <div class="card"><div class="card-title"><i class="fas fa-id-card"></i> تسجيل سائق جديد</div>
 <label class="field-label">الاسم</label>
@@ -1230,7 +1225,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ PAGE: Drivers List ═══════ -->
+<!-- PAGE: Drivers List -->
 <div class="page" id="page-driversList">
 <div class="card"><div class="card-title"><i class="fas fa-user-friends"></i> السائقين المسجلين</div>
 <div class="table-wrap"><table class="data-table" style="min-width:400px"><thead><tr><th>الاسم</th><th>الدور</th><th>الكود</th><th>حذف</th></tr></thead><tbody id="providersList"><tr><td colspan="4" class="empty-state">لا يوجد سائقين</td></tr></tbody></table></div>
@@ -1240,7 +1235,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </main>
 </div>
 
-<!-- ═══════ Area Modal ═══════ -->
+<!-- Area Modal -->
 <div class="modal-overlay" id="areaModalOverlay" onclick="closeAreaModal()"></div>
 <div class="center-modal" id="areaModal">
 <div class="center-modal-header">
@@ -1251,7 +1246,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div class="center-modal-body" id="areaModalList"></div>
 </div>
 
-<!-- ═══════ Assign Driver Modal ═══════ -->
+<!-- Assign Driver Modal -->
 <div class="modal-overlay" id="assignDriverOverlay" onclick="closeAssignDriver()"></div>
 <div class="center-modal" id="assignDriverModal">
 <div class="center-modal-header">
@@ -1268,7 +1263,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- ═══════ Confirm Modal ═══════ -->
+<!-- Confirm Modal -->
 <div class="modal-overlay" id="confirmOverlay" onclick="closeConfirm()"></div>
 <div class="center-modal" id="confirmModal" style="max-width:420px;padding:25px 20px;text-align:center">
 <div style="text-align:center;margin-bottom:15px">
@@ -1300,7 +1295,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-/* ═══════════ Global State ═══════════ */
+/* Global State */
 let activeArea = "";
 let areasCache = {};
 let driversCache = {};
@@ -1314,7 +1309,7 @@ let currentAssignOrderId = null;
 let marketCategoriesCache = {};
 let marketProductsCache = {};
 
-/* ═══════════ Helper Functions ═══════════ */
+/* Helper Functions */
 function $id(id){ return document.getElementById(id); }
 
 let toastTimer;
@@ -1350,7 +1345,7 @@ function closeConfirm(){
     $id('confirmModal').classList.remove('show');
 }
 
-/* ═══════════ Page Titles ═══════════ */
+/* Page Titles */
 const pageTitles = {
     dashboard:       { icon:'fa-chart-line',       title:'لوحة القيادة' },
     areas:           { icon:'fa-map-marked-alt',   title:'إدارة المناطق' },
@@ -1397,7 +1392,7 @@ function switchPage(page){
     if(page==='dashboard')         loadDashboardStats();
 }
 
-/* ═══════════ Areas ═══════════ */
+/* Areas */
 function openAreaModal(){
     const list = $id('areaModalList'); if(!list) return;
     const keys = Object.keys(areasCache);
@@ -1488,7 +1483,7 @@ function switchArea(name){
     loadMarketProducts();
 }
 
-/* ═══════════ Service Visibility ═══════════ */
+/* Service Visibility */
 function updateServiceVisibility(key, visible){
     if(!activeArea) return showToast('اختر منطقة','error');
     db.ref(`settings/${activeArea}/${key}`).set(visible);
@@ -1532,7 +1527,7 @@ function saveFakkaButtonSetting(enabled){
     });
 }
 
-/* ═══════════ Shipping Settings ═══════════ */
+/* Shipping Settings */
 function loadShippingSettings(){
     if(!activeArea) return;
     db.ref('settings/'+activeArea).once('value').then(snap=>{
@@ -1562,7 +1557,7 @@ function toggleShippingService(enabled){
     });
 }
 
-/* ═══════════ Work Hours ═══════════ */
+/* Work Hours */
 function loadWorkHours(){
     db.ref('settings/work_hours').once('value').then(snap=>{
         const d = snap.val()||{};
@@ -1629,7 +1624,7 @@ function calculateDuration(open, close){
     return Math.round((closeMin-openMin)/60*10)/10;
 }
 
-/* ═══════════ Pharmacies ═══════════ */
+/* Pharmacies */
 function loadPharmaciesDropdown(){
     const sel = $id('pharmArea'); if(!sel) return;
     const keys = Object.keys(areasCache);
@@ -1704,7 +1699,7 @@ function deletePharmacy(area, id){
     });
 }
 
-/* ═══════════ Market: Categories ═══════════ */
+/* Market: Categories */
 function loadMarketCategories(){
     if(!activeArea) return;
     db.ref(`market_categories/${activeArea}`).on('value', snap=>{
@@ -1804,7 +1799,7 @@ function populateCategoryDropdowns(){
     });
 }
 
-/* ═══════════ Market: Products ═══════════ */
+/* Market: Products */
 function loadMarketProducts(){
     if(!activeArea) return;
     db.ref(`market_products/${activeArea}`).on('value', snap=>{
@@ -2008,9 +2003,7 @@ function deleteMarketProduct(id){
     });
 }
 
-/* ═══════════ Quick Load Products ═══════════ */
-/* ⚠️ الدالة دي بتعتمد على ملف products.js اللي هيرفع بعدين */
-
+/* Quick Load Products */
 async function ensureCategory(area, catName, icon){
     const snap = await db.ref(`market_categories/${area}`).once('value');
     let catId = null;
@@ -2039,7 +2032,6 @@ async function quickLoadCategory(categoryKey){
     if(!catData){
         return showToast('التصنيف مش موجود','error');
     }
-    // دعم شكلين: {name, icon, products} أو array مباشر
     let products, catName, catIcon;
     if(Array.isArray(catData)){
         products = catData;
@@ -2102,7 +2094,6 @@ async function quickLoadCategory(categoryKey){
     );
 }
 
-/* توليد أزرار Quick Load تلقائياً */
 function renderQuickLoadButtons(){
     const grid = $id('quickCatGrid');
     if(!grid) return;
@@ -2134,7 +2125,7 @@ function renderQuickLoadButtons(){
     grid.innerHTML = html || '<div class="empty-state"><p>مفيش تصنيفات</p></div>';
 }
 
-/* ═══════════ Shops ═══════════ */
+/* Shops */
 function loadShops(){
     if(!activeArea) return;
     db.ref(`shops/${activeArea}`).on('value', snap=>{
@@ -2209,7 +2200,7 @@ function deleteShop(id){
     });
 }
 
-/* ═══════════ Support ═══════════ */
+/* Support */
 function saveSupportWhatsapp(){
     const num = $id('supportWhatsappInput').value.trim();
     if(!num) return showToast('اكتب الرقم','error');
@@ -2223,7 +2214,7 @@ function loadSupportWhatsapp(){
     });
 }
 
-/* ═══════════ Fakka Cards ═══════════ */
+/* Fakka Cards */
 function addNewFakkaCard(){
     if(!activeArea) return showToast('اختر منطقة','error');
     const code = $id('newFakkaCode').value.trim();
@@ -2266,7 +2257,7 @@ function deleteFakkaCard(node, id){
     db.ref(`reward_settings/${activeArea}/${node}/${id}`).remove().then(()=>showToast('✅ تم الحذف','success'));
 }
 
-/* ═══════════ Rewards ═══════════ */
+/* Rewards */
 function saveRewardBaseSettings(){
     if(!activeArea) return showToast('اختر منطقة','error');
     const data = {
@@ -2316,7 +2307,7 @@ function loadRewardSettings(){
     });
 }
 
-/* ═══════════ Destinations ═══════════ */
+/* Destinations */
 function addDestination(){
     if(!activeArea) return showToast('اختر منطقة','error');
     const name = $id('destName').value.trim();
@@ -2346,7 +2337,7 @@ function loadDestinations(){
     });
 }
 
-/* ═══════════ Providers (Add & List) ═══════════ */
+/* Providers */
 function saveProviderWithCustomCode(){
     if(!activeArea) return showToast('اختر منطقة','error');
     const name = $id('pName').value.trim();
@@ -2380,17 +2371,11 @@ function loadProviders(){
     });
 }
 
-/* ═══════════ Window Load ═══════════ */
-window.addEventListener('load', function(){
-    loadAreas();
-    loadSupportWhatsapp();
-    renderQuickLoadButtons();
-});
 /* ═══════════════════════════════════════════════════════════
    الجزء 4: الشحنات + السائقين + الطلبات + الداشبورد
    ═══════════════════════════════════════════════════════════ */
 
-/* ═══════════ Shipping Orders ═══════════ */
+/* Shipping Orders */
 function switchShippingTab(tab){
     currentShippingTab = tab;
     ['new','assigned','active','done','returns'].forEach(t=>{
@@ -2563,7 +2548,7 @@ function confirmAssignDriver(){
     }).catch(()=>{ showToast('خطأ في التعيين','error'); });
 }
 
-/* ═══════════ Drivers & Wallets ═══════════ */
+/* Drivers & Wallets */
 function loadDriversAndWallets(){
     if(!activeArea) return;
     db.ref(`providers/${activeArea}`).on('value', snap=>{
@@ -2762,7 +2747,7 @@ function showDriverDetails(driverKey){
     switchPage('driverDetails');
 }
 
-/* ═══════════ تصفير حساب السائق ═══════════ */
+/* تصفير حساب السائق */
 function settleDriver(driverKey){
     const driver = driversCache[driverKey]; if(!driver) return;
     const stats = calcDriverStats(driver);
@@ -2813,7 +2798,7 @@ function settleDriver(driverKey){
     );
 }
 
-/* ═══════════ Daily Orders ═══════════ */
+/* Daily Orders */
 function loadDailyOrders(){
     if(!activeArea) return;
     db.ref('orders').on('value', snap=>{
@@ -2844,7 +2829,7 @@ function loadDailyOrders(){
     });
 }
 
-/* ═══════════ Discounts Summary ═══════════ */
+/* Discounts Summary */
 function loadDiscountsSummary(){
     if(!activeArea) return;
     db.ref('orders').on('value', snap=>{
@@ -2876,7 +2861,7 @@ function loadDiscountsSummary(){
     });
 }
 
-/* ═══════════ Dashboard Stats ═══════════ */
+/* Dashboard Stats */
 function loadDashboardStats(){
     if(!activeArea) return;
     db.ref('orders').on('value', snap=>{
@@ -2933,11 +2918,10 @@ function loadDashboardStats(){
     });
 }
 
-/* ═══════════════════════════════════════════════════════════
-   نهاية الكود
-   ═══════════════════════════════════════════════════════════ */
-</script>
-</body>
-</html>
-/* نهاية الجزء 3 - يكمل في الجزء 4 */
+/* Window Load */
+window.addEventListener('load', function(){
+    loadAreas();
+    loadSupportWhatsapp();
+    renderQuickLoadButtons();
+});
 </script>
