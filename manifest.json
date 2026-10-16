@@ -1,19 +1,58 @@
-L{
-    "name": "مشوارك أدمن",
+{
+    "name": "مشوارك أدمن - لوحة التحكم",
     "short_name": "مشوارك أدمن",
-    "description": "لوحة تحكم مشوارك - إدارة الطلبات والعملاء",
+    "description": "لوحة تحكم مشوارك - إدارة الطلبات والعملاء والسائقين",
     "start_url": "./index.html",
     "scope": "./",
     "display": "standalone",
-    "orientation": "portrait",
+    "display_override": ["standalone", "minimal-ui"],
+    "orientation": "portrait-primary",
     "background_color": "#090d16",
     "theme_color": "#8b5cf6",
     "lang": "ar",
     "dir": "rtl",
+    "categories": ["business", "productivity"],
+    "prefer_related_applications": false,
     "icons": [
         {
             "src": "./logo.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./logo.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./logo.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./logo.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./logo.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./logo.png",
             "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./logo.png",
+            "sizes": "384x384",
             "type": "image/png",
             "purpose": "any"
         },
@@ -35,5 +74,33 @@ L{
             "type": "image/png",
             "purpose": "maskable"
         }
+    ],
+    "shortcuts": [
+        {
+            "name": "الشحنات الواردة",
+            "short_name": "الشحنات",
+            "description": "فتح صفحة الشحنات الواردة",
+            "url": "./index.html#shippingOrders",
+            "icons": [
+                {
+                    "src": "./logo.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                }
+            ]
+        },
+        {
+            "name": "حسابات السائقين",
+            "short_name": "السائقين",
+            "description": "فتح صفحة حسابات السائقين",
+            "url": "./index.html#drivers",
+            "icons": [
+                {
+                    "src": "./logo.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                }
+            ]
+        }
     ]
-} 
+}
