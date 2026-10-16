@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>لوحة تحكم مشوارك | وِدّ</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#8b5cf6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="مشوارك أدمن">
+<meta name="application-name" content="مشوارك أدمن">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="./logo.png">
+<link rel="icon" type="image/png" href="./logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -21,7 +30,7 @@
   --text-muted:#94a3b8;
   --sidebar-w:260px;
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif;-webkit-tap-highlight-color:transparent}
 body{
   background:
     radial-gradient(circle at 15% 15%,rgba(139,92,246,.12) 0,transparent 45%),
@@ -32,6 +41,18 @@ body{
   overflow-x:hidden;
 }
 .app-layout{display:flex;min-height:100vh}
+
+/* INSTALL BANNER */
+.install-banner-top{position:fixed;top:0;left:0;right:0;background:linear-gradient(135deg,#8b5cf6,#06b6d4);z-index:99999;padding:0;transform:translateY(-100%);transition:transform .5s cubic-bezier(.16,1,.3,1);box-shadow:0 8px 30px rgba(139,92,246,.5);border-bottom:2px solid rgba(255,255,255,.2)}
+.install-banner-top.show{transform:translateY(0)}
+.install-banner-inner{max-width:600px;margin:0 auto;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.install-banner-icon{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.9);border:2px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:installPulse 2s infinite;object-fit:contain;padding:2px}
+@keyframes installPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.install-banner-text{flex:1;min-width:0}
+.install-banner-title{font-size:13px;font-weight:900;color:#fff;margin-bottom:2px}
+.install-banner-sub{font-size:10.5px;color:rgba(255,255,255,.9);font-weight:600}
+.install-banner-btn{padding:9px 14px;background:#fff;border:none;border-radius:11px;color:#7c3aed;font-weight:900;font-size:12.5px;cursor:pointer;font-family:'Cairo',sans-serif;flex-shrink:0;box-shadow:0 6px 15px rgba(0,0,0,.2);transition:.2s;display:flex;align-items:center;gap:6px;justify-content:center;min-width:80px}
+.install-banner-close{width:30px;height:30px;border-radius:9px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;font-size:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 
 /* SIDEBAR */
 .sidebar{
@@ -59,7 +80,9 @@ body{
   font-size:22px;color:#fff;
   box-shadow:0 8px 20px rgba(139,92,246,.4);
   flex-shrink:0;
+  overflow:hidden;
 }
+.sidebar-logo img{width:100%;height:100%;object-fit:cover}
 .sidebar-title{font-size:16px;font-weight:900;color:#a78bfa;line-height:1.2}
 .sidebar-title small{display:block;font-size:10px;color:var(--text-muted);font-weight:500;margin-top:2px}
 .sidebar-area-selector{padding:15px 20px;border-bottom:1px solid var(--glass-border)}
@@ -652,6 +675,15 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .quick-cat-name{font-size:13.5px;font-weight:900;color:#fff;margin-bottom:3px}
 .quick-cat-count{font-size:10.5px;color:#94a3b8;font-weight:600}
 
+/* DRIVER CELL IN DISCOUNT TABLE */
+.driver-cell{
+  color:#a78bfa;font-weight:700;font-size:12px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.driver-cell-none{
+  color:#94a3b8;font-size:11px;font-style:italic;
+}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .sidebar{transform:translateX(100%)}
@@ -665,12 +697,30 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 }
 </style>
 </head><body>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner-top" id="installBanner">
+    <div class="install-banner-inner">
+        <img src="./logo.png" alt="مشوارك" class="install-banner-icon">
+        <div class="install-banner-text">
+            <div class="install-banner-title">📱 ثبّت لوحة التحكم</div>
+            <div class="install-banner-sub">افتحها بضغطة واحدة من الشاشة</div>
+        </div>
+        <button class="install-banner-btn" onclick="installPWA()">
+            <i class="fas fa-download"></i> ثبّت
+        </button>
+        <button class="install-banner-close" onclick="closeInstallBanner()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
 <div class="app-layout">
 <aside class="sidebar" id="sidebar">
 <div class="sidebar-header">
-<div class="sidebar-logo"><i class="fas fa-network-wired"></i></div>
+<div class="sidebar-logo"><img src="./logo.png" alt="مشوارك" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-network-wired\'></i>'"></div>
 <div class="sidebar-title">مشوارك<small>لوحة التحكم المركزية</small></div>
 </div>
 <div class="sidebar-area-selector">
@@ -1168,7 +1218,7 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 <div class="info-note danger-note">⚠️ الخصومات دي على حساب المشروع، والسائق بياخد حقه كامل.</div>
 <div class="card"><div class="card-title"><i class="fas fa-list-alt"></i> تفاصيل طلبات الخصم</div>
-<div class="table-wrap"><table class="data-table"><thead><tr><th>العميل</th><th>النوع</th><th>الأصلي</th><th>الخصم</th><th>المدفوع</th></tr></thead><tbody id="discountsTableBody"><tr><td colspan="5" class="empty-state">لا توجد خصومات بعد</td></tr></tbody></table></div>
+<div class="table-wrap"><table class="data-table" style="min-width:900px"><thead><tr><th>العميل</th><th>النوع</th><th>السائق</th><th>الأصلي</th><th>الخصم</th><th>المدفوع</th></tr></thead><tbody id="discountsTableBody"><tr><td colspan="6" class="empty-state">لا توجد خصومات بعد</td></tr></tbody></table></div>
 </div>
 </div>
 
@@ -1277,10 +1327,11 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<div class="toast" id="toast"><i class="fas fa-info-circle"></i><span id="toastMessage">رسالة</span></div><script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<div class="toast" id="toast"><i class="fas fa-info-circle"></i><span id="toastMessage">رسالة</span></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-<script src="products.js"></script>
-<script>
+<script src="products.js"></script><script>
 /* ═══════════════════════════════════════════════════════════
    مشوارك - لوحة التحكم
    Firebase Setup + Core Functions
@@ -1343,6 +1394,70 @@ function showConfirm(icon, title, msg, cb){
 function closeConfirm(){
     $id('confirmOverlay').classList.remove('show');
     $id('confirmModal').classList.remove('show');
+}
+
+/* ═══════════════════════════════════════════════════════
+   📲 PWA INSTALL BANNER
+   ═══════════════════════════════════════════════════════ */
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    console.log('✅ PWA قابل للتثبيت');
+    showInstallBanner();
+});
+
+function showInstallBanner(){
+    const banner = $id('installBanner');
+    if(!banner) return;
+    if(localStorage.getItem('admin_install_dismissed') === 'true') return;
+    if(window.matchMedia('(display-mode: standalone)').matches) return;
+    setTimeout(()=>{
+        banner.classList.add('show');
+    }, 1500);
+}
+
+function installPWA(){
+    if(deferredPrompt){
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((c)=>{
+            if(c.outcome === 'accepted'){
+                showToast('✅ تم تثبيت التطبيق!', 'success');
+                closeInstallBanner();
+                localStorage.setItem('admin_install_dismissed', 'true');
+            }
+            deferredPrompt = null;
+        });
+    } else {
+        showToast('افتح القائمة (⋮) واختر "إضافة للشاشة الرئيسية"', 'info');
+    }
+}
+
+function closeInstallBanner(){
+    const banner = $id('installBanner');
+    if(!banner) return;
+    banner.classList.remove('show');
+    localStorage.setItem('admin_install_dismissed', 'true');
+}
+
+window.addEventListener('appinstalled', ()=>{
+    console.log('✅ تم تثبيت التطبيق');
+    showToast('🎉 تم تثبيت اللوحة!', 'success');
+    closeInstallBanner();
+    localStorage.setItem('admin_install_dismissed', 'true');
+    deferredPrompt = null;
+});
+
+/* ═══════════════════════════════════════════════════════
+   🔧 SERVICE WORKER
+   ═══════════════════════════════════════════════════════ */
+if('serviceWorker' in navigator && location.protocol === 'https:'){
+    window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('✅ SW Registered'))
+            .catch(err => console.log('SW Error:', err.message));
+    });
 }
 
 /* Page Titles */
@@ -2372,7 +2487,7 @@ function loadProviders(){
 }
 
 /* ═══════════════════════════════════════════════════════════
-   الجزء 4: الشحنات + السائقين + الطلبات + الداشبورد
+   الشحنات + السائقين + الطلبات + الداشبورد + الخصومات
    ═══════════════════════════════════════════════════════════ */
 
 /* Shipping Orders */
@@ -2829,7 +2944,7 @@ function loadDailyOrders(){
     });
 }
 
-/* Discounts Summary */
+/* ⚠️ الخصومات - مع اسم السائق */
 function loadDiscountsSummary(){
     if(!activeArea) return;
     db.ref('orders').on('value', snap=>{
@@ -2845,9 +2960,25 @@ function loadDiscountsSummary(){
             const final = Number(o.finalPrice)||Number(o.price)||0;
             if(o.discountType==='خصم مالي مباشر') totalDirect += amount;
             else if(o.discountType==='توصيل مجاني') totalFree += amount;
+            
+            // ✅ اسم السائق
+            let driverName = '';
+            if(o.assignedDriverName){
+                driverName = o.assignedDriverName;
+            } else if(o.driverName){
+                driverName = o.driverName;
+            } else if(o.driverPhone){
+                driverName = o.driverPhone;
+            }
+            
+            const driverHtml = !driverName 
+                ? '<span class="driver-cell-none">⏳ لم يُعيَّن</span>'
+                : `<span class="driver-cell"><i class="fas fa-motorcycle"></i> ${driverName}</span>`;
+            
             html = `<tr style="background:rgba(239,68,68,.06)">
                 <td><b>${o.customerName||o.name||'عميل'}</b></td>
                 <td><b>${o.type}</b></td>
+                <td>${driverHtml}</td>
                 <td>${original} ج</td>
                 <td style="color:#fca5a5;font-weight:900">- ${amount} ج</td>
                 <td style="color:#10b981;font-weight:900">${final} ج</td>
@@ -2857,7 +2988,7 @@ function loadDiscountsSummary(){
         const tf = $id('totalFreeDeliveries'); if(tf) tf.innerText = totalFree+' ج';
         const ta = $id('totalAllDiscounts'); if(ta) ta.innerText = (totalDirect+totalFree)+' ج';
         const tbody = $id('discountsTableBody');
-        if(tbody) tbody.innerHTML = html || '<tr><td colspan="5" class="empty-state">لا توجد خصومات</td></tr>';
+        if(tbody) tbody.innerHTML = html || '<tr><td colspan="6" class="empty-state">لا توجد خصومات</td></tr>';
     });
 }
 
@@ -2925,3 +3056,5 @@ window.addEventListener('load', function(){
     renderQuickLoadButtons();
 });
 </script>
+</body>
+</html>
