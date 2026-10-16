@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مشوارك أدمن | لا يوجد اتصال</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
+body{
+    background:radial-gradient(circle at 15% 15%,rgba(139,92,246,.15) 0,transparent 45%),
+               radial-gradient(circle at 85% 85%,rgba(6,182,212,.12) 0,transparent 45%),
+               #090d16;
+    color:#f1f5f9;
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;text-align:center;
+}
+.box{
+    background:rgba(20,27,45,.75);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:24px;
+    padding:40px 30px;
+    max-width:400px;width:100%;
+    box-shadow:0 20px 40px rgba(0,0,0,.5);
+}
+.icon{
+    width:100px;height:100px;
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    border-radius:28px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:48px;color:#fff;margin:0 auto 20px;
+    box-shadow:0 15px 35px rgba(239,68,68,.4);
+    animation:pulse 2s infinite;
+}
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+}
+h1{font-size:24px;font-weight:900;color:#fff;margin-bottom:12px}
+p{font-size:14px;color:#94a3b8;line-height:1.8;margin-bottom:24px}
+.btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 28px;border:none;border-radius:14px;
+    background:linear-gradient(135deg,#8b5cf6,#7c3aed);
+    color:#fff;font-weight:900;font-size:14px;
+    cursor:pointer;font-family:'Cairo',sans-serif;
+    box-shadow:0 10px 25px rgba(139,92,246,.4);
+}
+.btn:active{transform:scale(.97)}
+</style>
+</head>
+<body>
+<div class="box">
+    <div class="icon">📡</div>
+    <h1>لا يوجد اتصال بالإنترنت</h1>
+    <p>تأكد من اتصالك بالإنترنت وحاول تاني</p>
+    <button class="btn" onclick="window.location.reload()">
+        🔄 حاول تاني
+    </button>
+</div>
+<script>
+    window.addEventListener('online', () => {
+        window.location.reload();
+    });
+</script>
+</body>
+</html>
