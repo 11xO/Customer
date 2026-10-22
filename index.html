@@ -919,72 +919,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 </div>
 
-<!-- Product Edit Modal -->
-<div class="modal-overlay" id="editProductOverlay" onclick="closeProductEditModal()"></div>
-<div class="center-modal" id="editProductModal" style="max-width:600px">
-<div class="center-modal-header">
-<div class="center-modal-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fas fa-edit"></i></div>
-<div><div class="center-modal-title">تعديل المنتج</div><div class="center-modal-sub">⚠️ التعديلات هتتطبق في كل المناطق</div></div>
-<button class="center-modal-close" onclick="closeProductEditModal()"><i class="fas fa-times"></i></button>
-</div>
-<div class="center-modal-body">
-<input type="hidden" id="editProdId">
-<label class="field-label">🏷️ اسم المنتج *</label>
-<input type="text" id="editProdName">
-<div class="grid-2">
-<div><label class="field-label">💰 السعر (ج) *</label><input type="number" id="editProdPrice" min="0" step="0.5"></div>
-<div><label class="field-label">💸 السعر القديم</label><input type="number" id="editProdOldPrice" min="0" step="0.5"></div>
-</div>
-<label class="field-label">📂 التصنيف</label>
-<select id="editProdCategory"><option value="">-- اختر تصنيف --</option></select>
-<label class="field-label">📝 ملاحظة / وصف</label>
-<input type="text" id="editProdNote">
-
-<label class="field-label">🖼️ صورة المنتج</label>
-<div class="image-upload-box">
-    <input type="file" id="editProdImageFile" accept="image/*" style="display:none" onchange="handleEditProdImageUpload(event)">
-    <button type="button" class="image-upload-btn" id="editProdImageBtn" onclick="document.getElementById('editProdImageFile').click()">
-        <i class="fas fa-cloud-upload-alt"></i>
-        <span>اضغط لرفع صورة جديدة</span>
-    </button>
-    <div class="upload-progress" id="editProdUploadProgress">
-        <div class="upload-progress-bar" id="editProdUploadBar">0%</div>
-    </div>
-    <div class="image-preview" id="editProdImagePreview">
-        <img id="editProdImagePreviewImg" src="" alt="معاينة">
-        <button type="button" class="image-preview-remove" onclick="removeEditProdImage()">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="image-preview-label"><i class="fas fa-check"></i> تم الرفع</div>
-    </div>
-    <div class="url-input-toggle">
-        <button type="button" onclick="toggleEditProdUrlInput()">🔗 أو استبدل برابط صورة</button>
-    </div>
-    <div id="editProdUrlBox" style="display:none;margin-top:10px">
-        <input type="text" id="editProdImage" style="direction:ltr;text-align:left" oninput="previewEditProductImageFromUrl()">
-    </div>
-</div>
-
-<div class="grid-2">
-<div><label class="field-label">🔢 ترتيب العرض</label><input type="number" id="editProdOrder" min="1"></div>
-<div><label class="field-label">📊 الحالة</label>
-<select id="editProdActive">
-<option value="true">✅ نشط</option>
-<option value="false">⏸️ مخفي</option>
-</select>
-</div>
-</div>
-<div class="toggle-row" style="margin-top:14px">
-<div class="toggle-label"><div>📦 المنتج خلص</div></div>
-<label class="switch"><input type="checkbox" id="editProdOutOfStock"><span class="slider-sw"></span></label>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;padding-bottom:5px">
-<button class="btn btn-success" onclick="saveMarketProductEdit()"><i class="fas fa-save"></i> حفظ في كل المناطق</button>
-<button class="btn btn-danger" onclick="closeProductEditModal()"><i class="fas fa-times"></i> إلغاء</button>
-</div>
-</div>
-</div>
-
 <!-- PAGE: Market Products -->
 <div class="page" id="page-marketProducts">
 
@@ -1363,6 +1297,72 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
 <button class="btn btn-success" id="confirmYesBtn" style="margin:0">تأكيد</button>
 <button class="btn" style="margin:0;background:rgba(255,255,255,.1)" onclick="closeConfirm()">إلغاء</button>
+</div>
+</div>
+
+<!-- ✨ Product Edit Modal (مستقل - يفتح من أي صفحة) -->
+<div class="modal-overlay" id="editProductOverlay" onclick="closeProductEditModal()"></div>
+<div class="center-modal" id="editProductModal" style="max-width:600px">
+<div class="center-modal-header">
+<div class="center-modal-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fas fa-edit"></i></div>
+<div><div class="center-modal-title">تعديل المنتج</div><div class="center-modal-sub">⚠️ التعديلات هتتطبق في كل المناطق</div></div>
+<button class="center-modal-close" onclick="closeProductEditModal()"><i class="fas fa-times"></i></button>
+</div>
+<div class="center-modal-body">
+<input type="hidden" id="editProdId">
+<label class="field-label">🏷️ اسم المنتج *</label>
+<input type="text" id="editProdName">
+<div class="grid-2">
+<div><label class="field-label">💰 السعر (ج) *</label><input type="number" id="editProdPrice" min="0" step="0.5"></div>
+<div><label class="field-label">💸 السعر القديم</label><input type="number" id="editProdOldPrice" min="0" step="0.5"></div>
+</div>
+<label class="field-label">📂 التصنيف</label>
+<select id="editProdCategory"><option value="">-- اختر تصنيف --</option></select>
+<label class="field-label">📝 ملاحظة / وصف</label>
+<input type="text" id="editProdNote">
+
+<label class="field-label">🖼️ صورة المنتج</label>
+<div class="image-upload-box">
+    <input type="file" id="editProdImageFile" accept="image/*" style="display:none" onchange="handleEditProdImageUpload(event)">
+    <button type="button" class="image-upload-btn" id="editProdImageBtn" onclick="document.getElementById('editProdImageFile').click()">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span>اضغط لرفع صورة جديدة</span>
+    </button>
+    <div class="upload-progress" id="editProdUploadProgress">
+        <div class="upload-progress-bar" id="editProdUploadBar">0%</div>
+    </div>
+    <div class="image-preview" id="editProdImagePreview">
+        <img id="editProdImagePreviewImg" src="" alt="معاينة">
+        <button type="button" class="image-preview-remove" onclick="removeEditProdImage()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="image-preview-label"><i class="fas fa-check"></i> تم الرفع</div>
+    </div>
+    <div class="url-input-toggle">
+        <button type="button" onclick="toggleEditProdUrlInput()">🔗 أو استبدل برابط صورة</button>
+    </div>
+    <div id="editProdUrlBox" style="display:none;margin-top:10px">
+        <input type="text" id="editProdImage" style="direction:ltr;text-align:left" oninput="previewEditProductImageFromUrl()">
+    </div>
+</div>
+
+<div class="grid-2">
+<div><label class="field-label">🔢 ترتيب العرض</label><input type="number" id="editProdOrder" min="1"></div>
+<div><label class="field-label">📊 الحالة</label>
+<select id="editProdActive">
+<option value="true">✅ نشط</option>
+<option value="false">⏸️ مخفي</option>
+</select>
+</div>
+</div>
+<div class="toggle-row" style="margin-top:14px">
+<div class="toggle-label"><div>📦 المنتج خلص</div></div>
+<label class="switch"><input type="checkbox" id="editProdOutOfStock"><span class="slider-sw"></span></label>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;padding-bottom:5px">
+<button class="btn btn-success" onclick="saveMarketProductEdit()"><i class="fas fa-save"></i> حفظ في كل المناطق</button>
+<button class="btn btn-danger" onclick="closeProductEditModal()"><i class="fas fa-times"></i> إلغاء</button>
+</div>
 </div>
 </div>
 
