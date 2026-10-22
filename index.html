@@ -676,49 +676,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 .pharmacy-item-name{font-weight:900;color:#fff;font-size:14px;margin-bottom:2px}
 .pharmacy-item-meta{font-size:11.5px;color:#94a3b8}
 
-/* QUICK LOAD */
-.quick-load-section{
-  background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.08));
-  border:1.5px dashed rgba(16,185,129,.5);
-  border-radius:18px;padding:20px;margin-bottom:20px;
-}
-.quick-load-title{
-  font-size:15px;font-weight:900;color:#34d399;margin-bottom:8px;
-  display:flex;align-items:center;gap:10px;
-}
-.quick-load-title i{
-  width:36px;height:36px;
-  background:linear-gradient(135deg,#10b981,#059669);
-  border-radius:11px;display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:16px;
-}
-.quick-load-desc{font-size:12px;color:#6ee7b7;line-height:1.7;margin-bottom:15px}
-.quick-cat-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:10px;margin-bottom:15px;
-}
-.quick-cat-btn{
-  background:rgba(10,15,28,.6);
-  border:1.5px solid rgba(16,185,129,.3);
-  border-radius:14px;padding:14px;cursor:pointer;
-  display:flex;align-items:center;gap:12px;
-  font-family:'Cairo',sans-serif;color:#fff;
-  transition:.2s;text-align:right;
-}
-.quick-cat-btn:hover{
-  background:rgba(16,185,129,.15);
-  border-color:#10b981;transform:translateY(-2px);
-}
-.quick-cat-icon{
-  width:40px;height:40px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;background:linear-gradient(135deg,#10b981,#059669);
-  flex-shrink:0;
-}
-.quick-cat-info{flex:1;min-width:0}
-.quick-cat-name{font-size:13.5px;font-weight:900;color:#fff;margin-bottom:3px}
-.quick-cat-count{font-size:10.5px;color:#94a3b8;font-weight:600}
-
 /* DRIVER CELL IN DISCOUNT TABLE */
 .driver-cell{color:#a78bfa;font-weight:700;font-size:12px;display:inline-flex;align-items:center;gap:5px}
 .driver-cell-none{color:#94a3b8;font-size:11px;font-style:italic}
@@ -960,9 +917,17 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 </div>
 <button class="btn btn-success" onclick="addNewMarketProduct()"><i class="fas fa-save"></i> حفظ المنتج في كل المناطق</button>
 </div>
+</div>
 
-<div class="card" id="editProductCard" style="display:none">
-<div class="card-title" style="color:#fbbf24"><i class="fas fa-edit"></i> تعديل المنتج (في كل المناطق)</div>
+<!-- Product Edit Modal -->
+<div class="modal-overlay" id="editProductOverlay" onclick="closeProductEditModal()"></div>
+<div class="center-modal" id="editProductModal" style="max-width:600px">
+<div class="center-modal-header">
+<div class="center-modal-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fas fa-edit"></i></div>
+<div><div class="center-modal-title">تعديل المنتج</div><div class="center-modal-sub">⚠️ التعديلات هتتطبق في كل المناطق</div></div>
+<button class="center-modal-close" onclick="closeProductEditModal()"><i class="fas fa-times"></i></button>
+</div>
+<div class="center-modal-body">
 <input type="hidden" id="editProdId">
 <label class="field-label">🏷️ اسم المنتج *</label>
 <input type="text" id="editProdName">
@@ -1013,9 +978,9 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <div class="toggle-label"><div>📦 المنتج خلص</div></div>
 <label class="switch"><input type="checkbox" id="editProdOutOfStock"><span class="slider-sw"></span></label>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
-<button class="btn btn-success" onclick="saveMarketProductEdit()"><i class="fas fa-save"></i> حفظ التعديلات في كل المناطق</button>
-<button class="btn btn-danger" onclick="cancelProductEdit()"><i class="fas fa-times"></i> إلغاء</button>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;padding-bottom:5px">
+<button class="btn btn-success" onclick="saveMarketProductEdit()"><i class="fas fa-save"></i> حفظ في كل المناطق</button>
+<button class="btn btn-danger" onclick="closeProductEditModal()"><i class="fas fa-times"></i> إلغاء</button>
 </div>
 </div>
 </div>
@@ -1033,17 +998,6 @@ input:checked + .slider-sw:before{transform:translateX(22px)}
 <button class="btn btn-warning" onclick="syncAllCategoriesToAllAreas()" style="width:100%;margin-top:10px">
     <i class="fas fa-tags"></i> 🔄 مزامنة كل التصنيفات لكل المناطق
 </button>
-</div>
-
-<div class="quick-load-section">
-<div class="quick-load-title">
-<i class="fas fa-magic"></i>
-<span>🎁 تحميل منتجات جاهزة</span>
-</div>
-<div class="quick-load-desc">
-💡 اضغط على أي تصنيف لتحميل المنتجات الجاهزة بصورها وأسعارها. المنتجات بتتضاف لكل المناطق تلقائياً.
-</div>
-<div class="quick-cat-grid" id="quickCatGrid"></div>
 </div>
 
 <div class="card">
@@ -2070,9 +2024,6 @@ function previewEditProductImageFromUrl(){
    ═══════════════════════════════════════════════════════════ */
 
 function loadMarketCategoriesGlobal(){
-    // نقرا من first area موجود عشان نعرض التصنيفات
-    // لكن التصنيفات المفروض تكون موحدة أو منسوخة
-    // هنقرا من _global ونحدّث
     db.ref('market_categories_global').on('value', snap=>{
         marketCategoriesCache = {};
         snap.forEach(c=>{ marketCategoriesCache[c.key] = c.val(); });
@@ -2117,13 +2068,11 @@ async function addNewMarketCategory(){
     if(!name){ showToast('اكتب اسم التصنيف','error'); return; }
 
     try {
-        // 1. أضف التصنيف في _global
         const newRef = db.ref('market_categories_global').push();
         const catId = newRef.key;
         const catData = { name, icon, order, active:true, createdAt:Date.now() };
         await newRef.set(catData);
 
-        // 2. انسخه لكل المناطق
         const areaNames = Object.values(areasCache);
         if(areaNames.length > 0){
             const updates = {};
@@ -2160,7 +2109,6 @@ function editMarketCategory(id){
         active
     };
 
-    // حدّث في _global + كل المناطق
     const updates = { [`market_categories_global/${id}`]: updateData };
     Object.values(areasCache).forEach(area=>{
         updates[`market_categories/${area}/${id}`] = { ...cat, ...updateData };
@@ -2205,10 +2153,8 @@ function populateCategoryDropdowns(){
    🛍️ MARKET PRODUCTS - مع نسخ تلقائي لكل المناطق
    ═══════════════════════════════════════════════════════════ */
 
-// نجمع المنتجات من كل المناطق (مع إزالة التكرار بنفس الـ ID)
 function loadAllProductsFromAllAreas(){
     if(!activeArea) return;
-    // نعرض منتجات المنطقة النشطة
     db.ref(`market_products/${activeArea}`).on('value', snap=>{
         marketProductsCache = {};
         snap.forEach(c=>{ marketProductsCache[c.key] = c.val(); });
@@ -2262,12 +2208,10 @@ async function addNewMarketProduct(){
     };
 
     try {
-        // 1. احفظ المنتج في _global
         const newRef = db.ref('market_products_global').push();
         const prodId = newRef.key;
         await newRef.set(productData);
 
-        // 2. انسخ المنتج لكل المناطق
         const areaNames = Object.values(areasCache);
         if(areaNames.length > 0){
             const updates = {};
@@ -2277,7 +2221,6 @@ async function addNewMarketProduct(){
             await db.ref().update(updates);
         }
 
-        // تفريغ الحقول
         $id('newProdName').value = '';
         $id('newProdPrice').value = '';
         $id('newProdOldPrice').value = '';
@@ -2402,13 +2345,17 @@ function openProductEditor(id){
     const urlInput = $id('editProdImage'); if(urlInput) urlInput.value = '';
     const urlBox = $id('editProdUrlBox'); if(urlBox) urlBox.style.display = 'none';
 
-    $id('editProductCard').style.display = 'block';
-    switchPage('marketAddProduct');
-    setTimeout(()=>{ $id('editProductCard').scrollIntoView({ behavior:'smooth' }); },300);
+    $id('editProductOverlay').classList.add('show');
+    $id('editProductModal').classList.add('show');
 }
 
 function cancelProductEdit(){
-    $id('editProductCard').style.display = 'none';
+    closeProductEditModal();
+}
+
+function closeProductEditModal(){
+    $id('editProductOverlay').classList.remove('show');
+    $id('editProductModal').classList.remove('show');
     $id('editProdId').value = '';
     editProdImageBase64 = '';
     editProdImageName = '';
@@ -2416,6 +2363,10 @@ function cancelProductEdit(){
     if(preview) preview.style.display = 'none';
     const btn = $id('editProdImageBtn');
     if(btn) btn.style.display = 'flex';
+    const fileInput = $id('editProdImageFile');
+    if(fileInput) fileInput.value = '';
+    const urlBox = $id('editProdUrlBox');
+    if(urlBox) urlBox.style.display = 'none';
 }
 
 async function saveMarketProductEdit(){
@@ -2455,8 +2406,7 @@ async function saveMarketProductEdit(){
         });
         await db.ref().update(updates);
         showToast('✅ تم حفظ التعديلات في كل المناطق','success');
-        cancelProductEdit();
-        switchPage('marketProducts');
+        closeProductEditModal();
     } catch(err){
         console.error(err);
         showToast('❌ خطأ: ' + err.message,'error');
@@ -2491,7 +2441,6 @@ async function syncAllProductsToAllAreas(){
             try {
                 showToast('⏳ جاري المزامنة...','info');
 
-                // 1. اجمع كل المنتجات الفريدة من كل المناطق
                 const allProductsMap = {};
                 for(const area of areaNames){
                     const snap = await db.ref(`market_products/${area}`).once('value');
@@ -2501,7 +2450,6 @@ async function syncAllProductsToAllAreas(){
                         }
                     });
                 }
-                // وأضف من _global
                 const globalSnap = await db.ref('market_products_global').once('value');
                 globalSnap.forEach(c=>{
                     allProductsMap[c.key] = c.val();
@@ -2513,14 +2461,12 @@ async function syncAllProductsToAllAreas(){
                     return;
                 }
 
-                // 2. اكتب المنتجات في _global
                 const globalUpdates = {};
                 productIds.forEach(id=>{
                     globalUpdates[id] = allProductsMap[id];
                 });
                 await db.ref('market_products_global').update(globalUpdates);
 
-                // 3. اكتب المنتجات في كل منطقة
                 const updates = {};
                 for(const area of areaNames){
                     for(const id of productIds){
@@ -2561,12 +2507,10 @@ async function syncAllCategoriesToAllAreas(){
                 const catIds = Object.keys(allCatsMap);
                 if(catIds.length === 0){ showToast('مفيش تصنيفات','error'); return; }
 
-                // اكتب في _global
                 const globalUpdates = {};
                 catIds.forEach(id=>{ globalUpdates[id] = allCatsMap[id]; });
                 await db.ref('market_categories_global').update(globalUpdates);
 
-                // اكتب في كل منطقة
                 const updates = {};
                 for(const area of areaNames){
                     for(const id of catIds){
@@ -2582,134 +2526,6 @@ async function syncAllCategoriesToAllAreas(){
             }
         }
     );
-}
-
-/* ═══════════════════════════════════════════════════════════
-   🎁 QUICK LOAD
-   ═══════════════════════════════════════════════════════════ */
-
-async function ensureCategoryGlobal(catName, icon){
-    // لو موجودة في _global
-    const keys = Object.keys(marketCategoriesCache);
-    for(const k of keys){
-        if(marketCategoriesCache[k].name === catName) return k;
-    }
-    // ضيفها
-    const newRef = db.ref('market_categories_global').push();
-    const catData = { name: catName, icon: icon||'📦', order:999, active:true, createdAt:Date.now() };
-    await newRef.set(catData);
-    // انسخها لكل المناطق
-    const areaNames = Object.values(areasCache);
-    if(areaNames.length > 0){
-        const updates = {};
-        areaNames.forEach(area=>{
-            updates[`market_categories/${area}/${newRef.key}`] = catData;
-        });
-        await db.ref().update(updates);
-    }
-    return newRef.key;
-}
-
-async function quickLoadCategory(categoryKey){
-    if(typeof quickProductsDatabase === 'undefined'){
-        return showToast('⚠️ ملف products.js غير محمّل','error');
-    }
-    if(!categoryKey) return;
-    const catData = quickProductsDatabase[categoryKey];
-    if(!catData) return showToast('التصنيف مش موجود','error');
-
-    let products, catName, catIcon;
-    if(Array.isArray(catData)){
-        products = catData;
-        catName = categoryKey;
-        catIcon = '📦';
-    } else {
-        products = catData.products || [];
-        catName = catData.name || categoryKey;
-        catIcon = catData.icon || '📦';
-    }
-    if(products.length===0) return showToast('التصنيف فاضي','error');
-
-    const areaNames = Object.values(areasCache);
-
-    showConfirm(
-        'fa-magic',
-        'تحميل منتجات جاهزة',
-        `هيتم تحميل <b>${products.length} منتج</b> من تصنيف <b>${catIcon} ${catName}</b><br><br>
-        ✅ في <b>كل ${areaNames.length} منطقة</b> المضافة`,
-        async ()=>{
-            try {
-                showToast('⏳ جاري التحميل...','info');
-                const catId = await ensureCategoryGlobal(catName, catIcon);
-
-                // أنشئ كل المنتجات في _global
-                const globalProducts = {};
-                for(let i=0; i<products.length; i++){
-                    const p = products[i];
-                    const newRef = db.ref('market_products_global').push();
-                    globalProducts[newRef.key] = {
-                        name: p.name,
-                        price: p.price,
-                        oldPrice: p.oldPrice||null,
-                        categoryId: catId,
-                        note: p.note||null,
-                        image: p.image||null,
-                        imageName: p.image? 'url' : null,
-                        order: i+1,
-                        active: true,
-                        outOfStock: false,
-                        createdAt: Date.now()
-                    };
-                }
-                await db.ref('market_products_global').update(globalProducts);
-
-                // انسخهم لكل المناطق
-                const updates = {};
-                for(const area of areaNames){
-                    for(const pid of Object.keys(globalProducts)){
-                        updates[`market_products/${area}/${pid}`] = globalProducts[pid];
-                    }
-                }
-                if(Object.keys(updates).length > 0){
-                    await db.ref().update(updates);
-                }
-
-                showToast(`✅ تم تحميل ${products.length} منتج في ${areaNames.length} منطقة`,'success');
-            } catch(err){
-                console.error(err);
-                showToast('❌ خطأ: ' + err.message,'error');
-            }
-        }
-    );
-}
-
-function renderQuickLoadButtons(){
-    const grid = $id('quickCatGrid');
-    if(!grid) return;
-    if(typeof quickProductsDatabase === 'undefined'){
-        grid.innerHTML = '<div class="info-note danger-note">⚠️ ملف products.js غير محمّل</div>';
-        return;
-    }
-    let html = '';
-    Object.keys(quickProductsDatabase).forEach(key=>{
-        const catData = quickProductsDatabase[key];
-        let catName, catIcon, count;
-        if(Array.isArray(catData)){
-            catName = key; catIcon = '📦'; count = catData.length;
-        } else {
-            catName = catData.name || key;
-            catIcon = catData.icon || '📦';
-            count = (catData.products||[]).length;
-        }
-        html += `<button class="quick-cat-btn" onclick="quickLoadCategory('${key}')">
-            <div class="quick-cat-icon">${catIcon}</div>
-            <div class="quick-cat-info">
-                <div class="quick-cat-name">${catName}</div>
-                <div class="quick-cat-count">${count} منتج</div>
-            </div>
-        </button>`;
-    });
-    grid.innerHTML = html || '<div class="empty-state"><p>مفيش تصنيفات</p></div>';
 }
 
 /* Shops */
@@ -3472,7 +3288,6 @@ function loadDashboardStats(){
 window.addEventListener('load', function(){
     loadAreas();
     loadSupportWhatsapp();
-    renderQuickLoadButtons();
     loadMarketCategoriesGlobal();
 });
 </script>
